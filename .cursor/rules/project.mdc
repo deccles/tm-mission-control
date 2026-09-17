@@ -1,0 +1,14 @@
+---
+description: This Cursor folder is the Terraforming Mars companion app
+alwaysApply: true
+---
+
+# TM Companion project
+
+This workspace (`git-terraforming-mars/terraforming-mars`) **is** the helper app for the Steam Terraforming Mars client.
+
+- Local Java app that tails Unity `Player.log` and serves a second-screen UI
+- Package: `dev.tmcompanion`
+- Do not treat the Steam game install or `AppData\LocalLow\LuckyHammers\Terraforming Mars` as this project's source root; those are data/log locations only
+
+Build and change the companion here. Fair-play rules always apply.

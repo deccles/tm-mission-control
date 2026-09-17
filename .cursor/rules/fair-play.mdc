@@ -1,0 +1,32 @@
+---
+description: Never use hidden opponent information from Player.log or anywhere else
+alwaysApply: true
+---
+
+# Fair play — no hidden opponent info
+
+This repo is the **TM Companion**: a second-screen glance at the opponent's **public** table (resources, production, played cards, tags, tiles) plus a reminder of the card **you** are resolving.
+
+Treat the physical board game as the information boundary. If you would not know it by looking at their tableau and the shared board, the companion must not show it, store it, or use it for advice.
+
+## Never parse, display, or act on
+
+- Opponent **hand contents** (cards kept, unplayed, or sitting in AvailableActions)
+- `StartingCardEvent` / `SelectResearchCardsEvent` `SelectedCards` for anyone but the local human
+- `Adding action … Card: … to player N bank` when N is the opponent (that is their hand)
+- Cards they were **offered and refused** (research rejects, starting discards)
+- AI dumps: `Total of N actions can be played`, `has X points`, `AI N made choice`
+- Deck order, discard-pile names, `GameSeed`, or anything that reconstructs the remaining deck
+- Draft picks they did not take; sold patents / discarded cards by name
+- Opponent corporation **before** it is public on the board
+
+Hand **count** is public. Hand **names** are not.
+
+## Allowed (public table)
+
+- Cards actually **played** (`Playing … CardPlayerAction Card:`)
+- Standard projects, milestones, awards, blue-card **actions** they take
+- Resources, production, TR, tiles, tags from played cards
+- The local player's own hand and the card they are currently resolving
+
+If a feature would be stronger with hidden log data, refuse it. Prefer less information over a leak.

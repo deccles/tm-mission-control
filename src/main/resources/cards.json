@@ -1,0 +1,5416 @@
+[
+  {
+    "key": "CrediCor",
+    "name": "Credi Cor",
+    "number": "Z01",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 57
+    },
+    "production": {},
+    "extra": "Effect:\n-20: 4\n(Effect: After you pay for a card or standard project with a basic cost of 20 mc or more, you gain 4 mc.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EcoLine",
+    "name": "Eco Line",
+    "number": "Z02",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 36,
+      "plant": 3
+    },
+    "production": {
+      "plant": 2
+    },
+    "extra": "Effect:\n7 plant -> Greenery Tile\n(Effect: You may always pay 7 plants, instead of 8, to place 1 greenery.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Helion",
+    "name": "Helion",
+    "number": "Z03",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 42
+    },
+    "production": {
+      "heat": 3
+    },
+    "extra": "Effect:\nX heat = X mc\n(Effect: You may use heat as mc. You may not use mc as heat.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MiningGuild",
+    "name": "Mining Guild",
+    "number": "Z04",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 30,
+      "steel": 5
+    },
+    "production": {
+      "steel": 1
+    },
+    "extra": "Effect:\nsteel/ti: (Effect: Each time you get any steel or ti as a placement bonus on the map, increase your steel production 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "InterplanetaryCinematics",
+    "name": "Interplanetary Cinematics",
+    "number": "Z05",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 30,
+      "steel": 20
+    },
+    "production": {},
+    "extra": "Effect:\nEvent: 2 mc\n(Effect: Each time you play an event, you gain 2 mc.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Inventrix",
+    "name": "Inventrix",
+    "number": "Z06",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 45,
+      "card": 3
+    },
+    "production": {},
+    "extra": "Effect:\nRequirements: O2/Ocean/Temp: +/- 2\n(Effect: Your temperature, oxygen, and ocean requirements are +2 or -2 steps, your choice in each case.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "PhoboLog",
+    "name": "Phobo Log",
+    "number": "Z07",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 23,
+      "ti": 10
+    },
+    "production": {},
+    "extra": "Effect:\nti: +1 mc\n(Effect: Your ti resources are each worth 1 mc extra.)\n--- Ed. note: It is not \"Phoblog.\"",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TharsisRepublic",
+    "name": "Tharsis Republic",
+    "number": "Z08",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 40,
+      "city": 1
+    },
+    "production": {},
+    "extra": "Effect:\nany-City*: mc:1\nCity: 3 mc\n(Effect: Whenever any city tile is placed ON MARS, increase your mc production 1 step. When you place a city tile, gain 3 mc.)\n-- Ed. note: Some printings don't have the word \"corporation\" at the top of this card. This is a misprint.",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "Thorgate",
+    "name": "Thorgate",
+    "number": "Z09",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "power"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 48
+    },
+    "production": {
+      "energy": 1
+    },
+    "extra": "Effect:\n(Effect: When playing a power card OR THE STANDARD PROJECT POWER plant, you pay 6 it.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "UnitedNationsMarsInitiative",
+    "name": "United Nations Mars Initiative",
+    "number": "Z10",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 40
+    },
+    "production": {},
+    "extra": "Action:\n3 mc -> TR*\n(Action: If your Terraform Rating was raised this generations, you may pay 3 mc to raise it 1 step more.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Teractor",
+    "name": "Teractor",
+    "number": "Z11",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 60
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SaturnSystems",
+    "name": "Saturn Systems",
+    "number": "Z12",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "jovian"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 42
+    },
+    "production": {
+      "ti": 1
+    },
+    "extra": "Effect:\nany-Jovian: mc:1\n(Effect: Each time any Jovian tag is put into play, including this, increase your mc production 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CheungShingMARS",
+    "name": "Cheung Shing MARS",
+    "number": "Z18",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 44
+    },
+    "production": {
+      "mc": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "PointLuna",
+    "name": "Point Luna",
+    "number": "Z19",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "earth",
+      "space"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 38
+    },
+    "production": {
+      "ti": 1
+    },
+    "extra": "Effect:\nEarth: +Card\n(Effect: When you play an Earth tag, including this, draw a card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RobinsonIndustries",
+    "name": "Robinson Industries",
+    "number": "Z20",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 47
+    },
+    "production": {},
+    "extra": "Action:\n4 mc -> Increase ? 1*\n(Action: Spend 4 mc to increase (one of) your LOWEST PRODUCTION 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ValleyTrust",
+    "name": "Valley Trust",
+    "number": "Z21",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 37,
+      "prelude": 1
+    },
+    "production": {},
+    "extra": "As your first action, draw 3 Prelude cards, and play one of them. Discard the other two.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Vitor",
+    "name": "Vitor",
+    "number": "Z22",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 45,
+      "award": 1
+    },
+    "production": {},
+    "extra": "Effect:\nVP: ?*: 3 mc\n(Effect: When you play a card with a NON-NEGATIVE VP icon, including this, gain 3 mc.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AlliedBanks",
+    "name": "Allied Banks",
+    "number": "P01",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 3
+    },
+    "production": {
+      "mc": 4
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AquiferTurbines",
+    "name": "Aquifer Turbines",
+    "number": "P02",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "power"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": -3,
+      "ocean": 1
+    },
+    "production": {
+      "energy": 2
+    },
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "Biofuels",
+    "name": "Biofuels",
+    "number": "P03",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": 2
+    },
+    "production": {
+      "plant": 1,
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Biolab",
+    "name": "Biolab",
+    "number": "P04",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": 1,
+      "card": 3
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BiosphereSupport",
+    "name": "Biosphere Support",
+    "number": "P05",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": -1,
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BusinessEmpire",
+    "name": "Business Empire",
+    "number": "P06",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": -6
+    },
+    "production": {
+      "mc": 6
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "DomeFarming",
+    "name": "Dome Farming",
+    "number": "P07",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "plant",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 2,
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Donation",
+    "name": "Donation",
+    "number": "P08",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 21
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EarlySettlement",
+    "name": "Early Settlement",
+    "number": "P09",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "city": 1
+    },
+    "production": {
+      "plant": 1
+    },
+    "extra": "",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "EcologyExperts",
+    "name": "Ecology Experts",
+    "number": "P10",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "plant",
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "plant": 1
+    },
+    "extra": "PLAY A CARD FROM HAND, IGNORING GLOBAL REQUIREMENTS\n(Increase your plant production 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EccentricSponsor",
+    "name": "Eccentric Sponsor",
+    "number": "P11",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "PLAY A CARD FROM HAND, REDUCING ITS COST BY 25 mc",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ExperimentalForest",
+    "name": "Experimental Forest",
+    "number": "P12",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "greenery": 1,
+      "draw": {
+        "plant": 2
+      }
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "greenery"
+    ],
+    "req": {}
+  },
+  {
+    "key": "GalileanMining",
+    "name": "Galilean Mining",
+    "number": "P13",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "jovian"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": -5
+    },
+    "production": {
+      "ti": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "GreatAquifer",
+    "name": "Great Aquifer",
+    "number": "P14",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "ocean": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "2 oceans"
+    ],
+    "req": {}
+  },
+  {
+    "key": "HugeAsteroid",
+    "name": "Huge Asteroid",
+    "number": "P15",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "temp": 3,
+      "mc": -5
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IoResearchOutpost",
+    "name": "Io Research Outpost",
+    "number": "P16",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "science",
+      "jovian"
+    ],
+    "vp": null,
+    "resources": {
+      "card": 1
+    },
+    "production": {
+      "ti": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Loan",
+    "name": "Loan",
+    "number": "P17",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 30
+    },
+    "production": {
+      "mc": -2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MartianIndustries",
+    "name": "Martian Industries",
+    "number": "P18",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 6
+    },
+    "production": {
+      "energy": 1,
+      "steel": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MetalRichAsteroid",
+    "name": "Metal Rich Asteroid",
+    "number": "P19",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "temp": 1,
+      "steel": 4,
+      "ti": 4
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MetalsCompany",
+    "name": "Metals Company",
+    "number": "P20",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 1,
+      "steel": 1,
+      "ti": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MiningOperations",
+    "name": "Mining Operations",
+    "number": "P21",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "steel": 4
+    },
+    "production": {
+      "steel": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Mohole",
+    "name": "Mohole",
+    "number": "P22",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "heat": 3
+    },
+    "production": {
+      "heat": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MoholeExcavation",
+    "name": "Mohole Excavation",
+    "number": "P23",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "heat": 2
+    },
+    "production": {
+      "heat": 2,
+      "steel": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "NitrogenDelivery",
+    "name": "Nitrogen Delivery",
+    "number": "P24",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "tr": 1,
+      "mc": 5
+    },
+    "production": {
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "OrbitalConstructionYard",
+    "name": "Orbital Construction Yard",
+    "number": "P25",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {
+      "ti": 4
+    },
+    "production": {
+      "ti": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "PolarIndustries",
+    "name": "Polar Industries",
+    "number": "P26",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 1
+    },
+    "production": {
+      "heat": 2
+    },
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "PowerGeneration",
+    "name": "Power Generation",
+    "number": "P27",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ResearchNetwork",
+    "name": "Research Network",
+    "number": "P28",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "wild"
+    ],
+    "vp": null,
+    "resources": {
+      "card": 3
+    },
+    "production": {
+      "mc": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SelfSufficientSettlement",
+    "name": "Self Sufficient Settlement",
+    "number": "P29",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "city": 1
+    },
+    "production": {
+      "mc": 2
+    },
+    "extra": "",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "SmeltingPlant",
+    "name": "Smelting Plant",
+    "number": "P30",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "o2": 2,
+      "steel": 5
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SocietySupport",
+    "name": "Society Support",
+    "number": "P31",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": -1,
+      "plant": 1,
+      "energy": 1,
+      "heat": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Supplier",
+    "name": "Supplier",
+    "number": "P32",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "power"
+    ],
+    "vp": null,
+    "resources": {
+      "steel": 4
+    },
+    "production": {
+      "energy": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SupplyDrop",
+    "name": "Supply Drop",
+    "number": "P33",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "ti": 3,
+      "steel": 8,
+      "plant": 3
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "UNMIContractor",
+    "name": "UNMI Contractor",
+    "number": "P34",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {
+      "tr": 3,
+      "card": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AcquiredSpaceAgency",
+    "name": "Acquired Space Agency",
+    "number": "P35",
+    "type": "prel",
+    "color": "green",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "ti": 6,
+      "draw": {
+        "space": 2
+      }
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ColonizerTrainingCamp",
+    "name": "Colonizer Training Camp",
+    "number": "001",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "jovian",
+      "building"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {
+      "maxo2": 5
+    }
+  },
+  {
+    "key": "AsteroidMiningConsortium",
+    "name": "Asteroid Mining Consortium",
+    "number": "002",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [
+      "jovian"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "ti": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "ti": 1
+    }
+  },
+  {
+    "key": "DeepWellHeating",
+    "name": "Deep Well Heating",
+    "number": "003",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "temp": 1
+    },
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CloudSeeding",
+    "name": "Cloud Seeding",
+    "number": "004",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": -1,
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "ocean": 3
+    }
+  },
+  {
+    "key": "SearchForLife",
+    "name": "Search For Life",
+    "number": "005",
+    "type": "proj",
+    "color": "blue",
+    "cost": 3,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "1 mc -> Microbe*: Science Resource\n(Action: Spend 1 mc to reveal and discard the top card of the draw deck. If that card has a Microbe tag, add a Science resource here.)\n(3 VPs if you have one or more Science resources here.)\nVP: Science Resource*: 3",
+    "place": [],
+    "req": {
+      "maxo2": 6
+    }
+  },
+  {
+    "key": "InventorsGuild",
+    "name": "Inventors Guild",
+    "number": "006",
+    "type": "proj",
+    "color": "blue",
+    "cost": 9,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Action: LOOK AT THE TOP CARD AND EITHER BUY IT OR DISCARD IT",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MartianRails",
+    "name": "Martian Rails",
+    "number": "007",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "energy -> mc/any-City*\n(Action: Spend 1 energy to gain 1 mc for each City tile ON MARS.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Capital",
+    "name": "Capital",
+    "number": "008",
+    "type": "proj",
+    "color": "green",
+    "cost": 26,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 5,
+      "energy": -2
+    },
+    "extra": "Special Tile\n(Place this tile. 1 ADDITIONAL VP FOR EACH OCEAN TILE ADJACENT TO THIS CITY TILE.)\nVP: 1/Ocean*",
+    "place": [
+      "special tile",
+      "ocean"
+    ],
+    "req": {
+      "ocean": 4
+    }
+  },
+  {
+    "key": "Asteroid",
+    "name": "Asteroid",
+    "number": "009",
+    "type": "proj",
+    "color": "red",
+    "cost": 14,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "temp": 1,
+      "ti": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Comet",
+    "name": "Comet",
+    "number": "010",
+    "type": "proj",
+    "color": "red",
+    "cost": 21,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 1,
+      "temp": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "BigAsteroid",
+    "name": "Big Asteroid",
+    "number": "011",
+    "type": "proj",
+    "color": "red",
+    "cost": 27,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "temp": 2,
+      "ti": 4
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "WaterImportFromEuropa",
+    "name": "Water Import From Europa",
+    "number": "012",
+    "type": "proj",
+    "color": "blue",
+    "cost": 25,
+    "tags": [
+      "jovian",
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "12 mc (ti) -> Ocean Tile\n(Action: Pay 12 mc to place an ocean tile. ti MAY BE USED as if playing a Space card.)\n------\n(1 VP for each Jovian tag you have.)\nVP: 1/Jovian",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "SpaceElevator",
+    "name": "Space Elevator",
+    "number": "013",
+    "type": "proj",
+    "color": "blue",
+    "cost": 27,
+    "tags": [
+      "space",
+      "building"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {
+      "ti": 1
+    },
+    "extra": "steel -> 5 mc\n(Action: Spend 1 steel to gain 5 mc.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "DevelopmentCenter",
+    "name": "Development Center",
+    "number": "014",
+    "type": "proj",
+    "color": "blue",
+    "cost": 11,
+    "tags": [
+      "science",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "energy -> +Card\n(Action: Spend 1 energy to draw a card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EquatorialMagnetizer",
+    "name": "Equatorial Magnetizer",
+    "number": "015",
+    "type": "proj",
+    "color": "blue",
+    "cost": 11,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Decrease energy 1 -> TR\n(Action: Decrease your energy production 1 step to increase your terraform rating 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "DomedCrater",
+    "name": "Domed Crater",
+    "number": "016",
+    "type": "proj",
+    "color": "green",
+    "cost": 24,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {
+      "city": 1,
+      "plant": 3
+    },
+    "production": {
+      "energy": -1,
+      "mc": 3
+    },
+    "extra": "",
+    "place": [
+      "city"
+    ],
+    "req": {
+      "maxo2": 7
+    }
+  },
+  {
+    "key": "NoctisCity",
+    "name": "Noctis City",
+    "number": "017",
+    "type": "proj",
+    "color": "green",
+    "cost": 18,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": -1,
+      "mc": 3
+    },
+    "extra": "City Tile*\n(Place a City ON THE RESERVED AREA, disregarding normal placement restrictions.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "MethaneFromTitan",
+    "name": "Methane From Titan",
+    "number": "018",
+    "type": "proj",
+    "color": "green",
+    "cost": 28,
+    "tags": [
+      "jovian",
+      "space"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {
+      "heat": 2,
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "o2": 2
+    }
+  },
+  {
+    "key": "ImportedHydrogen",
+    "name": "Imported Hydrogen",
+    "number": "019",
+    "type": "proj",
+    "color": "red",
+    "cost": 16,
+    "tags": [
+      "earth",
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 1
+    },
+    "production": {},
+    "extra": "3 plants OR 3 Microbe* Resource OR 2 Animal* resource\n(Gain 3 plants, or add 3 Microbes or 2 Animals to ANOTHER card.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "ResearchOutpost",
+    "name": "Research Outpost",
+    "number": "020",
+    "type": "proj",
+    "color": "blue",
+    "cost": 18,
+    "tags": [
+      "science",
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "City Tile*\n(Place a city tile NEXT TO NO OTHER TILE.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "PhobosSpaceHaven",
+    "name": "Phobos Space Haven",
+    "number": "021",
+    "type": "proj",
+    "color": "green",
+    "cost": 25,
+    "tags": [
+      "space",
+      "city"
+    ],
+    "vp": 3,
+    "resources": {},
+    "production": {
+      "ti": 1
+    },
+    "extra": "City Tile*\n(Increase your ti production 1 step and place a City tile ON THE RESERVED AREA.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "BlackPolarDust",
+    "name": "Black Polar Dust",
+    "number": "022",
+    "type": "proj",
+    "color": "green",
+    "cost": 15,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "ocean": 1
+    },
+    "production": {
+      "heat": 3,
+      "mc": -2
+    },
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "ArcticAlgae",
+    "name": "Arctic Algae",
+    "number": "023",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": 1
+    },
+    "production": {},
+    "extra": "any-Ocean Tile: plant plant\n(Effect: When anyone places an ocean tile, gain 2 plants.)\n------\n\n(It must be -12 C or colder to play. Gain 1 plant.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {
+      "maxtemp": -12
+    }
+  },
+  {
+    "key": "Predators",
+    "name": "Predators",
+    "number": "024",
+    "type": "proj",
+    "color": "blue",
+    "cost": 14,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "any-Animal Resource -> Animal Resource\n(Action: Remove 1 Animal from any card and add it to this card.)\n------\n(Requires 11% oxygen. 1 VP per Animal on this card.)\nVP: 1/Animal",
+    "place": [],
+    "req": {
+      "o2": 11
+    }
+  },
+  {
+    "key": "SpaceStation",
+    "name": "Space Station",
+    "number": "025",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "space"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EOSChasmaNationalPark",
+    "name": "Eos Chasma National Park",
+    "number": "026",
+    "type": "proj",
+    "color": "green",
+    "cost": 16,
+    "tags": [
+      "plant",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {
+      "plant": 3
+    },
+    "production": {
+      "mc": 2
+    },
+    "extra": "Animal* Resource\n(Add 1 Animal TO ANY ANIMAL CARD.)",
+    "place": [],
+    "req": {
+      "temp": -12
+    }
+  },
+  {
+    "key": "InterstellarColonyShip",
+    "name": "Interstellar Colony Ship",
+    "number": "027",
+    "type": "proj",
+    "color": "red",
+    "cost": 24,
+    "tags": [
+      "earth",
+      "space",
+      "event"
+    ],
+    "vp": 4,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {
+      "science": 5
+    }
+  },
+  {
+    "key": "SecurityFleet",
+    "name": "Security Fleet",
+    "number": "028",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "ti -> Fighter Resource\n(Action: Spend 1 ti to add 1 fighter resource to this card.)\n------\n(1 VP for each fighter resource on this card.)\nVP: 1/Fighter Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CupolaCity",
+    "name": "Cupola City",
+    "number": "029",
+    "type": "proj",
+    "color": "green",
+    "cost": 16,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "city": 1
+    },
+    "production": {
+      "energy": -1,
+      "mc": 3
+    },
+    "extra": "",
+    "place": [
+      "city"
+    ],
+    "req": {
+      "maxo2": 9
+    }
+  },
+  {
+    "key": "LunarBeam",
+    "name": "Lunar Beam",
+    "number": "030",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [
+      "earth",
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "heat": 2,
+      "energy": 2,
+      "mc": -2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "OptimalAerobraking",
+    "name": "Optimal Aerobraking",
+    "number": "031",
+    "type": "proj",
+    "color": "blue",
+    "cost": 7,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Space Event: 3 mc heat heat heat\n(Effect: When you play a Space Event, you gain 3 mc and 3 heat.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "UndergroundCity",
+    "name": "Underground City",
+    "number": "032",
+    "type": "proj",
+    "color": "green",
+    "cost": 18,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "city": 1
+    },
+    "production": {
+      "energy": -2,
+      "steel": 2
+    },
+    "extra": "",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "RegolithEaters",
+    "name": "Regolith Eaters",
+    "number": "033",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "science",
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Microbe\nOR Microbe Microbe -> O2\n(Action: Add 1 Microbe to this card, or remove 2 Microbes from this card to raise oxygen level 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "GHGProducingBacteria",
+    "name": "GHG Producing Bacteria",
+    "number": "034",
+    "type": "proj",
+    "color": "blue",
+    "cost": 8,
+    "tags": [
+      "science",
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Microbe Resource\nOR Microbe Resource Microbe Resource -> TempUp 1\n(Action: Add 1 Microbe to this card, or remove 2 Microbes to raise temperature 1 step.)\n------\n(Requires 4% oxygen.)",
+    "place": [],
+    "req": {
+      "o2": 4
+    }
+  },
+  {
+    "key": "Ants",
+    "name": "Ants",
+    "number": "035",
+    "type": "proj",
+    "color": "blue",
+    "cost": 9,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "any-Microbe Resource -> Microbe Resource\n(Action: Remove 1 Microbe from any card to add 1 to this card.)\n------\n(Requires 4% oxygen. 1 VP per 2 Microbes on this card.)\nVP: 1/2 Microbe Resource",
+    "place": [],
+    "req": {
+      "o2": 4
+    }
+  },
+  {
+    "key": "ReleaseOfInertGases",
+    "name": "Release Of Inert Gases",
+    "number": "036",
+    "type": "proj",
+    "color": "red",
+    "cost": 14,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "tr": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "NitrogenRichAsteroid",
+    "name": "Nitrogen Rich Asteroid",
+    "number": "037",
+    "type": "proj",
+    "color": "red",
+    "cost": 31,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "tr": 2,
+      "temp": 1
+    },
+    "production": {
+      "plant": 1
+    },
+    "extra": "Increase plant 1 OR\nIf 3 plant tags:(Raise your terraforming rating 2 steps and temperature 1 step. Increase your plant production 1 step, or 4 steps if you have 3 plant tags.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RoverConstruction",
+    "name": "Rover Construction",
+    "number": "038",
+    "type": "proj",
+    "color": "blue",
+    "cost": 8,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "any-City: 2\n(Effect: When any City tile is placed, gain 2 mc.)\n------",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "DeimosDown",
+    "name": "Deimos Down",
+    "number": "039",
+    "type": "proj",
+    "color": "red",
+    "cost": 31,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "temp": 3,
+      "steel": 4
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AsteroidMining",
+    "name": "Asteroid Mining",
+    "number": "040",
+    "type": "proj",
+    "color": "green",
+    "cost": 30,
+    "tags": [
+      "jovian",
+      "space"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {
+      "ti": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FoodFactory",
+    "name": "Food Factory",
+    "number": "041",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "mc": 4,
+      "plant": -1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ArchaeBacteria",
+    "name": "Archae Bacteria",
+    "number": "042",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "maxtemp": -18
+    }
+  },
+  {
+    "key": "CarbonateProcessing",
+    "name": "Carbonate Processing",
+    "number": "043",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": -1,
+      "heat": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "NaturalPreserve",
+    "name": "Natural Preserve",
+    "number": "044",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "science",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "mc": 1
+    },
+    "extra": "Special Tile*\n(Place this tile NEXT TO NO OTHER TILE.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {
+      "maxo2": 4
+    }
+  },
+  {
+    "key": "NuclearPower",
+    "name": "Nuclear Power",
+    "number": "045",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 3,
+      "mc": -2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LightningHarvest",
+    "name": "Lightning Harvest",
+    "number": "046",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "power"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": 1,
+      "mc": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "science": 3
+    }
+  },
+  {
+    "key": "Algae",
+    "name": "Algae",
+    "number": "047",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": 1
+    },
+    "production": {
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "ocean": 5
+    }
+  },
+  {
+    "key": "AdaptedLichen",
+    "name": "Adapted Lichen",
+    "number": "048",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Tardigrades",
+    "name": "Tardigrades",
+    "number": "049",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Microbe Resource\n(Action: Add 1 Microbe to this card.)\n------\n(1 VP per 4 Microbes on this card.)\nVP: 1/4 Microbe Resource)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Virus",
+    "name": "Virus",
+    "number": "050",
+    "type": "proj",
+    "color": "red",
+    "cost": 1,
+    "tags": [
+      "microbe",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Remove 2 any-Animal OR -5 any-plant\n(Remove up to 2 Animals or 5 plants from any player.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MirandaResort",
+    "name": "Miranda Resort",
+    "number": "051",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "jovian",
+      "space"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "Increase mc/Earth\n(Increase your mc production 1 step for each Earth tag you have.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Fish",
+    "name": "Fish",
+    "number": "052",
+    "type": "proj",
+    "color": "blue",
+    "cost": 9,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Animal Resource\n(Action: Add 1 Animal to this card.)\n------\nReduce any-plant 1\n(Requires +2 C or warmer. Decrease any plant production 1 step. 1 VP for each Animal on this card.)\nVP: 1/Animal Resource",
+    "place": [],
+    "req": {
+      "temp": 2
+    }
+  },
+  {
+    "key": "LakeMarineris",
+    "name": "Lake Marineris",
+    "number": "053",
+    "type": "proj",
+    "color": "green",
+    "cost": 18,
+    "tags": [],
+    "vp": 2,
+    "resources": {
+      "ocean": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "2 oceans"
+    ],
+    "req": {
+      "temp": 0
+    }
+  },
+  {
+    "key": "SmallAnimals",
+    "name": "Small Animals",
+    "number": "054",
+    "type": "proj",
+    "color": "blue",
+    "cost": 6,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Animal Resource\n(Action: Add 1 Animal to this card.)\n------\n\n(Requires 6% oxygen. Decrease any plant production 1 step. 1 VP per 2 Animals on this card.)\nVP: 1/2 Animal Resource",
+    "place": [],
+    "req": {
+      "o2": 6
+    }
+  },
+  {
+    "key": "KelpFarming",
+    "name": "Kelp Farming",
+    "number": "055",
+    "type": "proj",
+    "color": "green",
+    "cost": 17,
+    "tags": [
+      "plant"
+    ],
+    "vp": 1,
+    "resources": {
+      "plant": 2
+    },
+    "production": {
+      "mc": 2,
+      "plant": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "ocean": 6
+    }
+  },
+  {
+    "key": "Mine",
+    "name": "Mine",
+    "number": "056",
+    "type": "proj",
+    "color": "green",
+    "cost": 4,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "steel": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "VestaShipyard",
+    "name": "Vesta Shipyard",
+    "number": "057",
+    "type": "proj",
+    "color": "green",
+    "cost": 15,
+    "tags": [
+      "jovian",
+      "space"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "ti": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BeamFromAThoriumAsteroid",
+    "name": "Beam From A Thorium Asteroid",
+    "number": "058",
+    "type": "proj",
+    "color": "green",
+    "cost": 32,
+    "tags": [
+      "jovian",
+      "space",
+      "power"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "heat": 3,
+      "energy": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "jovian": 1
+    }
+  },
+  {
+    "key": "Mangrove",
+    "name": "Mangrove",
+    "number": "059",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "plant"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "Greenery Tile*\n(Place a greenery tile ON AN AREA RESERVED FOR OCEAN and raise oxygen 1 step. Disregard normal placement restrictions for this.)",
+    "place": [
+      "greenery"
+    ],
+    "req": {
+      "temp": 4
+    }
+  },
+  {
+    "key": "Trees",
+    "name": "Trees",
+    "number": "060",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [
+      "plant"
+    ],
+    "vp": 1,
+    "resources": {
+      "plant": 1
+    },
+    "production": {
+      "plant": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "temp": -4
+    }
+  },
+  {
+    "key": "GreatEscarpmentConsortium",
+    "name": "Great Escarpment Consortium",
+    "number": "061",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "steel": 1
+    },
+    "extra": "(Decrease any steel production 1 step and increase your own 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MineralDeposit",
+    "name": "Mineral Deposit",
+    "number": "062",
+    "type": "proj",
+    "color": "red",
+    "cost": 5,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "steel": 5
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MiningExpedition",
+    "name": "Mining Expedition",
+    "number": "063",
+    "type": "proj",
+    "color": "red",
+    "cost": 12,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "o2": 1,
+      "steel": 2
+    },
+    "production": {},
+    "extra": "(Remove 2 plants from any player.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MiningArea",
+    "name": "Mining Area",
+    "number": "064",
+    "type": "proj",
+    "color": "green",
+    "cost": 4,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Special Tile*\n[Increase steel 1 OR ti 1]*\n(Place this tile on an area with a steel or ti placement bonus, adjacent to another of your tiles. Increase your production of that resource 1 step.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "BuildingIndustries",
+    "name": "Building Industries",
+    "number": "065",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": -1,
+      "steel": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LandClaim",
+    "name": "Land Claim",
+    "number": "066",
+    "type": "proj",
+    "color": "red",
+    "cost": 1,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "PLACE YOUR MARKER ON A NON-RESERVED AREA. ONLY YOU MAY PLACE A TILE HERE.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MiningRights",
+    "name": "Mining Rights",
+    "number": "067",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Special Tile*\nIncrease steel 1 or ti 1\n(Place this tile on an area with a steel or ti placement bonus. Increase that production 1 step.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "Sponsors",
+    "name": "Sponsors",
+    "number": "068",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ElectroCatapult",
+    "name": "Electro Catapult",
+    "number": "069",
+    "type": "proj",
+    "color": "blue",
+    "cost": 17,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": -1
+    },
+    "extra": "plant/steel -> 7 mc\n(Action: Spend 1 plant or 1 steel to gain 7 mc.)",
+    "place": [],
+    "req": {
+      "maxo2": 8
+    }
+  },
+  {
+    "key": "EarthCatapult",
+    "name": "Earth Catapult",
+    "number": "070",
+    "type": "proj",
+    "color": "blue",
+    "cost": 23,
+    "tags": [
+      "earth"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AdvancedAlloys",
+    "name": "Advanced Alloys",
+    "number": "071",
+    "type": "proj",
+    "color": "blue",
+    "cost": 9,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "ti: +1 mc\nsteel: +1mc\n(Effect: Each ti you have is worth 1 mc extra. Each steel you have is worth 1 mc extra.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Birds",
+    "name": "Birds",
+    "number": "072",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Animal Resource\n(Action: Add an Animal to this card.)\n------\n\n(Requires 13% oxygen. Decrease any plant production 2 steps. 1 VP for each Animal on this card.)\nVP: 1/Animal",
+    "place": [],
+    "req": {
+      "o2": 13
+    }
+  },
+  {
+    "key": "MarsUniversity",
+    "name": "Mars University",
+    "number": "073",
+    "type": "proj",
+    "color": "blue",
+    "cost": 8,
+    "tags": [
+      "science",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "Science: -Card +Card\nEffect: When you play a Science tag, including this, you may discard a card from hand to draw a card.\n------",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ViralEnhancers",
+    "name": "Viral Enhancers",
+    "number": "074",
+    "type": "proj",
+    "color": "blue",
+    "cost": 9,
+    "tags": [
+      "science",
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "plant/Microbe/Animallant/Microbe*/Animal*\n(Effect: When you play a plant, Microbe, or an Animal tag, including this, gain 1 plant or add 1 resource TO THAT CARD.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TowingAComet",
+    "name": "Towing A Comet",
+    "number": "075",
+    "type": "proj",
+    "color": "red",
+    "cost": 23,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 1,
+      "o2": 1,
+      "plant": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "SpaceMirrors",
+    "name": "Space Mirrors",
+    "number": "076",
+    "type": "proj",
+    "color": "blue",
+    "cost": 3,
+    "tags": [
+      "power",
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 1
+    },
+    "extra": "7 mc -> (Action: Spend 7 mc to increase your energy production 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SolarWindPower",
+    "name": "Solar Wind Power",
+    "number": "077",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "science",
+      "space",
+      "power"
+    ],
+    "vp": null,
+    "resources": {
+      "ti": 2
+    },
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IceAsteroid",
+    "name": "Ice Asteroid",
+    "number": "078",
+    "type": "proj",
+    "color": "red",
+    "cost": 23,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "2 oceans"
+    ],
+    "req": {}
+  },
+  {
+    "key": "QuantumExtractor",
+    "name": "Quantum Extractor",
+    "number": "079",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "science",
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 4
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "science": 4
+    }
+  },
+  {
+    "key": "GiantIceAsteroid",
+    "name": "Giant Ice Asteroid",
+    "number": "080",
+    "type": "proj",
+    "color": "red",
+    "cost": 36,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 2,
+      "temp": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "2 oceans"
+    ],
+    "req": {}
+  },
+  {
+    "key": "GanymedeColony",
+    "name": "Ganymede Colony",
+    "number": "081",
+    "type": "proj",
+    "color": "green",
+    "cost": 20,
+    "tags": [
+      "jovian",
+      "space",
+      "city"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "City Tile*\n(Place a City tile ON THE RESERVED AREA. 1 VP per Jovian tag you have.)\nVP: 1/Jovian",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "CallistoPenalMines",
+    "name": "Callisto Penal Mines",
+    "number": "082",
+    "type": "proj",
+    "color": "green",
+    "cost": 24,
+    "tags": [
+      "jovian",
+      "space"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {
+      "mc": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "GiantSpaceMirror",
+    "name": "Giant Space Mirror",
+    "number": "083",
+    "type": "proj",
+    "color": "green",
+    "cost": 17,
+    "tags": [
+      "power",
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TransNeptuneProbe",
+    "name": "Trans Neptune Probe",
+    "number": "084",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "science",
+      "space"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CommercialDistrict",
+    "name": "Commercial District",
+    "number": "085",
+    "type": "proj",
+    "color": "green",
+    "cost": 16,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 1,
+      "mc": 4
+    },
+    "extra": "Special Tile\n( Place this tile. 1 VP PER ADJACENT CITY TILE.)\nVP: 1/City*",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "RoboticWorkforce",
+    "name": "Robotic Workforce",
+    "number": "086",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "COPY A Building.\n(Duplicate only the production box of one of your Building cards.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Grass",
+    "name": "Grass",
+    "number": "087",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": 3
+    },
+    "production": {
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "temp": -16
+    }
+  },
+  {
+    "key": "Heather",
+    "name": "Heather",
+    "number": "088",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": 1
+    },
+    "production": {
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "temp": -14
+    }
+  },
+  {
+    "key": "PeroxidePower",
+    "name": "Peroxide Power",
+    "number": "089",
+    "type": "proj",
+    "color": "green",
+    "cost": 7,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": -1,
+      "energy": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Research",
+    "name": "Research",
+    "number": "090",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "science"
+    ],
+    "vp": 1,
+    "resources": {
+      "card": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "GeneRepair",
+    "name": "Gene Repair",
+    "number": "091",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "science"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {
+      "mc": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "science": 3
+    }
+  },
+  {
+    "key": "IoMiningIndustries",
+    "name": "Io Mining Industries",
+    "number": "092",
+    "type": "proj",
+    "color": "green",
+    "cost": 41,
+    "tags": [
+      "jovian",
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 2,
+      "ti": 2
+    },
+    "extra": "1 VP per Jovian tag you have.)\n1/Jovian",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Bushes",
+    "name": "Bushes",
+    "number": "093",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": 2
+    },
+    "production": {
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "temp": -10
+    }
+  },
+  {
+    "key": "MassConverter",
+    "name": "Mass Converter",
+    "number": "094",
+    "type": "proj",
+    "color": "blue",
+    "cost": 8,
+    "tags": [
+      "science",
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 6
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "science": 5
+    }
+  },
+  {
+    "key": "PhysicsComplex",
+    "name": "Physics Complex",
+    "number": "095",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "science",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "6 energy -> Science Resource\n(Action: Spend 6 energy to add a Science resource to this card.)\n------\n(2 VP for each Science resource on this card.)\nVP: 2/Science Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Greenhouses",
+    "name": "Greenhouses",
+    "number": "096",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "plant",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "plant/any-City\n(Gain 1 plant for each City tile in play.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "NuclearZone",
+    "name": "Nuclear Zone",
+    "number": "097",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "earth"
+    ],
+    "vp": -2,
+    "resources": {
+      "temp": 2
+    },
+    "production": {},
+    "extra": "Special Tile\n(Place this tile.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "TropicalResort",
+    "name": "Tropical Resort",
+    "number": "098",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [
+      "building"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {
+      "mc": 3,
+      "heat": -2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TollStation",
+    "name": "Toll Station",
+    "number": "099",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Increase 1 mc/Space*\n(Increase your mc production 1 step for each Space tag OPPONENTS have.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FueledGenerators",
+    "name": "Fueled Generators",
+    "number": "100",
+    "type": "proj",
+    "color": "green",
+    "cost": 1,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": -1,
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Ironworks",
+    "name": "Ironworks",
+    "number": "101",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "4 energy -> steel O2\n(Action Spend 4 energy to gain 1 steel and increase oxygen 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "PowerGrid",
+    "name": "Power Grid",
+    "number": "102",
+    "type": "proj",
+    "color": "green",
+    "cost": 18,
+    "tags": [
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Increase energy/energy tag\n(Increase your energy production step for each energy tag you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Steelworks",
+    "name": "Steelworks",
+    "number": "103",
+    "type": "proj",
+    "color": "blue",
+    "cost": 15,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "4 energy -> steel steel O2\n(Action: Spend 4 energy to gain 2 steel and increase oxygen 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "OreProcessor",
+    "name": "Ore Processor",
+    "number": "104",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "4 energy -> ti O2\n(Action: Spend 4 energy to gain 1 ti and increase oxygen 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EarthOffice",
+    "name": "Earth Office",
+    "number": "105",
+    "type": "proj",
+    "color": "blue",
+    "cost": 1,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AcquiredCompany",
+    "name": "Acquired Company",
+    "number": "106",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MediaArchives",
+    "name": "Media Archives",
+    "number": "107",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "1 mc/Event*\n(Gain 1 mc for each Event EVER PLAYED by all players.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "OpenCity",
+    "name": "Open City",
+    "number": "108",
+    "type": "proj",
+    "color": "green",
+    "cost": 23,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {
+      "city": 1,
+      "plant": 2
+    },
+    "production": {
+      "energy": 1,
+      "mc": 4
+    },
+    "extra": "",
+    "place": [
+      "city"
+    ],
+    "req": {
+      "o2": 12
+    }
+  },
+  {
+    "key": "MediaGroup",
+    "name": "Media Group",
+    "number": "109",
+    "type": "proj",
+    "color": "blue",
+    "cost": 6,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Event: 3 mc\n(Effect: After you play an Event card, you gain 3 mc.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BusinessNetwork",
+    "name": "Business Network",
+    "number": "110",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 1
+    },
+    "extra": "-> Action: LOOK AT THE TOP CARD AND EITHER BUY IT OR DISCARD IT\n------\n(Decrease your mc production 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BusinessContacts",
+    "name": "Business Contacts",
+    "number": "111",
+    "type": "proj",
+    "color": "red",
+    "cost": 7,
+    "tags": [
+      "earth",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "LOOK AT THE TOP 4 CARDS FROM THE DECK. TAKE 2 OF THEM INTO HAND AND DISCARD THE OTHER 2",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BribedCommittee",
+    "name": "Bribed Committee",
+    "number": "112",
+    "type": "proj",
+    "color": "red",
+    "cost": 7,
+    "tags": [
+      "earth",
+      "event"
+    ],
+    "vp": -2,
+    "resources": {
+      "tr": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SolarPower",
+    "name": "Solar Power",
+    "number": "113",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BreathingFilters",
+    "name": "Breathing Filters",
+    "number": "114",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "science"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {
+      "o2": 7
+    }
+  },
+  {
+    "key": "ArtificialPhotosynthesis",
+    "name": "Artificial Photosynthesis",
+    "number": "115",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Increase plant 1 OR energy 2\n(Increase your plant production 1 step or your energy production 2 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ArtificialLake",
+    "name": "Artificial Lake",
+    "number": "116",
+    "type": "proj",
+    "color": "green",
+    "cost": 15,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {
+      "ocean": 1
+    },
+    "production": {},
+    "extra": "Ocean Tile*\n(Requires -6 C or warmer. Place 1 ocean tile ON AN AREA NOT RESERVED FOR OCEAN.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {
+      "temp": -6
+    }
+  },
+  {
+    "key": "GeothermalPower",
+    "name": "Geothermal Power",
+    "number": "117",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Farming",
+    "name": "Farming",
+    "number": "118",
+    "type": "proj",
+    "color": "green",
+    "cost": 16,
+    "tags": [
+      "plant"
+    ],
+    "vp": 2,
+    "resources": {
+      "plant": 2
+    },
+    "production": {
+      "mc": 2,
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "temp": 4
+    }
+  },
+  {
+    "key": "DustSeals",
+    "name": "Dust Seals",
+    "number": "119",
+    "type": "proj",
+    "color": "green",
+    "cost": 2,
+    "tags": [],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {
+      "maxocean": 3
+    }
+  },
+  {
+    "key": "UrbanizedArea",
+    "name": "Urbanized Area",
+    "number": "120",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 1,
+      "mc": 2
+    },
+    "extra": "City Tile*\n( Place a City tile ADJACENT TO AT LEAST 2 OTHER CITY TILES.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "Sabotage",
+    "name": "Sabotage",
+    "number": "121",
+    "type": "proj",
+    "color": "red",
+    "cost": 1,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-3 any-ti OR -4 any-steel OR -7 any-mc\n(Remove up to 3 ti from any player, or 4 steel, or 7 mc.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Moss",
+    "name": "Moss",
+    "number": "122",
+    "type": "proj",
+    "color": "green",
+    "cost": 4,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": -1
+    },
+    "production": {
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "ocean": 3
+    }
+  },
+  {
+    "key": "IndustrialCenter",
+    "name": "Industrial Center",
+    "number": "123",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "7 mc -> steel production\n(Action: Spend 7 mc to increase your steel production 1 step.)\n------\nSpecial Tile*\n(Place this tile ADJACENT TO A CITY TILE.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "HiredRaiders",
+    "name": "Hired Raiders",
+    "number": "124",
+    "type": "proj",
+    "color": "red",
+    "cost": 1,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "STEAL 2 any-steel\nOR STEAL 3 any-mc\n(Steal up to 2 steal, or 3 mc from any player.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Hackers",
+    "name": "Hackers",
+    "number": "125",
+    "type": "proj",
+    "color": "green",
+    "cost": 3,
+    "tags": [],
+    "vp": -1,
+    "resources": {},
+    "production": {
+      "energy": 1,
+      "mc": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "GHGFactories",
+    "name": "GHG Factories",
+    "number": "126",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": -1,
+      "heat": 4
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SubterraneanReservoir",
+    "name": "Subterranean Reservoir",
+    "number": "127",
+    "type": "proj",
+    "color": "red",
+    "cost": 11,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "EcologicalZone",
+    "name": "Ecological Zone",
+    "number": "128",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "animal",
+      "plant"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Animal/plant: Animal Resource\n(Effect: When you play an Animal or plant tag (including these 2), add an Animal to this card.)\n------\nSpecial Tile*\n(Requires that you have a greenery tile. Place this tile adjacent to any greenery tile. 1 VP per 2 Animals on this card.)\nVP: 1/2 Animal Resource",
+    "place": [
+      "special tile"
+    ],
+    "req": {
+      "greenery": 1
+    }
+  },
+  {
+    "key": "Zeppelins",
+    "name": "Zeppelins",
+    "number": "129",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "Increase mc/any-City*\n(Increase your mc production 1 step for each City tile ON MARS.)",
+    "place": [],
+    "req": {
+      "o2": 5
+    }
+  },
+  {
+    "key": "Worms",
+    "name": "Worms",
+    "number": "130",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Increase plant/2 Microbe tags\n(Increase your plant production 1 step for every 2 Microbe tags you have, including this.)",
+    "place": [],
+    "req": {
+      "o2": 4
+    }
+  },
+  {
+    "key": "Decomposers",
+    "name": "Decomposers",
+    "number": "131",
+    "type": "proj",
+    "color": "blue",
+    "cost": 5,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Animal/plant/Microbe: Microbe Resource\n(Effect: When you play an Animal, plant, or Microbe tag, including this, add a Microbe to this card.)\n------\n( 1 VP per 3 Microbes on this card.)\nVP: 1/3 Microbe Resource",
+    "place": [],
+    "req": {
+      "o2": 3
+    }
+  },
+  {
+    "key": "FusionPower",
+    "name": "Fusion Power",
+    "number": "132",
+    "type": "proj",
+    "color": "green",
+    "cost": 14,
+    "tags": [
+      "science",
+      "power",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "energy": 2
+    }
+  },
+  {
+    "key": "SymbioticFungus",
+    "name": "Symbiotic Fungus",
+    "number": "133",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Microbe* Resource\n(Action: Add a Microbe to ANOTHER card.)",
+    "place": [],
+    "req": {
+      "temp": -14
+    }
+  },
+  {
+    "key": "ExtremeColdFungus",
+    "name": "Extreme Cold Fungus",
+    "number": "134",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> plant\nOR -> Microbe Microbe*\n(Action: Gain 1 plant or add 2 Microbes to ANOTHER card.)\n------\n(It must be -10 C or colder.)",
+    "place": [],
+    "req": {
+      "maxtemp": -10
+    }
+  },
+  {
+    "key": "AdvancedEcosystems",
+    "name": "Advanced Ecosystems",
+    "number": "135",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "plant",
+      "microbe",
+      "animal"
+    ],
+    "vp": 3,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {
+      "plant": 1,
+      "animal": 1,
+      "microbe": 1
+    }
+  },
+  {
+    "key": "GreatDam",
+    "name": "Great Dam",
+    "number": "136",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "ocean": 4
+    }
+  },
+  {
+    "key": "Cartel",
+    "name": "Cartel",
+    "number": "137",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 1
+    },
+    "extra": "(Increase your mc production 1 step for each Earth tag you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "StripMine",
+    "name": "Strip Mine",
+    "number": "138",
+    "type": "proj",
+    "color": "green",
+    "cost": 25,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "o2": 2
+    },
+    "production": {
+      "energy": -2,
+      "steel": 2,
+      "ti": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "WavePower",
+    "name": "Wave Power",
+    "number": "139",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "power"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "ocean": 3
+    }
+  },
+  {
+    "key": "LavaFlows",
+    "name": "Lava Flows",
+    "number": "140",
+    "type": "proj",
+    "color": "red",
+    "cost": 18,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "temp": 2
+    },
+    "production": {},
+    "extra": "Special Tile*\n(place this tile ON EITHER THARSIS THOLUS, ASCRAEUS MONS, PAVONIS MONS OR ARSIA MONS.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "PowerPlant",
+    "name": "Power Plant",
+    "number": "141",
+    "type": "proj",
+    "color": "green",
+    "cost": 4,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MoholeArea",
+    "name": "Mohole Area",
+    "number": "142",
+    "type": "proj",
+    "color": "green",
+    "cost": 20,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "heat": 4
+    },
+    "extra": "Special Tile*\n(Increase your heat production 4 steps. Place this tile ON AN AREA RESERVED FOR OCEAN.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "LargeConvoy",
+    "name": "Large Convoy",
+    "number": "143",
+    "type": "proj",
+    "color": "red",
+    "cost": 36,
+    "tags": [
+      "earth",
+      "space",
+      "event"
+    ],
+    "vp": 2,
+    "resources": {
+      "ocean": 1,
+      "card": 2
+    },
+    "production": {},
+    "extra": "5 plant/4 Animal* Resource\n(Gain 5 plants or add 4 Animals to ANOTHER card.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "TitaniumMine",
+    "name": "Titanium Mine",
+    "number": "144",
+    "type": "proj",
+    "color": "green",
+    "cost": 7,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "ti": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TectonicStressPower",
+    "name": "Tectonic Stress Power",
+    "number": "145",
+    "type": "proj",
+    "color": "green",
+    "cost": 18,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": 3
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "science": 2
+    }
+  },
+  {
+    "key": "NitrophilicMoss",
+    "name": "Nitrophilic Moss",
+    "number": "146",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "plant": -2
+    },
+    "production": {
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "ocean": 3
+    }
+  },
+  {
+    "key": "Herbivores",
+    "name": "Herbivores",
+    "number": "147",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "plantation: Animal Resource\n(Effect: When you place a greenery tile, add an Animal to this card.)\n------\nAnimal Resource\n\n( Add 1 Animal to this card. Decrease any plant production 1 step. 1 VP per 2 Animals on this card.)\nVP: 1/2 Animal Resource",
+    "place": [
+      "greenery"
+    ],
+    "req": {
+      "o2": 8
+    }
+  },
+  {
+    "key": "Insects",
+    "name": "Insects",
+    "number": "148",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Increase plant/plant tag\n(Increase your plant production 1 step for each plant tag you have.)",
+    "place": [],
+    "req": {
+      "o2": 6
+    }
+  },
+  {
+    "key": "CEOsFavoriteProject",
+    "name": "CE Os Favorite Project",
+    "number": "149",
+    "type": "proj",
+    "color": "red",
+    "cost": 1,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "ADD 1 RESOURCE TO A CARD WITH AT LEAST 1 RESOURCE ON IT",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AntiGravityTechnology",
+    "name": "Anti Gravity Technology",
+    "number": "150",
+    "type": "proj",
+    "color": "blue",
+    "cost": 14,
+    "tags": [
+      "science"
+    ],
+    "vp": 3,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {
+      "science": 7
+    }
+  },
+  {
+    "key": "InvestmentLoan",
+    "name": "Investment Loan",
+    "number": "151",
+    "type": "proj",
+    "color": "red",
+    "cost": 3,
+    "tags": [
+      "earth",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 10
+    },
+    "production": {
+      "mc": -1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Insulation",
+    "name": "Insulation",
+    "number": "152",
+    "type": "proj",
+    "color": "green",
+    "cost": 2,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Decrease heat X\nmc:X\n(Decrease your heat production any number of steps and increase your mc production the same number of steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AdaptationTechnology",
+    "name": "Adaptation Technology",
+    "number": "153",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "science"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "Requirements: O2/Ocean/Temp: +/- 2\n(Effect: Your global requirements are +2 or -2 steps, your choice in each case.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CaretakerContract",
+    "name": "Caretaker Contract",
+    "number": "154",
+    "type": "proj",
+    "color": "blue",
+    "cost": 3,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "8 heat -> TR\n(Action: Spend 8 heat to increase your terraform rating 1 step.)\n------\n(Requires 0 C or warmer.)",
+    "place": [],
+    "req": {
+      "temp": 0
+    }
+  },
+  {
+    "key": "DesignedMicroOrganisms",
+    "name": "Designed Micro Organisms",
+    "number": "155",
+    "type": "proj",
+    "color": "green",
+    "cost": 16,
+    "tags": [
+      "science",
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "maxtemp": -14
+    }
+  },
+  {
+    "key": "StandardTechnology",
+    "name": "Standard Technology",
+    "number": "156",
+    "type": "proj",
+    "color": "blue",
+    "cost": 6,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Standard Projects: 3 mc\n(Effect: After you pay for a standard project, except selling patents, you gain 3 mc.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "NitriteReducingBacteria",
+    "name": "Nitrite Reducing Bacteria",
+    "number": "157",
+    "type": "proj",
+    "color": "blue",
+    "cost": 11,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Microbe Resource\nOR 3 Microbe Resource -> TR\n(Action: Add 1 Microbe to this card, or remove 3 Microbes to increase your TR 1 step.\n------\nMicrobe Microbe Microbe (Add 3 Microbes to this card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IndustrialMicrobes",
+    "name": "Industrial Microbes",
+    "number": "158",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "microbe",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 1,
+      "steel": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Lichen",
+    "name": "Lichen",
+    "number": "159",
+    "type": "proj",
+    "color": "green",
+    "cost": 7,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "temp": -24
+    }
+  },
+  {
+    "key": "PowerSupplyConsortium",
+    "name": "Power Supply Consortium",
+    "number": "160",
+    "type": "proj",
+    "color": "green",
+    "cost": 5,
+    "tags": [
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "energy": 2
+    }
+  },
+  {
+    "key": "ConvoyFromEuropa",
+    "name": "Convoy From Europa",
+    "number": "161",
+    "type": "proj",
+    "color": "red",
+    "cost": 15,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 1,
+      "card": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "ImportedGHG",
+    "name": "Imported GHG",
+    "number": "162",
+    "type": "proj",
+    "color": "red",
+    "cost": 7,
+    "tags": [
+      "earth",
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "heat": 3
+    },
+    "production": {
+      "heat": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ImportedNitrogen",
+    "name": "Imported Nitrogen",
+    "number": "163",
+    "type": "proj",
+    "color": "red",
+    "cost": 23,
+    "tags": [
+      "earth",
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "tr": 1,
+      "plant": 4
+    },
+    "production": {},
+    "extra": "Gain Microbe* 3\nGain Animal* 2\n(Add 3 Microbes to ANOTHER card and 2 Animals to ANOTHER card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MicroMills",
+    "name": "Micro Mills",
+    "number": "164",
+    "type": "proj",
+    "color": "green",
+    "cost": 3,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "heat": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MagneticFieldGenerators",
+    "name": "Magnetic Field Generators",
+    "number": "165",
+    "type": "proj",
+    "color": "green",
+    "cost": 20,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "tr": 3
+    },
+    "production": {
+      "energy": -4,
+      "plant": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Shuttles",
+    "name": "Shuttles",
+    "number": "166",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "space"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": -1,
+      "mc": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "o2": 5
+    }
+  },
+  {
+    "key": "ImportOfAdvancedGHG",
+    "name": "Import Of Advanced GHG",
+    "number": "167",
+    "type": "proj",
+    "color": "red",
+    "cost": 9,
+    "tags": [
+      "earth",
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "heat": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Windmills",
+    "name": "Windmills",
+    "number": "168",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "o2": 7
+    }
+  },
+  {
+    "key": "TundraFarming",
+    "name": "Tundra Farming",
+    "number": "169",
+    "type": "proj",
+    "color": "green",
+    "cost": 16,
+    "tags": [
+      "plant"
+    ],
+    "vp": 2,
+    "resources": {
+      "plant": 1
+    },
+    "production": {
+      "mc": 2,
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "temp": -6
+    }
+  },
+  {
+    "key": "AerobrakedAmmoniaAsteroid",
+    "name": "Aerobraked Ammonia Asteroid",
+    "number": "170",
+    "type": "proj",
+    "color": "red",
+    "cost": 26,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "heat": 3,
+      "plant": 1
+    },
+    "extra": "Microbe* Microbe*\n(Add 2 Microbes to ANOTHER card. Increase your heat production 3 steps and your plant productions 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MagneticFieldDome",
+    "name": "Magnetic Field Dome",
+    "number": "171",
+    "type": "proj",
+    "color": "green",
+    "cost": 5,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "tr": 1
+    },
+    "production": {
+      "energy": -2,
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Pets",
+    "name": "Pets",
+    "number": "172",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "earth",
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "any-City: Animal Resource\nANIMALS MAY NOT BE REMOVED FROM THIS CARD.\n(Effect: When any City tile is placed, add an Animal to this card.)\n------\nAnimal Resource\n(Add 1 Animal to this card. 1 VP per 2 Animals here.)\nVP: 1/2 Animal Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ProtectedHabitats",
+    "name": "Protected Habitats",
+    "number": "173",
+    "type": "proj",
+    "color": "green",
+    "cost": 5,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "OPPONENTS MAY NOT REMOVE YOUR\nplant Animal Microbe",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ProtectedValley",
+    "name": "Protected Valley",
+    "number": "174",
+    "type": "proj",
+    "color": "green",
+    "cost": 23,
+    "tags": [
+      "plant",
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "greenery": 1
+    },
+    "production": {
+      "mc": 2
+    },
+    "extra": "(Place on a greenery tile ON AN AREA RESERVED FOR OCEAN, disregarding normal placement restrictions, and increase oxygen 1 step.)",
+    "place": [
+      "greenery"
+    ],
+    "req": {}
+  },
+  {
+    "key": "Satellites",
+    "name": "Satellites",
+    "number": "175",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 1
+    },
+    "extra": "/Space.\n(Increase your mc production 1 step for each Space tag you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "NoctisFarming",
+    "name": "Noctis Farming",
+    "number": "176",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "plant",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {
+      "plant": 2
+    },
+    "production": {
+      "mc": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "temp": -20
+    }
+  },
+  {
+    "key": "WaterSplittingPlant",
+    "name": "Water Splitting Plant",
+    "number": "177",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "energy energy energy -> O2\n(Action: Spend 3 energy to raise oxygen 1 step.)\n------\n(Requires 2 ocean tiles.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {
+      "ocean": 2
+    }
+  },
+  {
+    "key": "HeatTrappers",
+    "name": "Heat Trappers",
+    "number": "178",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": -1,
+    "resources": {},
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SoilFactory",
+    "name": "Soil Factory",
+    "number": "179",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": -1,
+      "plant": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FuelFactory",
+    "name": "Fuel Factory",
+    "number": "180",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "energy": 1,
+      "mc": 1,
+      "ti": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IceCapMelting",
+    "name": "Ice Cap Melting",
+    "number": "181",
+    "type": "proj",
+    "color": "red",
+    "cost": 5,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {
+      "temp": 2
+    }
+  },
+  {
+    "key": "CorporateStronghold",
+    "name": "Corporate Stronghold",
+    "number": "182",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": -2,
+    "resources": {
+      "city": 1
+    },
+    "production": {
+      "energy": 1,
+      "mc": 3
+    },
+    "extra": "",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "BiomassCombustors",
+    "name": "Biomass Combustors",
+    "number": "183",
+    "type": "proj",
+    "color": "green",
+    "cost": 4,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": -1,
+    "resources": {},
+    "production": {
+      "energy": 2
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "o2": 6
+    }
+  },
+  {
+    "key": "Livestock",
+    "name": "Livestock",
+    "number": "184",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 2
+    },
+    "extra": "-> Animal\n(Action: Add 1 Animal to this card.)\n------\nReduce plant 1\n(Requires 9% oxygen. Decrease your plant production 1 step and increase your mc production 2 steps. 1 VP for each Animal on this card.\nVP: 1/Animal",
+    "place": [],
+    "req": {
+      "o2": 9
+    }
+  },
+  {
+    "key": "OlympusConference",
+    "name": "Olympus Conference",
+    "number": "185",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "science",
+      "earth",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Science: Science Resource OR -Science Resource +Card\n(When you play a Science tag, including this, either add a Science resource to this card, or remove a Science resource from this card to draw a card.)\n------\nVP: 1\n--- Ed. note: This should likely say .Effect:. on the card.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RadSuits",
+    "name": "Rad Suits",
+    "number": "186",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "mc": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "city": 2
+    }
+  },
+  {
+    "key": "AquiferPumping",
+    "name": "Aquifer Pumping",
+    "number": "187",
+    "type": "proj",
+    "color": "blue",
+    "cost": 18,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "8 mc (steel) -> Ocean Tile\n(Action: Spend 8 mc to place 1 ocean tile. STEEL MAY BE USED as if you were playing a Building card.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "Flooding",
+    "name": "Flooding",
+    "number": "188",
+    "type": "proj",
+    "color": "red",
+    "cost": 7,
+    "tags": [
+      "event"
+    ],
+    "vp": -1,
+    "resources": {
+      "ocean": 1
+    },
+    "production": {},
+    "extra": "-4 mc*\n(IF THERE ARE TILES ADJACENT TO THIS OCEAN TILE, YOU MAY REMOVE 4 mc FROM THE OWNER OF ONE OF THOSE TILES.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "EnergySaving",
+    "name": "Energy Saving",
+    "number": "189",
+    "type": "proj",
+    "color": "green",
+    "cost": 15,
+    "tags": [
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Increase energy/City*\n(Increase your energy production 1 step for each City tile in play.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LocalHeatTrapping",
+    "name": "Local Heat Trapping",
+    "number": "190",
+    "type": "proj",
+    "color": "red",
+    "cost": 1,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-5 heat +4 plant OR +2 Animal* Resource\n(Spend 5 heat to gain either 4 plants, or to add 2 Animals to ANOTHER card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "PermafrostExtraction",
+    "name": "Permafrost Extraction",
+    "number": "191",
+    "type": "proj",
+    "color": "red",
+    "cost": 8,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "ocean": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "ocean"
+    ],
+    "req": {
+      "temp": -8
+    }
+  },
+  {
+    "key": "InventionContest",
+    "name": "Invention Contest",
+    "number": "192",
+    "type": "proj",
+    "color": "red",
+    "cost": 2,
+    "tags": [
+      "science",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "LOOK AT THE TOP 3 CARDS FROM THE DECK. TAKE 1 OF THEM INTO HAND AND DISCARD THE OTHER 2",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Plantation",
+    "name": "Plantation",
+    "number": "193",
+    "type": "proj",
+    "color": "green",
+    "cost": 15,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "greenery": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [
+      "greenery"
+    ],
+    "req": {
+      "science": 2
+    }
+  },
+  {
+    "key": "PowerInfrastructure",
+    "name": "Power Infrastructure",
+    "number": "194",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "power",
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "X energy -> X mc\n(Action: Spend any amount of energy and gain that amount of mc.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IndenturedWorkers",
+    "name": "Indentured Workers",
+    "number": "195",
+    "type": "proj",
+    "color": "red",
+    "cost": 0,
+    "tags": [
+      "event"
+    ],
+    "vp": -1,
+    "resources": {},
+    "production": {},
+    "extra": "NEXT CARD: -8 mc\n(The next card you play this generation costs 8 mc less.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LagrangeObservatory",
+    "name": "Lagrange Observatory",
+    "number": "196",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "science",
+      "space"
+    ],
+    "vp": 1,
+    "resources": {
+      "card": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TerraformingGanymede",
+    "name": "Terraforming Ganymede",
+    "number": "197",
+    "type": "proj",
+    "color": "green",
+    "cost": 33,
+    "tags": [
+      "jovian",
+      "space"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "TR/Jovian\n(Raise your TR 1 step for each Jovian tag you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ImmigrationShuttles",
+    "name": "Immigration Shuttles",
+    "number": "198",
+    "type": "proj",
+    "color": "green",
+    "cost": 31,
+    "tags": [
+      "earth",
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 5
+    },
+    "extra": "(1 VP for every 3rd City in play.)\nVP: 1/3 City",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RestrictedArea",
+    "name": "Restricted Area",
+    "number": "199",
+    "type": "proj",
+    "color": "blue",
+    "cost": 11,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "2 mc -> +Card\n(Action: Spend 2 mc to draw a card.)\n------\nSpecial Tile\n(Place this tile.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "ImmigrantCity",
+    "name": "Immigrant City",
+    "number": "200",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "city": 1
+    },
+    "production": {
+      "energy": -1,
+      "mc": 2
+    },
+    "extra": "City*: mc:1\n(Effect: Each time a City tile is placed, including this, increase your mc production 1 step.)\n------\n( and decrease your mc production 2 steps. Place a City tile.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "EnergyTapping",
+    "name": "Energy Tapping",
+    "number": "201",
+    "type": "proj",
+    "color": "green",
+    "cost": 3,
+    "tags": [
+      "power"
+    ],
+    "vp": -1,
+    "resources": {},
+    "production": {
+      "energy": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "UndergroundDetonations",
+    "name": "Underground Detonations",
+    "number": "202",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "10 mc -> 2 heat Production",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Soletta",
+    "name": "Soletta",
+    "number": "203",
+    "type": "proj",
+    "color": "green",
+    "cost": 35,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "heat": 7
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TechnologyDemonstration",
+    "name": "Technology Demonstration",
+    "number": "204",
+    "type": "proj",
+    "color": "red",
+    "cost": 5,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {
+      "card": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RadChemFactory",
+    "name": "Rad Chem Factory",
+    "number": "205",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "tr": 2
+    },
+    "production": {
+      "energy": -1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SpecialDesign",
+    "name": "Special Design",
+    "number": "206",
+    "type": "proj",
+    "color": "red",
+    "cost": 4,
+    "tags": [
+      "science",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "Requirement: O2/Ocean/Temperature: +/-2\n(The next card you play this generation is +2 or -2 in global requirements, your choice.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MedicalLab",
+    "name": "Medical Lab",
+    "number": "207",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [
+      "science",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "Increase mc/2 Building\n(Increase your mc production 1 step for every 2 Building tags you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AICentral",
+    "name": "AI Central",
+    "number": "208",
+    "type": "proj",
+    "color": "blue",
+    "cost": 21,
+    "tags": [
+      "science",
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "energy": -1
+    },
+    "extra": "-> +Card +Card\n(Action: Draw 2 cards.)\n------\n(Requires 3 Science tags to play. .)",
+    "place": [],
+    "req": {
+      "science": 3
+    }
+  },
+  {
+    "key": "HousePrinting",
+    "name": "House Printing",
+    "number": "P36",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {
+      "steel": 1
+    },
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LavaTubeSettlement",
+    "name": "Lava Tube Settlement",
+    "number": "P37",
+    "type": "proj",
+    "color": "green",
+    "cost": 15,
+    "tags": [
+      "city",
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "city": 1
+    },
+    "production": {
+      "energy": -1,
+      "mc": 2
+    },
+    "extra": "(Place a City tile ON A VOLCANIC AREA, same as Lava Flows, regardless of adjacent cities.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "MartianSurvey",
+    "name": "Martian Survey",
+    "number": "P38",
+    "type": "proj",
+    "color": "red",
+    "cost": 9,
+    "tags": [
+      "science",
+      "event"
+    ],
+    "vp": 1,
+    "resources": {
+      "card": 2
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {
+      "maxo2": 4
+    }
+  },
+  {
+    "key": "Psychrophiles",
+    "name": "Psychrophiles",
+    "number": "P39",
+    "type": "proj",
+    "color": "blue",
+    "cost": 2,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "-> Microbe\nplant cards: Microbe = 2mc\n(Action: Add a microbe to this card.\nEffect: When paying for a plant card, microbes here may be used as 2 mc each.)\n------\n(Requires temperature -20 C or colder.)",
+    "place": [],
+    "req": {
+      "maxtemp": -20
+    }
+  },
+  {
+    "key": "ResearchCoordination",
+    "name": "Research Coordination",
+    "number": "P40",
+    "type": "proj",
+    "color": "green",
+    "cost": 4,
+    "tags": [
+      "wild"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SFMemorial",
+    "name": "SF Memorial",
+    "number": "P41",
+    "type": "proj",
+    "color": "green",
+    "cost": 7,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {
+      "card": 1
+    },
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SpaceHotels",
+    "name": "Space Hotels",
+    "number": "P42",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "earth",
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {
+      "mc": 4
+    },
+    "extra": "",
+    "place": [],
+    "req": {
+      "earth": 2
+    }
+  }
+]

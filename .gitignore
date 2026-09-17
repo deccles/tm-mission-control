@@ -1,0 +1,10 @@
+target/
+bin/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+cards.src.js
+*.log

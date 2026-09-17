@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TM Companion</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>TM Companion</h1>
+      <p class="meta" id="meta">Waiting for Player.log…</p>
+    </div>
+    <div class="top-right">
+      <div class="live" id="live">idle</div>
+      <a class="qr-wrap" id="qr-link" href="/" title="Companion URL">
+        <img class="qr" id="qr" src="/qr.svg" alt="QR code for this companion URL">
+        <span class="qr-url" id="qr-url"></span>
+      </a>
+    </div>
+  </header>
+
+  <section class="banner" id="banner">
+    <p class="banner-kicker" id="banner-kicker">No card in flight</p>
+    <h2 id="banner-title">Play a local match and keep this window on your second screen.</h2>
+    <p class="effect" id="banner-effect">Public tableaus from the game log — hidden hands are never shown.</p>
+    <ul class="tips" id="banner-tips"></ul>
+  </section>
+
+  <section class="scoreboard" id="scoreboard" hidden>
+    <button type="button" class="score-summary" id="score-toggle" aria-expanded="false">
+      <span class="score-kicker">If the game ended now</span>
+      <span class="score-line" id="score-line"></span>
+    </button>
+    <div class="score-details" id="score-details" hidden>
+      <table class="score-break">
+        <thead id="score-head"></thead>
+        <tbody id="score-lines"></tbody>
+      </table>
+      <div class="score-cards" id="score-cards" hidden></div>
+      <p class="score-note" id="score-note"></p>
+    </div>
+  </section>
+
+  <main class="boards" id="boards"></main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
