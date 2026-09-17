@@ -112,6 +112,14 @@ function render(data) {
     $("qr-link").title = data.url;
     $("qr-url").textContent = data.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
   }
+  const hint = $("phone-hint");
+  const phone = (data.url || "").replace(/\/$/, "");
+  hint.hidden = false;
+  if (data.firewallOpen === false) {
+    hint.innerHTML = `Windows Firewall is blocking phones. Approve the Windows prompt when TM Companion starts, then open <code>${phone}</code>.`;
+  } else {
+    hint.innerHTML = `On your phone, same Wi-Fi as usual. Open <code>${phone}</code>. Chrome may warn about a local certificate — tap Advanced, then proceed.`;
+  }
 
   const play = data.activePlay;
   const banner = $("banner");

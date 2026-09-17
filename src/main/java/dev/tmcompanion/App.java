@@ -50,20 +50,24 @@ public final class App {
         thread.setDaemon(true);
         thread.start();
 
+        CompanionServer.stopHotspot();
         CompanionServer server = new CompanionServer(state, port, host);
         URI uri = server.start();
         System.out.println("TM Companion");
         System.out.println("  log  " + logFile);
         System.out.println("  open " + uri);
         System.out.println("  phone " + state.url);
-        for (String extra : CompanionServer.lanAddresses()) {
-            String candidate = "http://" + extra + ":" + port + "/";
-            if (!candidate.equals(state.url)) {
-                System.out.println("  also  " + candidate);
+        if (!state.firewallOpen) {
+            System.out.println("  phone blocked — approve the Windows Firewall prompt on next start");
+        }
+        for (String extra : state.urls) {
+            if (extra != null && !extra.equals(state.url)) {
+                System.out.println("  also  " + extra);
             }
         }
         System.out.println("Leave this running on a second monitor while you play.");
-        System.out.println("Phone must use Wi-Fi (not cellular). If it still fails, Windows Firewall may need a one-time Allow for Java.");
+        System.out.println("Phone: same Wi-Fi as usual. Open " + state.url
+                + " — if Chrome warns about the certificate, tap Advanced and proceed once.");
 
         if (Desktop.isDesktopSupported()) {
             try {

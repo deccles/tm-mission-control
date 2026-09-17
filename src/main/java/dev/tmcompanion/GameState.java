@@ -12,6 +12,8 @@ public final class GameState {
     public int generation = 1;
     public String phase = "Waiting for a match";
     public String url = "";
+    public List<String> urls = List.of();
+    public boolean firewallOpen;
     public boolean live;
     public int humanId = 1;
     public final Map<Integer, PlayerState> players = new LinkedHashMap<>();
@@ -42,6 +44,8 @@ public final class GameState {
         synchronized (lock) {
             Map<String, Object> out = new LinkedHashMap<>();
             out.put("url", url);
+            out.put("urls", urls);
+            out.put("firewallOpen", firewallOpen);
             out.put("gameId", gameId);
             out.put("board", board);
             out.put("generation", generation);
