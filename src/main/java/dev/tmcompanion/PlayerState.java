@@ -12,6 +12,7 @@ public final class PlayerState {
     public boolean seated;
     public String color;
     public String corporation = "Unknown";
+    public String corpRules = "";
     public int startingMc = -1;
     public int tr = 20;
 

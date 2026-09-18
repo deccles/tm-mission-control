@@ -17,38 +17,55 @@ public final class ScoreCalculator {
     }
 
     public static Map<String, Object> estimate(GameState state, List<PlayerState> table, PlayerState you) {
-        Map<Integer, Breakdown> byId = new LinkedHashMap<>();
         List<PlayerState> players = table == null || table.isEmpty()
                 ? new ArrayList<>(state.players.values())
                 : new ArrayList<>(table);
         if (players.isEmpty() && you != null) {
             players = List.of(you);
         }
-        int citiesInPlay = players.stream().mapToInt(p -> p.cities).sum();
-        if (citiesInPlay == 0) {
-            citiesInPlay = players.stream().mapToInt(p -> p.citiesOnMars).sum();
-        }
-        for (PlayerState player : players) {
-            byId.put(player.id, scorePlayer(player, citiesInPlay));
-        }
-        applyBoard(state, byId);
-        applyAwards(players, byId);
+        Map<Integer, Breakdown> byId = compute(state, players);
 
         Map<String, Object> out = new LinkedHashMap<>();
         Map<String, Breakdown> byKey = new LinkedHashMap<>();
+        Map<String, Map<String, Integer>> compact = new LinkedHashMap<>();
         for (PlayerState player : players) {
-            byKey.put(String.valueOf(player.id), byId.get(player.id));
+            Breakdown b = byId.get(player.id);
+            byKey.put(String.valueOf(player.id), b);
+            if (b != null) {
+                compact.put(String.valueOf(player.id), b.toCompact());
+            }
         }
         out.put("byId", byKey);
         if (you != null) {
-            out.put("you", byId.getOrDefault(you.id, scorePlayer(you, citiesInPlay)));
+            out.put("you", byId.getOrDefault(you.id, scorePlayer(you, cityCount(players))));
         }
         if (state.tiles.isEmpty()) {
             out.put("note", "No tiles parsed yet — city adjacency VP will appear once hexes are in the log.");
         } else {
             out.put("note", "");
         }
+        out.put("history", state.chartHistory(compact));
+        out.put("events", new ArrayList<>(state.scoreEvents));
         return out;
+    }
+
+    static Map<Integer, Breakdown> compute(GameState state, List<PlayerState> players) {
+        Map<Integer, Breakdown> byId = new LinkedHashMap<>();
+        int citiesInPlay = cityCount(players);
+        for (PlayerState player : players) {
+            byId.put(player.id, scorePlayer(player, citiesInPlay));
+        }
+        applyBoard(state, byId);
+        applyAwards(players, byId);
+        return byId;
+    }
+
+    static int cityCount(List<PlayerState> players) {
+        int citiesInPlay = players.stream().mapToInt(p -> p.cities).sum();
+        if (citiesInPlay == 0) {
+            citiesInPlay = players.stream().mapToInt(p -> p.citiesOnMars).sum();
+        }
+        return citiesInPlay;
     }
 
     private static Breakdown scorePlayer(PlayerState player, int citiesInPlay) {
@@ -162,7 +179,7 @@ public final class ScoreCalculator {
     private static int awardMetric(String award, PlayerState p) {
         String key = award.toLowerCase(Locale.ROOT).replace(" ", "");
         return switch (key) {
-            case "landlord" -> p.greeneries + p.citiesOnMars + p.specialTiles;
+            case "landlord" -> p.greeneries + p.cities + p.specialTiles;
             case "banker" -> p.megaCreditProd;
             case "scientist" -> p.tags.getOrDefault("science", 0);
             case "thermalist" -> p.heat;
@@ -255,6 +272,18 @@ public final class ScoreCalculator {
 
         void retotal() {
             total = tr + milestones + awards + greeneries + cities + cards;
+        }
+
+        Map<String, Integer> toCompact() {
+            Map<String, Integer> out = new LinkedHashMap<>();
+            out.put("total", total);
+            out.put("tr", tr);
+            out.put("milestones", milestones);
+            out.put("awards", awards);
+            out.put("greeneries", greeneries);
+            out.put("cities", cities);
+            out.put("cards", cards);
+            return out;
         }
     }
 }

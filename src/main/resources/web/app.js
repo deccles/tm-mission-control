@@ -46,22 +46,37 @@ function renderCubes(p) {
     ["Energy", p.energy, p.energyProd],
     ["Heat", p.heat, p.heatProd],
   ];
-  return `<table class="cubes">
+  return `<div class="board-cubes"><table class="cubes">
     <tr><th>Resource</th><th class="num">Qty</th><th class="num">Prod</th></tr>
     ${rows.map(([n, q, pr]) => `<tr><td>${n}</td><td class="num">${q ?? 0}</td><td class="num prod">${pr ?? 0}</td></tr>`).join("")}
-  </table>
-  <p class="awards">TR ${p.tr ?? 20} · Cities on Mars ${p.citiesOnMars ?? 0} · Greeneries ${p.greeneries ?? 0} · Oceans ${p.oceans ?? 0}</p>`;
+  </table></div>`;
+}
+
+function renderTrLine(p) {
+  return `<p class="board-tr">TR ${p.tr ?? 20} · Cities on Mars ${p.citiesOnMars ?? 0} · Greeneries ${p.greeneries ?? 0} · Oceans ${p.oceans ?? 0}</p>`;
 }
 
 function renderTags(tags) {
-  if (!tags) return "";
-  return `<div class="tags">${Object.entries(tags).map(([k, v]) =>
-    `<span class="tag-count${v ? "" : " zero"}" title="${escapeHtml(k)} ${v}">${tagIcon(k)}<span class="n">${v}</span></span>`
-  ).join("")}</div>`;
+  const cells = tags
+    ? Object.entries(tags).map(([k, v]) =>
+      `<span class="tag-count${v ? "" : " zero"}" title="${escapeHtml(k)} ${v}">${tagIcon(k)}<span class="n">${v}</span></span>`)
+    : [];
+  return `<div class="tags">${cells.join("")}</div>`;
 }
 
 function extra(text) {
   return (text || "").replace(/\n/g, " · ").replace(/\s+/g, " ").trim();
+}
+
+function corpRuleText(raw) {
+  if (!raw) return "";
+  let text = String(raw).replace(/\s+/g, " ").trim();
+  text = text.replace(/\s*-{2,}\s*Ed\. note:.*$/i, "").trim();
+  const bits = [...text.matchAll(/\((?:Effect|Action):[^)]+\)/gi)]
+    .map((m) => m[0].slice(1, -1).trim())
+    .filter(Boolean);
+  if (bits.length) return bits.join(" ");
+  return extra(text);
 }
 
 function tokenChip(c) {
@@ -86,20 +101,53 @@ function renderCards(title, cards, cls) {
       </div>`).join("")}</div>`;
 }
 
+function helpMark() {
+  return `<span class="corp-help" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><text x="12" y="17" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">?</text></svg></span>`;
+}
+
+function chevron() {
+  return `<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.4 8.6 12 13.2l4.6-4.6 1.4 1.4-6 6-6-6z"/></svg></span>`;
+}
+
 function renderPlayer(p) {
   const awards = [...(p.milestones || []), ...(p.awards || [])];
   const color = teamColor(p);
   const you = !!p.human;
   const subtitle = boardSubtitle(p);
-  return `<article class="board color-${color}${you ? " you" : ""}">
-    <h2>${boardTitle(p)}</h2>
-    ${subtitle ? `<p class="corp">${subtitle}</p>` : ""}
-    ${renderCubes(p)}
-    ${renderTags(p.tags)}
-    ${awards.length ? `<p class="awards">${awards.join(" · ")}</p>` : ""}
-    ${renderCards("Blue cards", p.blueCards, "blue")}
-    ${renderCards("Automated", p.greenCards, "green")}
-    ${renderCards("Events", p.events, "red")}
+  const title = escapeHtml(boardTitle(p));
+  const rules = corpRuleText(p.corpRules);
+  const rulesOpen = corpOpenId === p.id;
+  const collapsed = collapsedBoardIds.has(p.id);
+  const info = rules
+    ? `<button type="button" class="corp-info" data-corp="${p.id}" aria-expanded="${rulesOpen ? "true" : "false"}" aria-controls="corp-rules-${p.id}" aria-label="${title} corporation rules">
+        <span class="corp-name">${title}</span>${helpMark()}
+      </button>`
+    : `<h2 class="corp-name">${title}</h2>`;
+  const rulesBlock = rules
+    ? `<p class="corp-rules" id="corp-rules-${p.id}"${rulesOpen && !collapsed ? "" : " hidden"}>${escapeHtml(rules)}</p>`
+    : "";
+  return `<article class="board color-${color}${you ? " you" : ""}${collapsed ? " collapsed" : ""}">
+    <div class="board-head">
+      ${info}
+      <button type="button" class="board-toggle" data-corp="${p.id}" aria-expanded="${collapsed ? "false" : "true"}" aria-controls="board-body-${p.id}" aria-label="${collapsed ? "Expand" : "Collapse"} ${title}">
+        ${chevron()}
+      </button>
+    </div>
+    <div class="board-body" id="board-body-${p.id}"${collapsed ? " hidden" : ""}>
+      <div class="board-intro">
+        ${subtitle ? `<p class="corp">${escapeHtml(subtitle)}</p>` : ""}
+        ${rulesBlock}
+      </div>
+      ${renderCubes(p)}
+      ${renderTrLine(p)}
+      ${renderTags(p.tags)}
+      <p class="board-awards">${awards.length ? awards.join(" · ") : ""}</p>
+      <div class="board-blues">${renderCards("Blue cards", p.blueCards, "blue")}</div>
+      <div class="board-rest">
+        ${renderCards("Automated", p.greenCards, "green")}
+        ${renderCards("Events", p.events, "red")}
+      </div>
+    </div>
   </article>`;
 }
 
@@ -185,11 +233,14 @@ function resLabel(key) {
   })[key] || key;
 }
 
+const TI_STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2 14.7 8.6h6.8l-5.5 4.1 2.1 6.7L12 15.8 5.9 19.4l2.1-6.7L2.5 8.6h6.8z"/></svg>';
+
 function resSym(rawKey, value, prod) {
   const key = resKey(rawKey);
   const n = Number(value);
   const shown = Number.isFinite(n) ? (n > 0 ? "+" + n : String(n)) : String(value);
-  return `<span class="res-sym res-${key}${prod ? " prod" : ""}" title="${prod ? "Production " : ""}${shown} ${resLabel(key)}"><span class="res-box"></span>${shown}</span>`;
+  const mark = key === "ti" ? TI_STAR : "";
+  return `<span class="res-sym res-${key}${prod ? " prod" : ""}" title="${prod ? "Production " : ""}${shown} ${resLabel(key)}"><span class="res-box">${mark}</span>${shown}</span>`;
 }
 
 function benefitHtml(play) {
@@ -274,6 +325,14 @@ function renderBanner(data) {
 }
 
 function render(data) {
+  if (data.gameId !== lastGameId) {
+    lastGameId = data.gameId || "";
+    corpOpenId = null;
+    collapsedBoardIds = new Set();
+    selectedGen = null;
+    chartsOpen = false;
+    cardsOpen = false;
+  }
   $("meta").textContent = `Gen ${data.generation ?? "?"} · ${data.phase || ""} · ${data.board || ""} · ${data.gameId ? "Game " + data.gameId : "no game yet"}`;
   setLiveStatus(data.live ? "live" : "idle");
   if (data.url) {
@@ -289,6 +348,7 @@ function render(data) {
   boards.className = "boards players-" + Math.max(1, Math.min(5, players.length));
   boards.innerHTML = players.map(renderPlayer).join("");
   renderScore(data, players);
+  alignBoardSections();
 }
 
 function scoreOf(data, p) {
@@ -308,6 +368,10 @@ function renderScore(data, players) {
     return;
   }
   box.hidden = false;
+  lastScoreData = data;
+  lastScorePlayers = players;
+  const ended = /endgame/i.test(data.phase || "");
+  $("score-kicker").textContent = ended ? "Total VP" : "If the game ended now";
   const breakdowns = players
     .map((p) => ({ p, b: scoreOf(data, p) }))
     .sort((a, c) => (c.b.total ?? 0) - (a.b.total ?? 0)
@@ -328,6 +392,8 @@ function renderScore(data, players) {
     `<th class="team color-${teamColor(p)}">${displayName(p, "P" + p.id)}</th>`
   ).join("")}</tr>`;
 
+  const history = score.history || [];
+  const showCharts = (data.generation ?? 0) >= 3 || ended;
   const rows = [
     ["TR", (b) => b.tr, false],
     ["Milestones", (b) => b.milestones, false],
@@ -348,6 +414,7 @@ function renderScore(data, players) {
       <h3 class="section-title">${displayName(p, "P" + p.id)} cards</h3>
       <ul>${(b.cardDetails || []).map((d) => `<li>${d}</li>`).join("") || "<li>None</li>"}</ul>
     </div>`).join("");
+  renderScoreCharts(data, players, history, ended);
   const notes = [];
   if (score.note) notes.push(score.note);
   if (vpTie && topVp > 0) notes.push("VP tie — most credits win.");
@@ -355,24 +422,232 @@ function renderScore(data, players) {
   $("score-note").hidden = notes.length === 0;
   $("score-details").hidden = !scoreOpen;
   $("score-cards").hidden = !cardsOpen;
+  $("score-chart-panel").hidden = !showCharts;
+  $("score-charts").hidden = !chartsOpen || !showCharts;
+  $("score-chart-toggle").setAttribute("aria-expanded", chartsOpen ? "true" : "false");
   $("score-toggle").setAttribute("aria-expanded", scoreOpen ? "true" : "false");
+}
+
+const TEAM_HEX = { blue: "#3d7ec9", green: "#2f9e44", purple: "#9b59b6", yellow: "#d4b429", red: "#c44532" };
+
+function historyValue(point, playerId, key) {
+  const by = point.byId || {};
+  const b = by[playerId] || by[String(playerId)] || {};
+  return Number(b[key] ?? 0);
+}
+
+function renderScoreCharts(data, players, history, ended) {
+  const box = $("score-charts");
+  if (!history || history.length < 2) {
+    box.innerHTML = `<p class="score-note">Not enough generations yet.</p>`;
+    return;
+  }
+  const vpTitle = ended ? "Total VP" : "If the game ended now";
+  box.innerHTML = `
+    <div class="score-chart-block">
+      <h3 class="section-title">TR</h3>
+      ${lineChartSvg(history, players, "tr", "TR")}
+    </div>
+    <div class="score-chart-block">
+      <h3 class="section-title">${vpTitle}</h3>
+      ${lineChartSvg(history, players, "total", "VP")}
+    </div>
+    <div class="score-gen" id="score-gen"></div>`;
+  renderGenExplain(data, players, history);
+}
+
+function lineChartSvg(history, players, key, label) {
+  const w = 320;
+  const h = 108;
+  const padL = 28;
+  const padR = 8;
+  const padT = 8;
+  const padB = 20;
+  const n = history.length;
+  const xs = history.map((_, i) => padL + (i * (w - padL - padR)) / Math.max(1, n - 1));
+  let ymin = Infinity;
+  let ymax = -Infinity;
+  for (const pt of history) {
+    for (const p of players) {
+      const v = historyValue(pt, p.id, key);
+      ymin = Math.min(ymin, v);
+      ymax = Math.max(ymax, v);
+    }
+  }
+  if (!Number.isFinite(ymin) || ymin === ymax) {
+    ymin = (ymin || 0) - 1;
+    ymax = ymin + 2;
+  }
+  const yAt = (v) => padT + (1 - (v - ymin) / (ymax - ymin)) * (h - padT - padB);
+  const cols = xs.map((x, i) => {
+    const gen = history[i].generation;
+    const x0 = i === 0 ? padL - 6 : (xs[i - 1] + x) / 2;
+    const x1 = i === n - 1 ? w - padR + 6 : (x + xs[i + 1]) / 2;
+    const sel = selectedGen === gen ? " selected" : "";
+    return `<rect class="chart-col${sel}" data-gen="${gen}" x="${x0.toFixed(1)}" y="0" width="${Math.max(8, x1 - x0).toFixed(1)}" height="${h}"/>`;
+  }).join("");
+  const lines = players.map((p) => {
+    const color = TEAM_HEX[teamColor(p)] || "#b89f88";
+    const d = history.map((pt, i) => `${i === 0 ? "M" : "L"}${xs[i].toFixed(1)},${yAt(historyValue(pt, p.id, key)).toFixed(1)}`).join(" ");
+    const dots = history.map((pt, i) =>
+      `<circle class="chart-dot" cx="${xs[i].toFixed(1)}" cy="${yAt(historyValue(pt, p.id, key)).toFixed(1)}" r="2.6" fill="${color}"/>`
+    ).join("");
+    return `<path class="chart-line" stroke="${color}" d="${d}"/>${dots}`;
+  }).join("");
+  const axis = `<text class="chart-axis" x="2" y="${yAt(ymax) + 3}">${Math.round(ymax)}</text>`
+    + `<text class="chart-axis" x="2" y="${yAt(ymin) + 3}">${Math.round(ymin)}</text>`
+    + xs.map((x, i) => {
+      const pt = history[i];
+      const tick = pt.now ? "now" : String(pt.generation);
+      return `<text class="chart-axis" text-anchor="middle" x="${x.toFixed(1)}" y="${h - 4}">${tick}</text>`;
+    }).join("");
+  return `<svg class="score-chart-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${label} by generation">${cols}${lines}${axis}</svg>`;
+}
+
+function signed(n) {
+  if (n > 0) return "+" + n;
+  return String(n);
+}
+
+function renderGenExplain(data, players, history) {
+  const el = $("score-gen");
+  if (!el) return;
+  if (selectedGen == null) {
+    el.innerHTML = `<p class="score-gen-kicker">Tap a generation to see what moved.</p>`;
+    return;
+  }
+  const idx = history.findIndex((pt) => pt.generation === selectedGen);
+  if (idx < 0) {
+    el.innerHTML = `<p class="score-gen-kicker">Tap a generation to see what moved.</p>`;
+    return;
+  }
+  const cur = history[idx];
+  const prev = idx > 0 ? history[idx - 1] : null;
+  const events = (data.score.events || []).filter((e) => e.generation === selectedGen);
+  const title = cur.now ? `Now (gen ${selectedGen})` : `Generation ${selectedGen}`;
+  const buckets = [
+    ["TR", "tr"],
+    ["Milestones", "milestones"],
+    ["Awards", "awards"],
+    ["Greeneries", "greeneries"],
+    ["Cities", "cities"],
+    ["Cards", "cards"],
+  ];
+  el.innerHTML = `<p class="score-gen-kicker">${title}</p>` + players.map((p) => {
+    const total = historyValue(cur, p.id, "total") - (prev ? historyValue(prev, p.id, "total") : 0);
+    const parts = buckets.map(([name, key]) => {
+      const d = historyValue(cur, p.id, key) - (prev ? historyValue(prev, p.id, key) : 0);
+      return d ? `${name} ${signed(d)}` : "";
+    }).filter(Boolean);
+    const named = events.filter((e) => e.playerId === p.id).map((e) => `<li>${escapeHtml(e.label)}</li>`).join("");
+    return `<div class="score-gen-player color-${teamColor(p)}">
+      <strong>${escapeHtml(displayName(p, "P" + p.id))} ${signed(total)}</strong>
+      ${parts.length ? `<span class="buckets">${parts.join(" · ")}</span>` : ""}
+      ${named ? `<ul>${named}</ul>` : ""}
+    </div>`;
+  }).join("");
 }
 
 let scoreOpen = false;
 let cardsOpen = false;
+let chartsOpen = false;
+let selectedGen = null;
+let lastScoreData = null;
+let lastScorePlayers = [];
 let scoreUiBound = false;
 let bannerOpen = true;
 let bannerKey = "";
 let bannerUiBound = false;
+let corpOpenId = null;
+let collapsedBoardIds = new Set();
+let corpUiBound = false;
+let lastGameId = "";
+
+function applyBoardUi() {
+  document.querySelectorAll(".board").forEach((board) => {
+    const toggle = board.querySelector(".board-toggle");
+    const info = board.querySelector(".corp-info");
+    const id = Number((toggle || info)?.dataset.corp);
+    if (!id) return;
+    const collapsed = collapsedBoardIds.has(id);
+    const rulesOpen = corpOpenId === id;
+    board.classList.toggle("collapsed", collapsed);
+    const body = board.querySelector(".board-body");
+    if (body) body.hidden = collapsed;
+    if (toggle) {
+      const title = board.querySelector(".corp-name")?.textContent || "board";
+      toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      toggle.setAttribute("aria-label", `${collapsed ? "Expand" : "Collapse"} ${title}`);
+    }
+    if (info) info.setAttribute("aria-expanded", rulesOpen ? "true" : "false");
+    const rules = board.querySelector(".corp-rules");
+    if (rules) rules.hidden = collapsed || !rulesOpen;
+  });
+  alignBoardSections();
+}
+
+const BOARD_ALIGN = [".board-head", ".board-intro", ".board-cubes", ".board-tr", ".tags", ".board-awards"];
+
+function alignBoardSections() {
+  document.querySelectorAll(BOARD_ALIGN.join(",")).forEach((el) => {
+    el.style.minHeight = "";
+  });
+  const root = $("boards");
+  if (!root) return;
+  const colCount = getComputedStyle(root).gridTemplateColumns.split(/\s+/).filter(Boolean).length;
+  if (colCount < 2) return;
+  const groups = new Map();
+  for (const board of root.querySelectorAll(".board:not(.collapsed)")) {
+    const top = Math.round(board.offsetTop);
+    if (!groups.has(top)) groups.set(top, []);
+    groups.get(top).push(board);
+  }
+  for (const group of groups.values()) {
+    if (group.length < 2) continue;
+    for (const sel of BOARD_ALIGN) {
+      const els = group.map((b) => b.querySelector(sel)).filter(Boolean);
+      if (els.length < 2) continue;
+      const h = Math.max(...els.map((el) => el.offsetHeight));
+      els.forEach((el) => { el.style.minHeight = `${h}px`; });
+    }
+  }
+}
+
+function bindCorpUi() {
+  if (corpUiBound) return;
+  corpUiBound = true;
+  window.addEventListener("resize", alignBoardSections);
+  $("boards").addEventListener("click", (ev) => {
+    const info = ev.target.closest(".corp-info");
+    if (info) {
+      const id = Number(info.dataset.corp);
+      corpOpenId = corpOpenId === id ? null : id;
+      if (corpOpenId === id) collapsedBoardIds.delete(id);
+      applyBoardUi();
+      return;
+    }
+    const toggle = ev.target.closest(".board-toggle");
+    if (!toggle) return;
+    const id = Number(toggle.dataset.corp);
+    if (collapsedBoardIds.has(id)) collapsedBoardIds.delete(id);
+    else collapsedBoardIds.add(id);
+    applyBoardUi();
+  });
+}
 
 function bindScoreUi() {
   if (scoreUiBound) return;
   scoreUiBound = true;
   $("score-toggle").addEventListener("click", () => {
     scoreOpen = !scoreOpen;
-    if (!scoreOpen) cardsOpen = false;
+    if (!scoreOpen) {
+      cardsOpen = false;
+      chartsOpen = false;
+    }
     $("score-details").hidden = !scoreOpen;
     $("score-cards").hidden = !cardsOpen;
+    $("score-charts").hidden = !chartsOpen;
+    $("score-chart-toggle").setAttribute("aria-expanded", chartsOpen ? "true" : "false");
     $("score-toggle").setAttribute("aria-expanded", scoreOpen ? "true" : "false");
   });
   $("score-lines").addEventListener("click", (ev) => {
@@ -381,6 +656,22 @@ function bindScoreUi() {
     cardsOpen = !cardsOpen;
     $("score-cards").hidden = !cardsOpen;
     row.classList.toggle("open", cardsOpen);
+  });
+  $("score-chart-toggle").addEventListener("click", () => {
+    chartsOpen = !chartsOpen;
+    $("score-charts").hidden = !chartsOpen;
+    $("score-chart-toggle").setAttribute("aria-expanded", chartsOpen ? "true" : "false");
+  });
+  $("score-charts").addEventListener("click", (ev) => {
+    const col = ev.target.closest("[data-gen]");
+    if (!col) return;
+    const gen = Number(col.dataset.gen);
+    selectedGen = selectedGen === gen ? null : gen;
+    $("score-charts").querySelectorAll("[data-gen]").forEach((el) => {
+      el.classList.toggle("selected", Number(el.dataset.gen) === selectedGen);
+    });
+    const history = lastScoreData?.score?.history || [];
+    renderGenExplain(lastScoreData || {}, lastScorePlayers, history);
   });
 }
 
@@ -398,3 +689,4 @@ tick();
 setInterval(tick, 500);
 bindScoreUi();
 bindBannerUi();
+bindCorpUi();

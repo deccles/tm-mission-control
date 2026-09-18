@@ -16,7 +16,7 @@ public final class LogParser {
     private static final Pattern PLAYER_PLAYS_ID = Pattern.compile(
             "\\[PlayerAction] Player (\\d+) plays the card (\\d+)");
     private static final Pattern PLAYER_PLAY = Pattern.compile(
-            "\\[PlayerAction] Player (\\d+) Play for player");
+            "\\[PlayerAction] Player (\\d+) Play for player (\\d+)");
     private static final Pattern TRAY = Pattern.compile("Setting tray to player (\\d+)");
     private static final Pattern CURRENT_PLAYER = Pattern.compile("CurrentPlayerLocalId: (\\d+)");
     private static final Pattern PLACE_TILE = Pattern.compile(
@@ -45,6 +45,8 @@ public final class LogParser {
             "Playing(?: action)? \\((\\d+(?:\\.\\d+)*)\\) Corporation action : (.+)$");
     private static final Pattern PLACE_TILE_ACTION = Pattern.compile(
             "Playing action \\(([\\d.]+)\\) Place(Ocean|City|Greenery|Generic)TilePlayerAction");
+    private static final Pattern CONVERSION = Pattern.compile(
+            "Playing(?: action)? \\(([\\d.]+)\\) (?:Last)?(Plant|Heat)ConversionPlayerAction");
     private static final Pattern CARD_TOKEN = Pattern.compile(
             "\\[PlayerResources] (Adding|Removing) (-?\\d+) (\\w+) (?:to|from) (\\d+)");
     private static final Pattern CORP_CITY = Pattern.compile(
@@ -62,6 +64,7 @@ public final class LogParser {
     private final GameState state;
 
     private int currentPlayer = 1;
+    private int resourcePlayer = 0;
     private int headerPlayer = 0;
     private boolean inHeader;
     private int pendingCorpMc = -1;
@@ -70,6 +73,7 @@ public final class LogParser {
     private String pendingNamedCorp = "";
     private List<Card> pendingCorps = List.of();
     private String lastCardKey = "";
+    private String lastBlueAction = "";
     private final java.util.Map<Integer, String> steamCorps = new java.util.HashMap<>();
 
     public LogParser(CardDatabase cards, GameState state) {
@@ -114,6 +118,7 @@ public final class LogParser {
             if (line.contains("Created new Game")) {
                 state.reset();
                 currentPlayer = 1;
+                resourcePlayer = 0;
                 headerPlayer = 0;
                 inHeader = true;
                 pendingCorpMc = -1;
@@ -122,6 +127,7 @@ public final class LogParser {
                 pendingSteamCorpId = -1;
                 pendingNamedCorp = "";
                 lastCardKey = "";
+                lastBlueAction = "";
                 steamCorps.clear();
                 return;
             }
@@ -130,27 +136,32 @@ public final class LogParser {
 
             m = TRAY.matcher(line);
             if (m.find()) {
-                currentPlayer = Integer.parseInt(m.group(1));
+                setCurrentPlayer(Integer.parseInt(m.group(1)));
             }
             m = CURRENT_PLAYER.matcher(line);
             if (m.find()) {
-                currentPlayer = Integer.parseInt(m.group(1));
+                setCurrentPlayer(Integer.parseInt(m.group(1)));
             }
             m = PLAYER_PLAY.matcher(line);
             if (m.find()) {
-                currentPlayer = Integer.parseInt(m.group(1));
+                setCurrentPlayer(Integer.parseInt(m.group(1)));
+                resourcePlayer = Integer.parseInt(m.group(2));
             }
             m = PLAYER_PLAYS_ID.matcher(line);
             if (m.find()) {
-                currentPlayer = Integer.parseInt(m.group(1));
+                setCurrentPlayer(Integer.parseInt(m.group(1)));
             }
             m = TAB_PLAYER.matcher(line);
-            if (m.find() && productionPhase()) {
-                currentPlayer = Integer.parseInt(m.group(1));
+            if (m.find()) {
+                int tabId = Integer.parseInt(m.group(1));
+                rememberTurnOrder(tabId);
+                if (productionPhase()) {
+                    setCurrentPlayer(tabId);
+                }
             }
             m = STARTING_CARD_PLAYER.matcher(line);
             if (m.find()) {
-                currentPlayer = Integer.parseInt(m.group(1));
+                setCurrentPlayer(Integer.parseInt(m.group(1)));
             }
 
             m = ADDING_CORP_ACTION.matcher(line);
@@ -178,11 +189,20 @@ public final class LogParser {
             }
             m = GENERATION.matcher(line);
             if (m.find()) {
-                state.generation = Integer.parseInt(m.group(1));
+                int next = Integer.parseInt(m.group(1));
+                if (next > state.generation) {
+                    state.recordGenerationEnd();
+                    lastBlueAction = "";
+                    state.generation = next;
+                }
             }
             m = PHASE.matcher(line);
             if (m.find()) {
                 state.phase = humanPhase(m.group(1));
+                resourcePlayer = 0;
+                if (state.phase.toLowerCase().contains("endgame")) {
+                    state.recordGenerationEnd();
+                }
                 if ("Actions".equals(state.phase)
                         && (corpTaken("Tharsis Republic") || state.generation > 1)) {
                     resolveLeftoverCorps();
@@ -191,8 +211,16 @@ public final class LogParser {
 
             m = TR.matcher(line);
             if (m.find()) {
-                PlayerState p = state.player(Integer.parseInt(m.group(1)));
-                p.tr = Integer.parseInt(m.group(3));
+                int playerId = Integer.parseInt(m.group(1));
+                int from = Integer.parseInt(m.group(2));
+                int to = Integer.parseInt(m.group(3));
+                PlayerState p = state.player(playerId);
+                p.tr = to;
+                if (from > 0 && to != from) {
+                    int delta = to - from;
+                    String sign = delta > 0 ? "+" : "";
+                    state.addScoreEvent(playerId, "tr", "TR " + from + " → " + to + " (" + sign + delta + ")", delta);
+                }
             }
 
             m = CORP_ID.matcher(line);
@@ -201,12 +229,13 @@ public final class LogParser {
                 pendingCorpMc = -1;
                 pendingCorps = List.of();
                 pendingSteamCorpId = Integer.parseInt(m.group(1));
-                String known = steamCorps.get(pendingSteamCorpId);
+                String known = SteamCorporations.nameFor(pendingSteamCorpId);
+                if (known == null) {
+                    known = steamCorps.get(pendingSteamCorpId);
+                }
                 if (known != null) {
-                    Card corp = cards.find(known);
-                    if (corp != null) {
-                        assignCorp(state.player(pendingCorpPlayer), corp);
-                    }
+                    steamCorps.put(pendingSteamCorpId, known);
+                    assignCorpByName(state.player(pendingCorpPlayer), known);
                 }
             }
 
@@ -236,16 +265,24 @@ public final class LogParser {
 
             m = STANDARD.matcher(line);
             if (m.find()) {
+                lastBlueAction = "";
                 setActive(currentPlayer, "Standard Project: " + m.group(2).trim(), null, false);
             }
 
             m = BLUE_ACTION.matcher(line);
             if (m.find() && !line.contains("Adding action")) {
+                lastBlueAction = cards.displayName(m.group(2).trim());
                 setActive(currentPlayer, "Using " + m.group(2).trim(), null, false);
             }
             m = CORP_ACTION.matcher(line);
             if (m.find() && !line.contains("Adding action")) {
+                lastBlueAction = "";
                 setActive(currentPlayer, "Using " + m.group(2).trim(), null, false);
+            }
+            m = CONVERSION.matcher(line);
+            if (m.find() && !line.contains("Adding action")) {
+                lastBlueAction = "";
+                startConversion(m.group(2));
             }
             m = PLACE_TILE_ACTION.matcher(line);
             if (m.find()) {
@@ -254,7 +291,7 @@ public final class LogParser {
 
             m = ASKING_PLAYER.matcher(line);
             if (m.find()) {
-                currentPlayer = Integer.parseInt(m.group(1));
+                setCurrentPlayer(Integer.parseInt(m.group(1)));
             }
             m = CORP_CITY.matcher(line);
             if (m.find() && Integer.parseInt(m.group(1)) != 5 && state.generation <= 1) {
@@ -268,11 +305,17 @@ public final class LogParser {
 
             m = MILESTONE.matcher(line);
             if (m.find() && !line.contains("Playing action")) {
-                state.player(currentPlayer).milestones.add(m.group(1).trim());
+                lastBlueAction = "";
+                String name = m.group(1).trim();
+                state.player(currentPlayer).milestones.add(name);
+                state.addScoreEvent(currentPlayer, "milestone", "+5 " + name, 5);
             }
             m = AWARD.matcher(line);
             if (m.find() && !line.contains("Playing action")) {
-                state.player(currentPlayer).awards.add(m.group(1).trim());
+                lastBlueAction = "";
+                String name = m.group(1).trim();
+                state.player(currentPlayer).awards.add(name);
+                state.addScoreEvent(currentPlayer, "award", "funded " + name, 0);
             }
 
             if (line.contains("ShowOpponentCardPage") && state.activePlay != null) {
@@ -352,6 +395,8 @@ public final class LogParser {
         if (pendingCorpPlayer > 0 && !production && "MegaCredit".equals(kind) && from == 0
                 && "Unknown".equals(state.player(pendingCorpPlayer).corporation)) {
             target = state.player(pendingCorpPlayer);
+        } else if (resourcePlayer > 0) {
+            target = state.player(resourcePlayer);
         } else {
             target = findOwner(kind, production, from, to);
             if (target == null) {
@@ -359,8 +404,13 @@ public final class LogParser {
             }
         }
         setField(target, kind, production, to);
-        if (!production && "MegaCredit".equals(kind) && from == 0 && "Unknown".equals(target.corporation)) {
-            identifyCorpByMc(target, to);
+        if (!production && "MegaCredit".equals(kind) && from == 0) {
+            if (target.startingMc < 0) {
+                target.startingMc = to;
+            }
+            if ("Unknown".equals(target.corporation)) {
+                identifyCorpByMc(target, to);
+            }
         }
         if (!production && pendingCorps.size() > 1 && target.id == pendingCorpPlayer) {
             refineCorpByResource(target, kind, to);
@@ -429,6 +479,21 @@ public final class LogParser {
         }
     }
 
+    private void rememberTurnOrder(int playerId) {
+        int seated = 0;
+        for (PlayerState player : state.players.values()) {
+            if (player.seated) {
+                seated++;
+            }
+        }
+        if (seated == 0 || state.playerOrder.size() >= seated) {
+            return;
+        }
+        if (!state.playerOrder.contains(playerId)) {
+            state.playerOrder.add(playerId);
+        }
+    }
+
     private boolean corpTaken(String name) {
         for (PlayerState p : state.players.values()) {
             if (name.equals(p.corporation)) {
@@ -470,6 +535,20 @@ public final class LogParser {
         }
     }
 
+    private void assignCorpByName(PlayerState player, String name) {
+        Card corp = cards.find(name);
+        if (corp != null) {
+            assignCorp(player, corp);
+            return;
+        }
+        pendingCorps = List.of();
+        pendingCorpMc = -1;
+        if (!"Unknown".equals(player.corporation)) {
+            return;
+        }
+        player.corporation = name;
+    }
+
     private void assignCorp(PlayerState player, Card corp) {
         pendingCorps = List.of();
         pendingCorpMc = -1;
@@ -477,6 +556,7 @@ public final class LogParser {
             return;
         }
         player.corporation = corp.name;
+        player.corpRules = corp.extra == null ? "" : corp.extra;
         for (String tag : corp.tags) {
             player.addTag(tag);
         }
@@ -597,6 +677,7 @@ public final class LogParser {
             return;
         }
         lastCardKey = key;
+        lastBlueAction = "";
         Card card = cards.find(rawName);
         String name = cards.displayName(rawName);
         PlayerState player = state.player(playerId);
@@ -618,13 +699,19 @@ public final class LogParser {
             played.blue = false;
         }
         player.addCard(played);
+        int vp = ScoreCalculator.cardVp(played, player, citiesInPlay());
+        if (vp != 0) {
+            String sign = vp > 0 ? "+" : "";
+            state.addScoreEvent(playerId, "card", sign + vp + " " + name, vp);
+        }
         setActive(playerId, name, null, false);
-        currentPlayer = playerId;
+        setCurrentPlayer(playerId);
     }
 
     private void addCardTokens(int cardNumber, String rawType, int amount) {
         PlayedCard card = state.cardByNumber(cardNumber);
-        if (card == null) {
+        PlayerState owner = state.ownerOfCard(cardNumber);
+        if (card == null || owner == null) {
             return;
         }
         String type = switch (rawType.toLowerCase()) {
@@ -638,7 +725,62 @@ public final class LogParser {
         if (card.tokenType == null || card.tokenType.isBlank()) {
             card.tokenType = type;
         }
+        int cities = citiesInPlay();
+        int before = ScoreCalculator.cardVp(card, owner, cities);
         card.tokens = Math.max(0, card.tokens + amount);
+        int after = ScoreCalculator.cardVp(card, owner, cities);
+        int delta = after - before;
+        if (amount != 0) {
+            String sign = amount > 0 ? "+" : "";
+            String label = sign + amount + " " + card.name;
+            if (amount < 0 && !lastBlueAction.isBlank()) {
+                label += " (" + lastBlueAction + ")";
+            }
+            state.addScoreEvent(owner.id, "token", label, delta);
+        }
+    }
+
+    private int citiesInPlay() {
+        int n = 0;
+        for (PlayerState p : state.players.values()) {
+            n += p.cities;
+        }
+        if (n == 0) {
+            for (PlayerState p : state.players.values()) {
+                n += p.citiesOnMars;
+            }
+        }
+        return n;
+    }
+
+    private void setCurrentPlayer(int playerId) {
+        if (playerId == currentPlayer) {
+            return;
+        }
+        currentPlayer = playerId;
+        if (state.activePlay != null && state.activePlay.playerId != playerId) {
+            state.activePlay = null;
+        }
+    }
+
+    private void startConversion(String kind) {
+        PlayerState player = state.player(currentPlayer);
+        if ("Heat".equals(kind)) {
+            setActive(currentPlayer, "Convert heat", null, false);
+            state.activePlay.colorLabel = "Conversion";
+            state.activePlay.effect = "Spend 8 heat to raise temperature 1 step.";
+            state.activePlay.remember = new ArrayList<>(List.of("Raises temperature and TR."));
+            return;
+        }
+        boolean ecoline = "Ecoline".equals(player.corporation);
+        int plants = ecoline ? 7 : 8;
+        setActive(currentPlayer, "Convert plants", "Greenery", false);
+        state.activePlay.colorLabel = "Conversion";
+        state.activePlay.effect = "Spend " + plants + " plants to place a greenery.";
+        state.activePlay.remember = new ArrayList<>(cards.remember(null, "Greenery"));
+        if (ecoline) {
+            state.activePlay.remember.add(0, "Ecoline: 7 plants instead of 8.");
+        }
     }
 
     private void setActive(int playerId, String name, String placing, boolean preview) {
@@ -666,7 +808,7 @@ public final class LogParser {
     }
 
     private void pinPlacement(String kind) {
-        if (state.activePlay == null) {
+        if (state.activePlay == null || state.activePlay.playerId != currentPlayer) {
             setActive(currentPlayer, "Placing " + kind, kind, false);
             return;
         }
@@ -712,7 +854,8 @@ public final class LogParser {
         if (state.activePlay == null) {
             return;
         }
-        if (state.activePlay.cardName != null && state.activePlay.cardName.startsWith("Placing ")) {
+        String name = state.activePlay.cardName == null ? "" : state.activePlay.cardName;
+        if (name.startsWith("Placing ") || name.startsWith("Convert ")) {
             state.activePlay = null;
             return;
         }

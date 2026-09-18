@@ -43,7 +43,7 @@
 
   <section class="scoreboard" id="scoreboard" hidden>
     <button type="button" class="score-summary" id="score-toggle" aria-expanded="false">
-      <span class="score-kicker">If the game ended now</span>
+      <span class="score-kicker" id="score-kicker">If the game ended now</span>
       <span class="score-line" id="score-line"></span>
     </button>
     <div class="score-details" id="score-details" hidden>
@@ -53,6 +53,13 @@
       </table>
       <div class="score-cards" id="score-cards" hidden></div>
       <p class="score-note" id="score-note"></p>
+      <div class="score-chart-panel" id="score-chart-panel" hidden>
+        <button type="button" class="score-chart-toggle" id="score-chart-toggle" aria-expanded="false">
+          <span class="score-kicker">Charts</span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.4 8.6 12 13.2l4.6-4.6 1.4 1.4-6 6-6-6z"/></svg></span>
+        </button>
+        <div class="score-charts" id="score-charts" hidden></div>
+      </div>
     </div>
   </section>
 
