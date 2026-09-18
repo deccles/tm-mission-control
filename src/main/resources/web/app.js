@@ -15,7 +15,7 @@ function tablePlayers(data) {
 }
 
 function teamColor(p) {
-  return p && p.color ? p.color : "green";
+  return p && p.color ? p.color : "blue";
 }
 
 function displayName(p, fallback) {
@@ -25,18 +25,16 @@ function displayName(p, fallback) {
 }
 
 function boardTitle(p) {
-  if (p && p.human) return "You";
   if (p && p.corporation && p.corporation !== "Unknown") return p.corporation;
+  if (p && p.human) return "You";
   return (p && p.name) || "Player";
 }
 
 function boardSubtitle(p) {
   if (!p) return "";
-  const bits = [];
-  if (p.human && p.corporation && p.corporation !== "Unknown") bits.push(p.corporation);
-  if (!p.human && p.name && p.name !== boardTitle(p)) bits.push(p.name);
-  if (p.human) bits.push("You");
-  return bits.join(" · ");
+  if (p.human && p.corporation && p.corporation !== "Unknown") return "You";
+  if (!p.human && p.name && p.name !== boardTitle(p)) return p.name;
+  return "";
 }
 
 function renderCubes(p) {
@@ -58,7 +56,7 @@ function renderCubes(p) {
 function renderTags(tags) {
   if (!tags) return "";
   return `<div class="tags">${Object.entries(tags).map(([k, v]) =>
-    `<span class="tag ${v ? "" : "zero"}">${k} ${v}</span>`
+    `<span class="tag-count${v ? "" : " zero"}" title="${escapeHtml(k)} ${v}">${tagIcon(k)}<span class="n">${v}</span></span>`
   ).join("")}</div>`;
 }
 
@@ -83,7 +81,8 @@ function renderCards(title, cards, cls) {
           <h3>${c.name}</h3>
           ${tokenChip(c)}
         </div>
-        <p>${(c.tags || []).join(", ")}${c.extra ? " — " + extra(c.extra) : ""}</p>
+        <p class="card-tags">${(c.tags || []).map(tagIcon).join("")}</p>
+        ${c.extra ? `<p>${extra(c.extra)}</p>` : ""}
       </div>`).join("")}</div>`;
 }
 
@@ -91,9 +90,10 @@ function renderPlayer(p) {
   const awards = [...(p.milestones || []), ...(p.awards || [])];
   const color = teamColor(p);
   const you = !!p.human;
+  const subtitle = boardSubtitle(p);
   return `<article class="board color-${color}${you ? " you" : ""}">
     <h2>${boardTitle(p)}</h2>
-    <p class="corp">${boardSubtitle(p)}</p>
+    ${subtitle ? `<p class="corp">${subtitle}</p>` : ""}
     ${renderCubes(p)}
     ${renderTags(p.tags)}
     ${awards.length ? `<p class="awards">${awards.join(" · ")}</p>` : ""}
@@ -230,7 +230,7 @@ function bindBannerUi() {
 function renderBanner(data) {
   const play = data.activePlay;
   const banner = $("banner");
-  banner.classList.remove("yours", "color-green", "color-yellow", "color-red", "color-blue", "color-black");
+  banner.classList.remove("yours", "color-blue", "color-green", "color-purple", "color-yellow", "color-red", "color-black");
   const key = play && play.cardName ? `${play.playerId}:${play.cardName}` : "";
   if (key !== bannerKey) {
     bannerKey = key;
@@ -249,7 +249,7 @@ function renderBanner(data) {
 
   if (play && play.cardName) {
     const playColor = play.playerColor || (play.yours ? teamColor(data.you) : teamColor((data.opponents || [])[0]));
-    banner.classList.add("color-" + (playColor || "green"));
+    banner.classList.add("color-" + (playColor || "blue"));
     if (play.yours) banner.classList.add("yours");
     $("banner-toggle").disabled = false;
     $("banner-chevron").hidden = false;

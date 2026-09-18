@@ -15,6 +15,9 @@ public final class GameState {
     public List<String> urls = List.of();
     public boolean firewallOpen;
     public boolean live;
+    public boolean prelude;
+    public boolean venus;
+    public boolean colonies;
     public int humanId = 1;
     public final Map<Integer, PlayerState> players = new LinkedHashMap<>();
     public final Map<Integer, PlacedTile> tiles = new LinkedHashMap<>();
@@ -31,6 +34,9 @@ public final class GameState {
             generation = 1;
             phase = "Setup";
             live = true;
+            prelude = false;
+            venus = false;
+            colonies = false;
             humanId = 1;
             players.clear();
             tiles.clear();

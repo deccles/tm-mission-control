@@ -45,7 +45,7 @@ public final class PlayerState {
     public PlayerState(int id) {
         this.id = id;
         this.name = "Player " + id;
-        this.color = colorFor(id);
+        this.color = PlayerColors.colorFor(id);
         for (String tag : List.of(
                 "building", "space", "science", "power", "earth", "jovian",
                 "plant", "microbe", "animal", "city", "event")) {
@@ -64,13 +64,7 @@ public final class PlayerState {
     }
 
     public static String colorFor(int playerId) {
-        return switch (playerId) {
-            case 1 -> "green";
-            case 2 -> "yellow";
-            case 3 -> "red";
-            case 4 -> "blue";
-            default -> "black";
-        };
+        return PlayerColors.colorFor(playerId);
     }
 
     public String label() {

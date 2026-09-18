@@ -52,6 +52,11 @@ public final class LogParser {
     private static final Pattern ASKING_PLAYER = Pattern.compile(
             "asking for input for player (\\d+)");
     private static final Pattern TAB_PLAYER = Pattern.compile("Tab_Player_(\\d+)");
+    private static final Pattern STARTING_CARD_PLAYER = Pattern.compile(
+            "StartingCardEvent\\tPlayerLocalID : (\\d+)");
+    private static final Pattern ADDING_CORP_ACTION = Pattern.compile(
+            "\\[PlayerAction] Adding action \\(\\d+\\) Corporation action : (.+)$");
+    private static final Pattern TO_PLAYER_BANK = Pattern.compile("to player (\\d+) bank");
 
     private final CardDatabase cards;
     private final GameState state;
@@ -61,8 +66,11 @@ public final class LogParser {
     private boolean inHeader;
     private int pendingCorpMc = -1;
     private int pendingCorpPlayer = 0;
+    private int pendingSteamCorpId = -1;
+    private String pendingNamedCorp = "";
     private List<Card> pendingCorps = List.of();
     private String lastCardKey = "";
+    private final java.util.Map<Integer, String> steamCorps = new java.util.HashMap<>();
 
     public LogParser(CardDatabase cards, GameState state) {
         this.cards = cards;
@@ -111,7 +119,10 @@ public final class LogParser {
                 pendingCorpMc = -1;
                 pendingCorps = List.of();
                 pendingCorpPlayer = 0;
+                pendingSteamCorpId = -1;
+                pendingNamedCorp = "";
                 lastCardKey = "";
+                steamCorps.clear();
                 return;
             }
             parseHeader(line);
@@ -136,6 +147,25 @@ public final class LogParser {
             m = TAB_PLAYER.matcher(line);
             if (m.find() && productionPhase()) {
                 currentPlayer = Integer.parseInt(m.group(1));
+            }
+            m = STARTING_CARD_PLAYER.matcher(line);
+            if (m.find()) {
+                currentPlayer = Integer.parseInt(m.group(1));
+            }
+
+            m = ADDING_CORP_ACTION.matcher(line);
+            if (m.find()) {
+                pendingNamedCorp = m.group(1).trim();
+            } else if (line.contains("[PlayerAction] Adding action")) {
+                pendingNamedCorp = "";
+            }
+            m = TO_PLAYER_BANK.matcher(line);
+            if (m.find() && !pendingNamedCorp.isBlank()) {
+                Card named = cards.find(pendingNamedCorp);
+                if (named != null) {
+                    assignCorp(state.player(Integer.parseInt(m.group(1))), named);
+                }
+                pendingNamedCorp = "";
             }
 
             m = GAME_ID.matcher(line.trim());
@@ -170,6 +200,14 @@ public final class LogParser {
                 pendingCorpPlayer = currentPlayer;
                 pendingCorpMc = -1;
                 pendingCorps = List.of();
+                pendingSteamCorpId = Integer.parseInt(m.group(1));
+                String known = steamCorps.get(pendingSteamCorpId);
+                if (known != null) {
+                    Card corp = cards.find(known);
+                    if (corp != null) {
+                        assignCorp(state.player(pendingCorpPlayer), corp);
+                    }
+                }
             }
 
             m = RESOURCE.matcher(line);
@@ -252,6 +290,7 @@ public final class LogParser {
         if (trimmed.equals("---------------------")) {
             inHeader = false;
             headerPlayer = 0;
+            PlayerColors.apply(state);
             return;
         }
         if (!inHeader) {
@@ -263,6 +302,18 @@ public final class LogParser {
             PlayerState seated = state.player(headerPlayer);
             seated.seated = true;
             seated.color = PlayerState.colorFor(headerPlayer);
+            return;
+        }
+        if (trimmed.startsWith("Prelude Phase:")) {
+            state.prelude = trimmed.endsWith("True");
+            return;
+        }
+        if (trimmed.startsWith("VenusNext:")) {
+            state.venus = trimmed.endsWith("True");
+            return;
+        }
+        if (trimmed.startsWith("Colonies:")) {
+            state.colonies = trimmed.endsWith("True");
             return;
         }
         if (headerPlayer == 0) {
@@ -302,7 +353,7 @@ public final class LogParser {
                 && "Unknown".equals(state.player(pendingCorpPlayer).corporation)) {
             target = state.player(pendingCorpPlayer);
         } else {
-            target = findOwner(kind, production, from);
+            target = findOwner(kind, production, from, to);
             if (target == null) {
                 target = state.player(currentPlayer);
             }
@@ -321,7 +372,7 @@ public final class LogParser {
 
     private void identifyCorpByMc(PlayerState player, int mc) {
         List<Card> matches = new ArrayList<>();
-        for (Card corp : cards.corpsWithStartingMc(mc)) {
+        for (Card corp : cards.corpsWithStartingMc(mc, state.prelude, state.venus, state.colonies)) {
             if (!corpTaken(corp.name)) {
                 matches.add(corp);
             }
@@ -332,6 +383,9 @@ public final class LogParser {
         player.startingMc = mc;
         if (matches.size() == 1) {
             assignCorp(player, matches.get(0));
+            if (pendingSteamCorpId > 0) {
+                steamCorps.put(pendingSteamCorpId, matches.get(0).name);
+            }
         }
     }
 
@@ -428,7 +482,7 @@ public final class LogParser {
         }
     }
 
-    private PlayerState findOwner(String kind, boolean production, int from) {
+    private PlayerState findOwner(String kind, boolean production, int from, int to) {
         List<PlayerState> matches = new ArrayList<>();
         for (PlayerState p : state.players.values()) {
             if (getField(p, kind, production) == from) {
@@ -438,6 +492,10 @@ public final class LogParser {
         if (matches.size() == 1) {
             return matches.get(0);
         }
+        PlayerState byCorpStart = ownerByCorpStart(kind, production, from, to, matches);
+        if (byCorpStart != null) {
+            return byCorpStart;
+        }
         PlayerState current = state.players.get(currentPlayer);
         if (current != null && getField(current, kind, production) == from) {
             return current;
@@ -446,6 +504,43 @@ public final class LogParser {
             return current;
         }
         return matches.isEmpty() ? current : matches.get(0);
+    }
+
+    private PlayerState ownerByCorpStart(String kind, boolean production, int from, int to,
+            List<PlayerState> matches) {
+        String key = switch (kind) {
+            case "MegaCredit" -> "mc";
+            case "Steel" -> "steel";
+            case "Titanium" -> "ti";
+            case "Plant" -> "plant";
+            case "Energy" -> "energy";
+            case "Heat" -> "heat";
+            default -> "";
+        };
+        if (key.isEmpty()) {
+            return null;
+        }
+        for (PlayerState player : matches) {
+            if ("Unknown".equals(player.corporation)) {
+                continue;
+            }
+            Card corp = cards.find(player.corporation);
+            if (corp == null) {
+                continue;
+            }
+            if (production) {
+                int extra = CardDatabase.number(corp.production.get(key));
+                if (extra > 0 && from + extra == to) {
+                    return player;
+                }
+            } else {
+                int start = CardDatabase.number(corp.resources.get(key));
+                if (start > 0 && from == 0 && to == start) {
+                    return player;
+                }
+            }
+        }
+        return null;
     }
 
     private boolean productionPhase() {

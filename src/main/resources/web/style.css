@@ -222,13 +222,14 @@ h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.04em; }
 .board h2 { margin: 0 0 4px; color: var(--team, var(--ink)); }
 .corp { color: var(--muted); margin: 0 0 12px; }
 
+.color-blue { --team: #3d7ec9; }
 .color-green { --team: #2f9e44; }
+.color-purple { --team: #9b59b6; }
 .color-yellow { --team: #d4b429; }
 .color-red { --team: #c44532; }
-.color-blue { --team: #3d7ec9; }
 .color-black { --team: #9aa0a6; }
 
-.banner.color-green, .banner.color-yellow, .banner.color-red, .banner.color-blue, .banner.color-black {
+.banner.color-blue, .banner.color-green, .banner.color-purple, .banner.color-yellow, .banner.color-red, .banner.color-black {
   background: color-mix(in srgb, var(--team) 22%, #140c0a);
   border-color: var(--team);
 }
@@ -244,9 +245,11 @@ table.cubes th.num, table.cubes td.num {
 table.cubes td.num { font-size: 1.15rem; }
 table.cubes td.prod { color: #f0c27a; }
 
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; }
-.tag { background: #2e201c; border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; font-size: 0.85rem; }
-.tag.zero { opacity: 0.35; }
+.tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 14px; }
+.tag-count { display: inline-flex; align-items: center; gap: 5px; font-variant-numeric: tabular-nums; font-weight: 650; }
+.tag-count.zero { opacity: 0.35; }
+.tag-count .n { font-size: 0.95rem; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 0; }
 
 .cards { display: grid; gap: 8px; }
 .card { padding: 8px 10px; border-radius: 8px; background: #1a1210; border-left: 4px solid var(--green); }

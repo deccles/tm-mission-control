@@ -93,9 +93,13 @@ public final class CardDatabase {
     }
 
     public List<Card> corpsWithStartingMc(int mc) {
+        return corpsWithStartingMc(mc, false, false, false);
+    }
+
+    public List<Card> corpsWithStartingMc(int mc, boolean prelude, boolean venus, boolean colonies) {
         List<Card> matches = new ArrayList<>();
         for (Card card : all) {
-            if (!"corp".equalsIgnoreCase(card.type)) {
+            if (!corpAllowed(card, prelude, venus, colonies)) {
                 continue;
             }
             if (number(card.resources.get("mc")) == mc) {
@@ -103,6 +107,35 @@ public final class CardDatabase {
             }
         }
         return matches;
+    }
+
+    public boolean corpAllowed(Card card, boolean prelude, boolean venus, boolean colonies) {
+        if (card == null || !"corp".equalsIgnoreCase(card.type)) {
+            return false;
+        }
+        int z = zNumber(card.number);
+        if (z >= 1 && z <= 12) {
+            return true;
+        }
+        if (!prelude && !venus && !colonies) {
+            return false;
+        }
+        return true;
+    }
+
+    public static int zNumber(String number) {
+        if (number == null || number.isBlank()) {
+            return -1;
+        }
+        String trimmed = number.trim();
+        if (trimmed.length() < 2 || (trimmed.charAt(0) != 'Z' && trimmed.charAt(0) != 'z')) {
+            return -1;
+        }
+        try {
+            return Integer.parseInt(trimmed.substring(1));
+        } catch (NumberFormatException ignored) {
+            return -1;
+        }
     }
 
     public List<String> remember(Card card, String placingType) {
