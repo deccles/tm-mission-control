@@ -54,6 +54,7 @@ public final class ScoreCalculator {
     private static Breakdown scorePlayer(PlayerState player, int citiesInPlay) {
         Breakdown b = new Breakdown();
         b.tr = player.tr;
+        b.mc = player.megaCredits;
         b.milestones = player.milestones.size() * 5;
         b.greeneries = player.greeneries;
         for (PlayedCard card : player.allCards()) {
@@ -243,6 +244,7 @@ public final class ScoreCalculator {
     public static final class Breakdown {
         public int total;
         public int tr;
+        public int mc;
         public int milestones;
         public int awards;
         public int greeneries;

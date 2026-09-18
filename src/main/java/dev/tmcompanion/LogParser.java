@@ -198,7 +198,7 @@ public final class LogParser {
 
             m = STANDARD.matcher(line);
             if (m.find()) {
-                setActive(currentPlayer, "Standard Project: " + m.group(2).trim(), m.group(2).trim(), false);
+                setActive(currentPlayer, "Standard Project: " + m.group(2).trim(), null, false);
             }
 
             m = BLUE_ACTION.matcher(line);
@@ -523,7 +523,7 @@ public final class LogParser {
             played.blue = false;
         }
         player.addCard(played);
-        setActive(playerId, name, card != null && !card.place.isEmpty() ? card.place.get(0) : null, false);
+        setActive(playerId, name, null, false);
         currentPlayer = playerId;
     }
 
@@ -559,11 +559,12 @@ public final class LogParser {
                 ? "Action"
                 : (card != null ? card.colorLabel() : (preview ? "Confirming" : ""));
         play.playerColor = player.color;
-        play.effect = card != null ? cards.effectSummary(card) : (preview ? "Waiting for confirm." : "");
+        play.fromCard(card);
+        play.effect = card != null ? cards.cardText(card) : (preview ? "Waiting for confirm." : "");
         play.placing = placing;
         play.remember.addAll(cards.remember(card, placing));
         if (preview && play.remember.isEmpty()) {
-            play.remember.add("Confirming this card. Effects stay on this screen if a tile placement follows.");
+            play.remember.add("Confirming this card.");
         }
         state.activePlay = play;
         state.live = true;
@@ -582,7 +583,7 @@ public final class LogParser {
         Card card = cards.find(lookup);
         state.activePlay.remember = cards.remember(card, kind);
         if (card != null && (state.activePlay.effect == null || state.activePlay.effect.isBlank())) {
-            state.activePlay.effect = cards.effectSummary(card);
+            state.activePlay.effect = cards.cardText(card);
         }
     }
 
@@ -609,16 +610,23 @@ public final class LogParser {
                 && !offMarsCity(cardName)) {
             assignTharsisIfPending();
         }
+        clearPlacing();
+    }
+
+    private void clearPlacing() {
         if (state.activePlay == null) {
-            setActive(currentPlayer, "Placing " + type, type, false);
-        } else {
-            state.activePlay.placing = type;
-            Card card = cards.find(state.activePlay.cardName);
-            state.activePlay.remember = cards.remember(card, type);
-            if (card != null) {
-                state.activePlay.effect = cards.effectSummary(card);
-            }
+            return;
         }
+        if (state.activePlay.cardName != null && state.activePlay.cardName.startsWith("Placing ")) {
+            state.activePlay = null;
+            return;
+        }
+        state.activePlay.placing = null;
+        String lookup = state.activePlay.cardName == null ? "" : state.activePlay.cardName
+                .replace("Using ", "")
+                .replace("Standard Project: ", "");
+        Card card = cards.find(lookup);
+        state.activePlay.remember = new ArrayList<>(cards.remember(card, null));
     }
 
     private void placeOnBoard(int hex, String kind, String cardName, int playerId) {

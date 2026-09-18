@@ -13,20 +13,32 @@
       <p class="meta" id="meta">Waiting for Player.log…</p>
     </div>
     <div class="top-right">
-      <div class="live" id="live">idle</div>
+      <div class="live" id="live" role="status">idle</div>
       <a class="qr-wrap" id="qr-link" href="/" title="Companion URL">
         <img class="qr" id="qr" src="/qr.svg" alt="QR code for this companion URL">
         <span class="qr-url" id="qr-url"></span>
       </a>
     </div>
   </header>
-  <p class="phone-hint" id="phone-hint" hidden></p>
 
   <section class="banner" id="banner">
-    <p class="banner-kicker" id="banner-kicker">No card in flight</p>
-    <h2 id="banner-title">Play a local match and keep this window on your second screen.</h2>
-    <p class="effect" id="banner-effect">Public tableaus from the game log — hidden hands are never shown.</p>
-    <ul class="tips" id="banner-tips"></ul>
+    <button type="button" class="banner-summary" id="banner-toggle" aria-expanded="false" disabled>
+      <div class="banner-summary-text">
+        <p class="banner-kicker" id="banner-kicker">No card in flight</p>
+        <p class="banner-line" id="banner-line"></p>
+        <p class="banner-benefit" id="banner-benefit" hidden></p>
+      </div>
+      <div class="banner-summary-end">
+        <span class="live alert" id="banner-placing" hidden></span>
+        <span class="chev" id="banner-chevron" hidden aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.4 8.6 12 13.2l4.6-4.6 1.4 1.4-6 6-6-6z"/></svg>
+        </span>
+      </div>
+    </button>
+    <div class="banner-details" id="banner-details" hidden>
+      <p class="effect" id="banner-effect"></p>
+      <ul class="tips" id="banner-tips"></ul>
+    </div>
   </section>
 
   <section class="scoreboard" id="scoreboard" hidden>

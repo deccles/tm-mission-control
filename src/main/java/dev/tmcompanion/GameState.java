@@ -56,9 +56,12 @@ public final class GameState {
             PlayerState you = seated.stream().filter(p -> p.human).findFirst()
                     .orElse(players.getOrDefault(humanId, player(humanId)));
             List<PlayerState> opponents = seated.stream().filter(p -> p.id != you.id).toList();
-            List<PlayerState> table = new ArrayList<>(opponents);
-            if (!table.contains(you)) {
-                table.add(you);
+            List<PlayerState> table = new ArrayList<>();
+            table.add(you);
+            for (PlayerState opponent : opponents) {
+                if (!table.contains(opponent)) {
+                    table.add(opponent);
+                }
             }
             out.put("you", you);
             out.put("opponents", opponents);

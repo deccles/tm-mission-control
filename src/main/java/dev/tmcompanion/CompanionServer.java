@@ -167,16 +167,7 @@ public final class CompanionServer {
         }
     }
 
-    private void log(HttpExchange exchange) {
-        try {
-            System.out.println("  " + exchange.getRemoteAddress().getAddress().getHostAddress()
-                    + " " + exchange.getRequestMethod() + " " + exchange.getRequestURI());
-        } catch (Exception ignored) {
-        }
-    }
-
     private void state(HttpExchange exchange) throws IOException {
-        log(exchange);
         if (!"GET".equals(exchange.getRequestMethod())) {
             exchange.sendResponseHeaders(405, -1);
             return;
@@ -191,7 +182,6 @@ public final class CompanionServer {
     }
 
     private void qr(HttpExchange exchange) throws IOException {
-        log(exchange);
         exchange.getResponseHeaders().add("Content-Type", "image/svg+xml; charset=utf-8");
         exchange.getResponseHeaders().add("Cache-Control", "no-store");
         exchange.sendResponseHeaders(200, qrSvg.length);
@@ -201,7 +191,6 @@ public final class CompanionServer {
     }
 
     private void staticFile(HttpExchange exchange) throws IOException {
-        log(exchange);
         String path = exchange.getRequestURI().getPath();
         if (path.equals("/")) {
             path = "/index.html";

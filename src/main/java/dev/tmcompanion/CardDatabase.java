@@ -160,30 +160,11 @@ public final class CardDatabase {
         return tips.stream().distinct().toList();
     }
 
-    public String effectSummary(Card card) {
-        if (card == null) {
+    public String cardText(Card card) {
+        if (card == null || card.extra == null || card.extra.isBlank()) {
             return "";
         }
-        List<String> bits = new ArrayList<>();
-        if (card.cost != null) {
-            bits.add("Cost " + card.cost + " M€");
-        }
-        if (!card.tags.isEmpty()) {
-            bits.add("Tags: " + String.join(", ", card.tags));
-        }
-        if (!card.production.isEmpty()) {
-            bits.add("Production: " + formatMap(card.production));
-        }
-        if (!card.resources.isEmpty()) {
-            bits.add("Immediate: " + formatMap(card.resources));
-        }
-        if (card.vp != null) {
-            bits.add("Printed VP: " + card.vp);
-        }
-        if (card.extra != null && !card.extra.isBlank()) {
-            bits.add(card.extra.replace('\n', ' ').replaceAll("\\s+", " ").trim());
-        }
-        return String.join(" · ", bits);
+        return card.extra.replace('\n', ' ').replaceAll("\\s+", " ").trim();
     }
 
     private static List<String> placementTips(String kind, Card card) {
@@ -241,29 +222,6 @@ public final class CardDatabase {
                 .replace("micro-organisms", "microorganisms")
                 .replace("micro organisms", "microorganisms");
         return s.replaceAll("[^a-z0-9]", "");
-    }
-
-    private static String formatMap(Map<String, Object> map) {
-        List<String> parts = new ArrayList<>();
-        map.forEach((k, v) -> parts.add(prettyResource(k) + " " + signed(v)));
-        return String.join(", ", parts);
-    }
-
-    private static String prettyResource(String key) {
-        return switch (key) {
-            case "mc" -> "M€";
-            case "ti" -> "titanium";
-            case "o2" -> "oxygen";
-            case "temp" -> "temperature";
-            case "tr" -> "TR";
-            case "card" -> "card draw";
-            default -> key;
-        };
-    }
-
-    private static String signed(Object value) {
-        int n = number(value);
-        return n > 0 ? "+" + n : Integer.toString(n);
     }
 
     static int number(Object value) {
