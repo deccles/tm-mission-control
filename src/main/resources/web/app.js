@@ -344,7 +344,7 @@ const TAG_GLYPH = {
   power: '<path fill="currentColor" d="M13 2 4 14h7l-1 8 10-14h-7z"/>',
   earth: '<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"/>',
   jovian: '<circle cx="12" cy="12" r="7.5" fill="currentColor" opacity=".9"/><path fill="none" stroke="#1a1208" stroke-width="1.4" d="M4 12h16"/>',
-  plant: '<path fill="currentColor" d="M12 21V11c6-1 8-6 8-8-7 1-9 5-8 8-6-2-8 2-8 6 4-1 7 0 8 2z"/>',
+  plant: '<g transform="translate(12 12) rotate(45) scale(.84) translate(-12 -14.1)" fill="currentColor"><path d="M12 1.6 20 13.4H4z"/><circle cx="8.1" cy="15.5" r="4.5"/><circle cx="15.9" cy="15.5" r="4.5"/><path d="M11.2 18.1 9.6 26.6h4.8L12.8 18.1z"/></g>',
   microbe: '<circle cx="12" cy="12" r="3.2" fill="currentColor"/><circle cx="6" cy="8" r="1.7" fill="currentColor"/><circle cx="18" cy="9" r="1.5" fill="currentColor"/><circle cx="8" cy="17" r="1.6" fill="currentColor"/><circle cx="17" cy="16" r="1.4" fill="currentColor"/>',
   animal: '<path fill="currentColor" d="M7 11c-2 0-3-2-2.2-3.5S8 6 8.5 8c.7-2 3-3 4.2-1.2C14 5 16.5 6 17.2 8c1.4-1 3.4.2 2.6 2.2-.3 1-1.4 1.5-2.3 1.3C17.8 14 16 17 12.5 17S7.4 14 7 11z"/>',
   city: '<path fill="currentColor" d="M4 20V10h4V6h4v4h2V8h6v12z"/>',
