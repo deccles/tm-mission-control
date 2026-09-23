@@ -56,6 +56,20 @@ const cards = Object.entries(raw).map(([key, c]) => {
   };
 });
 
+const extraPath = path.join(__dirname, "expansions.json");
+if (fs.existsSync(extraPath)) {
+  const extra = JSON.parse(fs.readFileSync(extraPath, "utf8"));
+  const have = new Set(cards.map((c) => c.key));
+  let added = 0;
+  for (const card of extra) {
+    if (!card.key || have.has(card.key)) continue;
+    have.add(card.key);
+    cards.push(card);
+    added++;
+  }
+  console.log("Merged", added, "expansion cards");
+}
+
 const outDir = path.join(__dirname, "..", "src", "main", "resources");
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, "cards.json"), JSON.stringify(cards, null, 2));

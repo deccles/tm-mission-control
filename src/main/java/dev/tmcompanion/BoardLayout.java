@@ -38,6 +38,17 @@ public final class BoardLayout {
         return hex >= 1 && hex <= 61;
     }
 
+    public static int row(int hex) {
+        int[] xy = XY.get(hex);
+        return xy == null ? -1 : xy[1];
+    }
+
+    /** Hellas Polar Explorer: tiles on the two southernmost rows. */
+    public static boolean polarSouth(int hex) {
+        int row = row(hex);
+        return row >= MAX_Y - 1;
+    }
+
     public static List<Integer> neighbors(int hex) {
         return NEIGHBORS.getOrDefault(hex, List.of());
     }

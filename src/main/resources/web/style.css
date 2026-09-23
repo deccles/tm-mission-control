@@ -32,7 +32,7 @@ h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.04em; }
   background: #3a1c12;
   border: 1px solid #8a4a2a;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
 }
 .banner.yours { background: #1d2a18; border-color: #4d7a3c; }
 .banner-summary {
@@ -56,6 +56,40 @@ h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.04em; }
 .banner-kicker { margin: 0; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; }
 .banner-line { margin: 4px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-size: 1.25rem; font-weight: 650; }
 .banner-name { margin-right: 2px; }
+.banner-drawn {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 8px;
+  margin-left: 8px;
+}
+.drawn-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 7.2rem;
+  max-width: 11rem;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #1a1210;
+  border-left: 4px solid var(--green);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.drawn-card.blue { border-left-color: var(--blue); }
+.drawn-card.red { border-left-color: var(--red); }
+.drawn-card.green { border-left-color: var(--green); }
+.drawn-name { font-weight: 700; }
+.drawn-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+.drawn-card .cost-sym { min-width: 1.7rem; height: 1.5rem; font-size: 0.75rem; }
+.drawn-card .tag-sym { width: 1.35rem; height: 1.35rem; }
 .banner-benefit { margin: 6px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .banner-benefit[hidden] { display: none; }
 .banner-benefit-text { margin: 0; color: #f6d9b8; font-size: 0.95rem; font-weight: 500; }
@@ -253,7 +287,7 @@ h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.04em; }
 
 .boards { display: grid; gap: 16px; }
 .boards.players-1 { grid-template-columns: 1fr; }
-.boards.players-2 { grid-template-columns: 1.15fr 0.85fr; }
+.boards.players-2 { grid-template-columns: 1fr 1fr; }
 .boards.players-3 { grid-template-columns: 1fr 1fr 1fr; }
 .boards.players-4, .boards.players-5 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 @media (max-width: 900px) { .boards, .boards.players-2, .boards.players-3 { grid-template-columns: 1fr; } }
@@ -397,3 +431,151 @@ table.cubes td.prod { color: #f0c27a; }
 .board-tr { margin: 0 0 14px; }
 .board-awards { margin: 0; }
 .board-awards:empty { display: block; }
+.milestones {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: visible;
+}
+.ms-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.ms-rows {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 14px 28px;
+  min-width: 0;
+}
+.ms-block { min-width: 0; }
+.ms-block[hidden] { display: none !important; }
+.ms-kicker {
+  margin: 0 0 8px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+}
+.ms-left {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ms-claimed {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ms-empty { margin: 0; color: var(--muted); }
+.ms-chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--team, var(--line)) 70%, var(--line));
+  background: color-mix(in srgb, var(--team, var(--panel)) 20%, var(--panel));
+  font-weight: 700;
+}
+.ms-chip .who { color: var(--team, var(--muted)); font-size: 0.85rem; font-weight: 650; }
+.ms-chip.tied {
+  background: color-mix(in srgb, var(--panel) 80%, #2a1c18);
+  border-color: var(--line);
+}
+.ms-dots { display: inline-flex; align-items: center; gap: 5px; }
+.ms-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--team, var(--muted));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--team, var(--line)) 55%, transparent);
+}
+.ms-grab {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #3a2a0a;
+  border: 1px solid #c4922a;
+}
+.ms-grab-kicker { color: #ffe08a; margin-bottom: 10px; }
+.ms-close { margin: 12px 0 0; }
+.ms-list { display: grid; gap: 8px; }
+.ms-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 14px;
+}
+.ms-item .name { font-weight: 750; font-size: 1.15rem; }
+.ms-item .detail { color: #f6d9b8; font-variant-numeric: tabular-nums; }
+.ms-close .ms-item .name { font-size: 1rem; font-weight: 650; }
+.ms-close .ms-item .detail { color: var(--muted); }
+.ms-pay { font-size: 0.85rem; font-weight: 650; color: #d7f0c8; }
+.ms-pay.short { color: #f6c4c0; }
+.ms-grab[hidden], .ms-close[hidden], .milestones[hidden] { display: none !important; }
+
+.tip {
+  position: relative;
+  cursor: help;
+}
+.award-name {
+  border-bottom: 1px dotted color-mix(in srgb, currentColor 50%, transparent);
+}
+.tip-pop {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  z-index: 40;
+  width: max-content;
+  max-width: min(22rem, 80vw);
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #1a120c;
+  border: 1px solid #8a6a4a;
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateY(4px);
+}
+.tip:hover > .tip-pop,
+.tip:focus-visible > .tip-pop,
+.tip.open > .tip-pop {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.tip-def { display: block; }
+.tip-standings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15em 0.85em;
+  margin-top: 0.4em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+.tip-who { color: var(--ink); }
+.tip-who .nm { color: var(--team, var(--ink)); font-weight: 750; }
+.ms-chip.tip { display: inline-flex; }
+.ms-item.tip { display: flex; }
+.drawn-card.tip { display: flex; }
+.drawn-card > .tip-pop {
+  max-width: min(28rem, 92vw);
+  white-space: pre-wrap;
+  z-index: 50;
+}

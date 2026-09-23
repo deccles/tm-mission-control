@@ -11,6 +11,8 @@ public final class PlayedCard {
     public String extra = "";
     public int generation;
     public boolean blue;
+    public boolean project = true;
+    public boolean hasRequirement;
     public int number;
     public String tokenType;
     public int tokens;

@@ -18,6 +18,18 @@ public final class Card {
     public Map<String, Object> production = new LinkedHashMap<>();
     public String extra = "";
     public List<String> place = new ArrayList<>();
+    public Map<String, Object> req = new LinkedHashMap<>();
+
+    public boolean hasRequirement() {
+        if (req != null && !req.isEmpty()) {
+            return true;
+        }
+        if (extra == null || extra.isBlank()) {
+            return false;
+        }
+        String e = extra.toLowerCase();
+        return e.contains("it must be") || e.contains("requires that") || e.contains("requires you");
+    }
 
     public boolean isBlue() {
         return "blue".equalsIgnoreCase(color);

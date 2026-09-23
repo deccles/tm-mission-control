@@ -109,14 +109,94 @@ function chevron() {
   return `<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.4 8.6 12 13.2l4.6-4.6 1.4 1.4-6 6-6-6z"/></svg></span>`;
 }
 
+const GLOSSARY = {
+  terraformer: "Requires 35 TR",
+  mayor: "Requires 3 city tiles",
+  gardener: "Requires 3 greenery tiles",
+  builder: "Requires 8 building tags",
+  planner: "Requires 16 cards in hand",
+  diversifier: "Requires 8 different tags",
+  tactician: "Requires 5 cards with requirements",
+  polarexplorer: "Requires 3 tiles on the two southernmost rows",
+  energizer: "Requires 6 energy production",
+  rimsettler: "Requires 3 Jovian tags",
+  generalist: "Requires at least 1 production in each of the 6 types",
+  specialist: "Requires 10 production in a single type",
+  ecologist: "Requires 4 plant, microbe, or animal tags",
+  tycoon: "Requires 15 green or blue project cards",
+  legend: "Requires 5 events played",
+  landlord: "Most tiles in play at the end of the game.",
+  banker: "Highest M€ production at the end of the game.",
+  scientist: "Most science tags at the end of the game.",
+  thermalist: "Most heat at the end of the game.",
+  miner: "Most steel and titanium at the end of the game.",
+  cultivator: "Most greenery tiles at the end of the game.",
+  magnate: "Most green cards at the end of the game.",
+  spacebaron: "Most space tags at the end of the game.",
+  excentric: "Most resources on cards at the end of the game.",
+  contractor: "Most building tags at the end of the game.",
+  celebrity: "Most cards costing 20 M€ or more at the end of the game.",
+  industrialist: "Most steel and energy resources at the end of the game.",
+  desertsettler: "Most tiles on the four southernmost rows at the end of the game.",
+  estatedealer: "Most tiles adjacent to ocean at the end of the game.",
+  benefactor: "Highest TR at the end of the game.",
+  venuphile: "Most Venus tags at the end of the game.",
+  venusphile: "Most Venus tags at the end of the game.",
+};
+
+function glossaryKey(name) {
+  return String(name || "").toLowerCase().replace(/[^a-z]/g, "");
+}
+
+function glossaryText(name) {
+  return GLOSSARY[glossaryKey(name)] || "";
+}
+
+function tipWrap(name, inner, extraClass, extraHtml, extraPlain) {
+  const base = glossaryText(name).replace(/\.$/, "");
+  const cls = ["tip", extraClass].filter(Boolean).join(" ");
+  if (!base && !extraHtml) {
+    return `<span class="${cls}">${inner}</span>`;
+  }
+  const plain = extraPlain ? (base ? base + "\n" + extraPlain : extraPlain) : base;
+  const body = (base ? `<span class="tip-def">${escapeHtml(base)}</span>` : "") + (extraHtml || "");
+  return `<span class="${cls}" tabindex="0" data-tip-key="${escapeHtml(glossaryKey(name))}" title="${escapeHtml(plain)}">${inner}<span class="tip-pop" role="tooltip">${body}</span></span>`;
+}
+
+let openTipKey = null;
+let tipUiBound = false;
+
+function applyOpenTip() {
+  document.querySelectorAll(".tip").forEach((el) => {
+    el.classList.toggle("open", !!openTipKey && el.dataset.tipKey === openTipKey);
+  });
+}
+
+function bindTipUi() {
+  if (tipUiBound) return;
+  tipUiBound = true;
+  document.addEventListener("click", (ev) => {
+    const tip = ev.target.closest(".tip");
+    if (tip && tip.dataset.tipKey) {
+      openTipKey = openTipKey === tip.dataset.tipKey ? null : tip.dataset.tipKey;
+      applyOpenTip();
+      ev.stopPropagation();
+      return;
+    }
+    if (openTipKey) {
+      openTipKey = null;
+      applyOpenTip();
+    }
+  });
+}
+
 function renderPlayer(p) {
-  const awards = [...(p.milestones || []), ...(p.awards || [])];
   const color = teamColor(p);
   const you = !!p.human;
   const subtitle = boardSubtitle(p);
   const title = escapeHtml(boardTitle(p));
   const rules = corpRuleText(p.corpRules);
-  const rulesOpen = corpOpenId === p.id;
+  const rulesOpen = corpRulesOpen;
   const collapsed = collapsedBoardIds.has(p.id);
   const info = rules
     ? `<button type="button" class="corp-info" data-corp="${p.id}" aria-expanded="${rulesOpen ? "true" : "false"}" aria-controls="corp-rules-${p.id}" aria-label="${title} corporation rules">
@@ -141,7 +221,7 @@ function renderPlayer(p) {
       ${renderCubes(p)}
       ${renderTrLine(p)}
       ${renderTags(p.tags)}
-      <p class="board-awards">${awards.length ? awards.join(" · ") : ""}</p>
+      <p class="board-awards"></p>
       <div class="board-blues">${renderCards("Blue cards", p.blueCards, "blue")}</div>
       <div class="board-rest">
         ${renderCards("Automated", p.greenCards, "green")}
@@ -149,6 +229,84 @@ function renderPlayer(p) {
       </div>
     </div>
   </article>`;
+}
+
+function renderMilestones(data) {
+  const panel = $("milestone-panel");
+  const ms = data.milestones || {};
+  const funded = data.fundedAwards || (data.score && data.score.fundedAwards) || [];
+  if (!panel || (!data.gameId && !(ms.claimed || []).length && !funded.length)) {
+    if (panel) panel.hidden = true;
+    return;
+  }
+  panel.hidden = false;
+  const claimed = ms.claimed || [];
+  const grab = ms.grab || [];
+  const close = ms.close || [];
+  const left = ms.left ?? Math.max(0, 3 - claimed.length);
+  $("ms-claimed-kicker").textContent = "Claimed";
+  $("ms-left").textContent = left === 0 ? "All 3 taken" : `${left} still open`;
+  $("ms-claimed").innerHTML = claimed.length
+    ? claimed.map((c) => tipWrap(c.name,
+      `<span class="name">${escapeHtml(c.name)}</span>` +
+      `<span class="who">${escapeHtml(c.playerName || "")}</span>`,
+      `ms-chip color-${escapeHtml(c.color || "blue")}`)).join("")
+    : `<p class="ms-empty">None claimed yet</p>`;
+
+  const awardBlock = $("award-block");
+  awardBlock.hidden = funded.length === 0;
+  $("ms-awards").innerHTML = funded.map(awardChip).join("");
+
+  const grabBox = $("ms-grab");
+  const closeBox = $("ms-close");
+  grabBox.hidden = grab.length === 0;
+  closeBox.hidden = close.length === 0;
+  $("ms-grab-list").innerHTML = grab.map((row) => milestoneItem(row, true)).join("");
+  $("ms-close-list").innerHTML = close.map((row) => milestoneItem(row, false)).join("");
+  applyOpenTip();
+}
+
+function awardChip(row) {
+  const leaders = row.leaders || [];
+  const tied = !!row.tied || leaders.length > 1;
+  const color = !tied && (row.color || (leaders[0] && leaders[0].color));
+  const dots = tied
+    ? `<span class="ms-dots">${leaders.map((p) =>
+      `<span class="ms-dot color-${escapeHtml(p.color || "blue")}" title="${escapeHtml(p.name || "")}"></span>`
+    ).join("")}</span>`
+    : "";
+  const cls = ["ms-chip", color ? `color-${color}` : "", tied ? "tied" : ""].filter(Boolean).join(" ");
+  return tipWrap(row.name, `<span class="name">${escapeHtml(row.name)}</span>${dots}`, cls, awardLeadHtml(row), awardLeadText(row));
+}
+
+function awardLeadText(row) {
+  const standings = row.standings || [];
+  if (!standings.length) {
+    return "";
+  }
+  return standings.map((p) => `${p.name} ${p.value ?? 0}`).join("  ");
+}
+
+function awardLeadHtml(row) {
+  const standings = row.standings || [];
+  if (!standings.length) {
+    return "";
+  }
+  return `<span class="tip-standings">${standings.map((p) =>
+    `<span class="tip-who color-${escapeHtml(p.color || "blue")}"><span class="nm">${escapeHtml(p.name)}</span> ${p.value ?? 0}</span>`
+  ).join("")}</span>`;
+}
+
+function milestoneItem(row, urgent) {
+  const pay = urgent
+    ? (row.canPay
+      ? `<span class="ms-pay">${row.cost ?? 8} M€</span>`
+      : `<span class="ms-pay short">need ${row.cost ?? 8} M€</span>`)
+    : "";
+  return tipWrap(row.name,
+    `<span class="name">${escapeHtml(row.name)}</span>` +
+    `<span class="detail">${escapeHtml(row.detail || "")}</span>${pay}`,
+    "ms-item");
 }
 
 function setLiveStatus(mode) {
@@ -271,11 +429,60 @@ function applyBannerOpen() {
 function bindBannerUi() {
   if (bannerUiBound) return;
   bannerUiBound = true;
-  $("banner-toggle").addEventListener("click", () => {
+  $("banner-toggle").addEventListener("click", (ev) => {
     if ($("banner-toggle").disabled) return;
+    if (ev.target.closest(".tip")) return;
     bannerOpen = !bannerOpen;
     applyBannerOpen();
   });
+}
+
+function formatReq(req) {
+  if (!req || typeof req !== "object") return "";
+  const parts = [];
+  if (req.temp != null) parts.push(`${req.temp} °C`);
+  if (req.o2 != null) parts.push(`${req.o2}% oxygen`);
+  if (req.ocean != null) parts.push(`${req.ocean} ocean${Number(req.ocean) === 1 ? "" : "s"}`);
+  if (req.venus != null) parts.push(`${req.venus}% Venus`);
+  if (req.tr != null) parts.push(`${req.tr} TR`);
+  for (const [k, v] of Object.entries(req)) {
+    if (["temp", "o2", "ocean", "venus", "tr"].includes(k) || v == null || v === "") continue;
+    parts.push(`${k} ${v}`);
+  }
+  return parts.length ? "Requires " + parts.join(", ") : "";
+}
+
+function drawnGainsText(c) {
+  const bits = [];
+  for (const [k, v] of Object.entries(c.production || {})) {
+    if (v != null && v !== 0) bits.push(`${Number(v) > 0 ? "+" : ""}${v} ${resLabel(resKey(k))} prod`);
+  }
+  for (const [k, v] of Object.entries(c.resources || {})) {
+    if (v != null && v !== 0) bits.push(`${Number(v) > 0 ? "+" : ""}${v} ${resLabel(resKey(k))}`);
+  }
+  if (c.vp != null) bits.push(`${c.vp} VP`);
+  return bits.join(" · ");
+}
+
+function drawnTipText(c) {
+  const extraText = (c.extra || "").replace(/\s+$/g, "").trim();
+  if (extraText) return extraText;
+  return [formatReq(c.req), drawnGainsText(c)].filter(Boolean).join("\n");
+}
+
+function renderDrawn(play) {
+  const drawn = play && play.drawn ? play.drawn : [];
+  if (!drawn.length) return "";
+  return `<span class="banner-drawn">${drawn.map((c) => {
+    const inner = `<span class="drawn-name">${escapeHtml(c.name)}</span>
+      <span class="drawn-meta">${c.cost != null ? costSym(c.cost) : ""}${(c.tags || []).map(tagIcon).join("")}</span>`;
+    const cls = `drawn-card ${escapeHtml((c.color || "").toLowerCase())}`;
+    const text = drawnTipText(c);
+    if (!text) {
+      return `<span class="${cls}">${inner}</span>`;
+    }
+    return tipWrap("drawn-" + c.name, inner, cls, `<span class="tip-def">${escapeHtml(text)}</span>`, text);
+  }).join("")}</span>`;
 }
 
 function renderBanner(data) {
@@ -307,7 +514,7 @@ function renderBanner(data) {
     $("banner-kicker").textContent = `${play.yours ? "You" : play.playerLabel}${play.colorLabel ? " · " + play.colorLabel : ""}`;
     $("banner-line").innerHTML = `<span class="banner-name">${escapeHtml(play.cardName)}</span>${
       play.cost != null ? costSym(play.cost) : ""
-    }${(play.tags || []).map(tagIcon).join("")}`;
+    }${(play.tags || []).map(tagIcon).join("")}${renderDrawn(play)}`;
     $("banner-benefit").innerHTML = benefitHtml(play);
     $("banner-effect").textContent = play.effect || "";
     $("banner-tips").innerHTML = (play.remember || []).map((t) => `<li>${escapeHtml(t)}</li>`).join("");
@@ -327,7 +534,7 @@ function renderBanner(data) {
 function render(data) {
   if (data.gameId !== lastGameId) {
     lastGameId = data.gameId || "";
-    corpOpenId = null;
+    corpRulesOpen = false;
     collapsedBoardIds = new Set();
     selectedGen = null;
     chartsOpen = false;
@@ -342,6 +549,7 @@ function render(data) {
   }
 
   renderBanner(data);
+  renderMilestones(data);
 
   const players = tablePlayers(data);
   const boards = $("boards");
@@ -349,6 +557,7 @@ function render(data) {
   boards.innerHTML = players.map(renderPlayer).join("");
   renderScore(data, players);
   alignBoardSections();
+  applyOpenTip();
 }
 
 function scoreOf(data, p) {
@@ -558,7 +767,7 @@ let scoreUiBound = false;
 let bannerOpen = true;
 let bannerKey = "";
 let bannerUiBound = false;
-let corpOpenId = null;
+let corpRulesOpen = false;
 let collapsedBoardIds = new Set();
 let corpUiBound = false;
 let lastGameId = "";
@@ -570,7 +779,7 @@ function applyBoardUi() {
     const id = Number((toggle || info)?.dataset.corp);
     if (!id) return;
     const collapsed = collapsedBoardIds.has(id);
-    const rulesOpen = corpOpenId === id;
+    const rulesOpen = corpRulesOpen;
     board.classList.toggle("collapsed", collapsed);
     const body = board.querySelector(".board-body");
     if (body) body.hidden = collapsed;
@@ -620,9 +829,8 @@ function bindCorpUi() {
   $("boards").addEventListener("click", (ev) => {
     const info = ev.target.closest(".corp-info");
     if (info) {
-      const id = Number(info.dataset.corp);
-      corpOpenId = corpOpenId === id ? null : id;
-      if (corpOpenId === id) collapsedBoardIds.delete(id);
+      corpRulesOpen = !corpRulesOpen;
+      if (corpRulesOpen) collapsedBoardIds.clear();
       applyBoardUi();
       return;
     }
@@ -690,3 +898,4 @@ setInterval(tick, 500);
 bindScoreUi();
 bindBannerUi();
 bindCorpUi();
+bindTipUi();

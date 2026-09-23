@@ -5412,5 +5412,3004 @@
     "req": {
       "earth": 2
     }
+  },
+  {
+    "key": "Aphrodite",
+    "name": "Aphrodite",
+    "number": "Z23",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "venus",
+      "plant"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 47
+    },
+    "production": {
+      "plant": 1
+    },
+    "extra": "Effect: Whenever Venus is terraformed 1 step, you gain 2 MC.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Celestic",
+    "name": "Celestic",
+    "number": "Z24",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 42
+    },
+    "production": {},
+    "extra": "Action: Add a floater to ANY card.\n(1 VP per 3 floaters on this card.)\nVP: 1/3 Floater Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Manutech",
+    "name": "Manutech",
+    "number": "Z25",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 35
+    },
+    "production": {
+      "steel": 1
+    },
+    "extra": "Effect: For each step you increase the production of a resource, including this, also gain that resource.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MorningStarInc",
+    "name": "Morning Star Inc",
+    "number": "Z26",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 50
+    },
+    "production": {},
+    "extra": "You start with 50 MC. As your first action, reveal cards from the deck until you have revealed 3 Venus-tag cards. Take those into hand and discard the rest.\nEffect: Your Venus requirements are +2 or -2 steps, your choice in each case.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Viron",
+    "name": "Viron",
+    "number": "Z27",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 48
+    },
+    "production": {},
+    "extra": "Action: Use a blue card action that has already been used this generation.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Arklight",
+    "name": "Arklight",
+    "number": "Z28",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 45
+    },
+    "production": {
+      "mc": 2
+    },
+    "extra": "Effect: When you play an animal or plant tag, including this, add 1 animal to this card.\n(1 VP per 2 animals on this card.)\nVP: 1/2 Animal Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Aridor",
+    "name": "Aridor",
+    "number": "Z29",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 40
+    },
+    "production": {},
+    "extra": "As your first action, put an additional colony tile of your choice into play. Effect: When you get a new type of tag in play (event cards do not count), increase your MC production 1 step.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Polyphemos",
+    "name": "Polyphemos",
+    "number": "Z30",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 50,
+      "ti": 5
+    },
+    "production": {
+      "mc": 5
+    },
+    "extra": "You start with 50 MC, 5 titanium, and 5 MC production.\nEffect: When you buy a card to hand, pay 5 MC instead of 3, including the starting hand.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Poseidon",
+    "name": "Poseidon",
+    "number": "Z31",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 45
+    },
+    "production": {},
+    "extra": "You start with 45 MC. As your first action, place a colony.\nEffect: When you add a colony, raise your MC production 1 step.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "StormcraftIncorporated",
+    "name": "Stormcraft Incorporated",
+    "number": "Z32",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 48
+    },
+    "production": {},
+    "extra": "Action: Add a floater to ANY card.\nEffect: Floaters on this card may be used as 2 heat each.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Splice",
+    "name": "Splice",
+    "number": "Z33",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "microbe",
+      "science"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 44
+    },
+    "production": {},
+    "extra": "Effect: when you or an opponent plays a microbe tag, including this, that player gains 2 MC or adds a microbe to THAT card, and you gain 2 MC.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Recyclon",
+    "name": "Recyclon",
+    "number": "Z34",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "building",
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 38
+    },
+    "production": {
+      "steel": 1
+    },
+    "extra": "You start with 38 MC and 1 steel production. Add 2 microbes to this card.\nEffect: When you play a building tag, including this, add a microbe here or gain 2 MC.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ArcadianCommunities",
+    "name": "Arcadian Communities",
+    "number": "Z35",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [],
+    "vp": null,
+    "resources": {
+      "mc": 40,
+      "steel": 10
+    },
+    "production": {},
+    "extra": "You start with 40 MC and 10 steel. Place a special tile. Action: If you own that special tile and it is adjacent to a tile you own, you may claim it (gain the placement bonus).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "PharmacyUnion",
+    "name": "Pharmacy Union",
+    "number": "Z36",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "science",
+      "science"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 54
+    },
+    "production": {},
+    "extra": "You start with 54 MC. Draw a science card.\nEffect: When you play a science tag, including this, gain 1 MC per science tag you have, including this.\nEffect: When you play a microbe tag, lose 4 MC and a science tag (remove a disease).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Astrodrill",
+    "name": "Astrodrill",
+    "number": "Z37",
+    "type": "corp",
+    "color": "blue",
+    "cost": null,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {
+      "mc": 38
+    },
+    "production": {},
+    "extra": "You start with 38 MC and 3 asteroid resources on this card.\nAction: Spend 1 asteroid resource here to gain 3 titanium, OR gain 1 asteroid resource, OR spend 1 asteroid resource to draw a card.",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SmallAsteroid",
+    "name": "Small Asteroid",
+    "number": "209",
+    "type": "proj",
+    "color": "red",
+    "cost": 10,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase temperature 1 step. Remove up to 2 plants from any player.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SelfReplicatingRobots",
+    "name": "Self-replicating robots",
+    "number": "210",
+    "type": "proj",
+    "color": "blue",
+    "cost": 7,
+    "tags": [
+      "building",
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Reveal and place a SPACE OR BUILDING card here from hand, and place 2 resources on it, OR double the resources on a card here.) (Effect: Cards here may be played as if from hand with its cost reduced by the number of resources on it.) (Requires 2 Science tags.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SnowAlgae",
+    "name": "Snow Algae",
+    "number": "211",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 2 oceans. Increase your Plant production and your heat production 1 step each.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Penguins",
+    "name": "Penguins",
+    "number": "212",
+    "type": "proj",
+    "color": "blue",
+    "cost": 7,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 animal to this card.) (Requires 8 oceans. 1 VP for each animal on this card.)\nVP: 1/Animal Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AerialMappers",
+    "name": "Aerial Mappers",
+    "number": "213",
+    "type": "proj",
+    "color": "blue",
+    "cost": 11,
+    "tags": [
+      "venus"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 Floater to ANY card or spend 1 Floater here to draw 1 card).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AerosportTournament",
+    "name": "Aerosport Tournament",
+    "number": "214",
+    "type": "proj",
+    "color": "red",
+    "cost": 7,
+    "tags": [
+      "event"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have 5 Floaters. Gain 1 MC per each City tile in play)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AirScrappingExpedition",
+    "name": "Air-Scrapping Expedition",
+    "number": "215",
+    "type": "proj",
+    "color": "red",
+    "cost": 13,
+    "tags": [
+      "event",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise Venus 1 step. Add 3 Floaters to ANY Venus CARD)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AtalantaPlanitiaLab",
+    "name": "Atalanta Planitia Lab",
+    "number": "216",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "science",
+      "venus"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 3 science tags. Draw 2 cards.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Atmoscoop",
+    "name": "Atmoscoop",
+    "number": "217",
+    "type": "proj",
+    "color": "green",
+    "cost": 22,
+    "tags": [
+      "space",
+      "jovian"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "1 3 Science OR * (Requires 3 Science tags. Either raise the temperature 2 steps, or raise Venus 2 steps. Add 2 Floaters to ANY card).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CometForVenus",
+    "name": "Comet for Venus",
+    "number": "218",
+    "type": "proj",
+    "color": "red",
+    "cost": 11,
+    "tags": [
+      "space",
+      "event",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise Venus 1 step. Remove up to 4MC from any player WITH A VENUS TAG IN PLAY.).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CorroderSuits",
+    "name": "Corroder Suits",
+    "number": "219",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your MC production 2 steps. Add 1 resource to ANY Venus CARD).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "DawnCity",
+    "name": "Dawn City",
+    "number": "220",
+    "type": "proj",
+    "color": "green",
+    "cost": 15,
+    "tags": [
+      "space",
+      "city"
+    ],
+    "vp": 3,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 4 Science tags. Decrease your energy production 1 step. Increase your titanium production 1 step. Place a City tile on the RESERVED AREA).",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "DeuteriumExport",
+    "name": "Deuterium Export",
+    "number": "221",
+    "type": "proj",
+    "color": "blue",
+    "cost": 11,
+    "tags": [
+      "space",
+      "power",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: add 1 Floater to this card OR spend 1 Floater here to increase your energy production 1 step).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Dirigibles",
+    "name": "Dirigibles",
+    "number": "222",
+    "type": "proj",
+    "color": "blue",
+    "cost": 11,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: add 1 Floater to ANY card.) (Effect: when playing a Venus tag, Floaters here may be used as payment, and are worth 3MC each)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ExtractorBalloons",
+    "name": "Extractor Balloons",
+    "number": "223",
+    "type": "proj",
+    "color": "blue",
+    "cost": 21,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: add 1 Floater to this card, or remove 2 Floaters here to raise Venus 1 step). (Add 3 Floaters to this card).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Extremophiles",
+    "name": "Extremophiles",
+    "number": "224",
+    "type": "proj",
+    "color": "blue",
+    "cost": 3,
+    "tags": [
+      "microbe",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: add 1 Microbe to ANY card) (Requires 2 Science tags. 1 VP for every 3rd Microbe on this card).\nVP: 1/Microbe Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FloatingHabs",
+    "name": "Floating Habs",
+    "number": "225",
+    "type": "proj",
+    "color": "blue",
+    "cost": 5,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: spend 2 MC to add 1 Floater to ANY card). (Requires 2 Science tags. 1 VP for every 2nd Floater on this card).\nVP: 1/Floater Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ForcedPrecipitation",
+    "name": "Forced Precipitation",
+    "number": "226",
+    "type": "proj",
+    "color": "blue",
+    "cost": 8,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 2 MC to add 1 Floater to this card, OR spend 2 Floaters here to increase Venus 1 step).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FreyjaBiodomes",
+    "name": "Freyja Biodomes",
+    "number": "227",
+    "type": "proj",
+    "color": "green",
+    "cost": 14,
+    "tags": [
+      "plant",
+      "venus"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "2 10% Venus OR 2 (Requires 10% on the Venus track. Add 2 Microbes or 2 Animals to another Venus card. Decrease your energy production 1 step and increase your MC production 2 steps).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "GHGImportFromVenus",
+    "name": "GHG Import From Venus",
+    "number": "228",
+    "type": "proj",
+    "color": "red",
+    "cost": 23,
+    "tags": [
+      "space",
+      "event",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise Venus 1 step. Increase your heat production 3 steps).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "GiantSolarShade",
+    "name": "Giant Solar Shade",
+    "number": "229",
+    "type": "proj",
+    "color": "green",
+    "cost": 27,
+    "tags": [
+      "space",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise Venus 3 steps).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Gyropolis",
+    "name": "Gyropolis",
+    "number": "230",
+    "type": "proj",
+    "color": "green",
+    "cost": 20,
+    "tags": [
+      "building",
+      "earth",
+      "city",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Decrease your energy production 2 steps. Increase your MC production 1 step for each Venus and Earth tag you have. Place a City tile).",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "HydrogenToVenus",
+    "name": "Hydrogen to Venus",
+    "number": "231",
+    "type": "proj",
+    "color": "red",
+    "cost": 11,
+    "tags": [
+      "space",
+      "jovian",
+      "event",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise Venus 1 step. Add 1 Floater to A Venus CARD for each Jovian tag you have).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IOSulphurResearch",
+    "name": "IO Sulphur Research",
+    "number": "232",
+    "type": "proj",
+    "color": "green",
+    "cost": 17,
+    "tags": [
+      "science",
+      "jovian",
+      "venus"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Draw 1 card, or draw 3 if you have at least 3 Venus tags).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IshtarMining",
+    "name": "Ishtar Mining",
+    "number": "233",
+    "type": "proj",
+    "color": "green",
+    "cost": 5,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires Venus 8%. Increase your titanium production 1 step).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "JetStreamMicroscrappers",
+    "name": "Jet Stream Microscrappers",
+    "number": "234",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 1 titanium to add 2 Floaters here, OR spend 2 Floaters here to raise Venus 1 step).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LocalShading",
+    "name": "Local Shading",
+    "number": "235",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: add 1 Floater to this card, or spend 1 Floater here to raise your MC production 1 step).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LunaMetropolis",
+    "name": "Luna Metropolis",
+    "number": "236",
+    "type": "proj",
+    "color": "green",
+    "cost": 21,
+    "tags": [
+      "space",
+      "earth",
+      "city"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your MC production 1 step for each Earth tag you have, including this. Place a City tile on the RESERVED AREA).",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "LuxuryFoods",
+    "name": "Luxury Foods",
+    "number": "237",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "2 Venus Earth Jovian",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MaxwellBase",
+    "name": "Maxwell Base",
+    "number": "238",
+    "type": "proj",
+    "color": "blue",
+    "cost": 18,
+    "tags": [
+      "city",
+      "venus"
+    ],
+    "vp": 3,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 resource to ANOTHER VENUS CARD).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MiningQuota",
+    "name": "Mining Quota",
+    "number": "239",
+    "type": "proj",
+    "color": "green",
+    "cost": 5,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires Venus, Earth and Jovian tags. Increase your steel production 2 steps).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "NeutralizerFactory",
+    "name": "Neutralizer Factory",
+    "number": "240",
+    "type": "proj",
+    "color": "green",
+    "cost": 7,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires Venus 10%. Increase the Venus track 1 step).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Omnicourt",
+    "name": "Omnicourt",
+    "number": "241",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires Venus, Earth and Jovian tags. Increase your TR 2 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "OrbitalReflectors",
+    "name": "Orbital Reflectors",
+    "number": "242",
+    "type": "proj",
+    "color": "green",
+    "cost": 26,
+    "tags": [
+      "space",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise Venus 2 steps. Increase your heat production 2 steps).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RotatorImpacts",
+    "name": "Rotator Impacts",
+    "number": "243",
+    "type": "proj",
+    "color": "blue",
+    "cost": 6,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: spend 6 MC to add an asteroid resource to this card (TITANIUM MAY BE USED), or spend 1 resource from this card to increase Venus 1 step). (Venus must be 14% or lower).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SisterPlanetSupport",
+    "name": "Sister Planet Support",
+    "number": "244",
+    "type": "proj",
+    "color": "green",
+    "cost": 7,
+    "tags": [
+      "earth",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires Venus and Earth tags. Increase your MC production 3 steps).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Solarnet",
+    "name": "Solarnet",
+    "number": "245",
+    "type": "proj",
+    "color": "green",
+    "cost": 7,
+    "tags": [],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires Venus, Earth and Jovian tags. Draw 2 cards).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SpinInducingAsteroid",
+    "name": "Spin-Inducing Asteroid",
+    "number": "246",
+    "type": "proj",
+    "color": "red",
+    "cost": 16,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Venus must be 10% or lower. Raise Venus 2 steps).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SponsoredAcademies",
+    "name": "Sponsored Academies",
+    "number": "247",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "science",
+      "earth"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Discard 1 card from your hand and THEN draw 3 cards. All OPPONENTS draw 1 card).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Stratopolis",
+    "name": "Stratopolis",
+    "number": "248",
+    "type": "proj",
+    "color": "blue",
+    "cost": 22,
+    "tags": [
+      "city",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 2 floaters to ANY VENUS CARD.)\nVP: 1/Floater Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "StratosphericBirds",
+    "name": "Stratospheric Birds",
+    "number": "249",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "animal",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 animal to this card.) (Requires Venus 12% and that you spend 1 Floater from any card. 1 VP for each Animal on this card.)\nVP: 1/Animal Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SulphurExports",
+    "name": "Sulphur Exports",
+    "number": "250",
+    "type": "proj",
+    "color": "green",
+    "cost": 21,
+    "tags": [
+      "space",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase Venus 1 step. Increase your MC production1 step for each Venus tag you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SulphurEatingBacteria",
+    "name": "Sulphur-eating Bacteria",
+    "number": "251",
+    "type": "proj",
+    "color": "blue",
+    "cost": 6,
+    "tags": [
+      "microbe",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: add 1 Microbe to this card, or spend any number of Microbes here to gain triple amount of MC). (Requires Venus 6%).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TerraformingContract",
+    "name": "Terraforming Contract",
+    "number": "252",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have at least 25 TR. Increase your MC production 4 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Thermophiles",
+    "name": "Thermophiles",
+    "number": "253",
+    "type": "proj",
+    "color": "blue",
+    "cost": 9,
+    "tags": [
+      "microbe",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: add 1 Microbe to ANY Venus CARD or spend 2 Microbes here to raise Venus 1 step). (Requires Venus 6%).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "WaterToVenus",
+    "name": "Water to Venus",
+    "number": "254",
+    "type": "proj",
+    "color": "red",
+    "cost": 9,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise Venus 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "VenusGovernor",
+    "name": "Venus Governor",
+    "number": "255",
+    "type": "proj",
+    "color": "green",
+    "cost": 4,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 2 Venus tags. Increase your MC production 2 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "VenusMagnetizer",
+    "name": "Venus Magnetizer",
+    "number": "256",
+    "type": "proj",
+    "color": "blue",
+    "cost": 7,
+    "tags": [
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Decrease your Energy production 1 step to raise Venus 1 step.) (Requires Venus 10%.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "VenusSoils",
+    "name": "Venus Soils",
+    "number": "257",
+    "type": "proj",
+    "color": "green",
+    "cost": 20,
+    "tags": [
+      "plant",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise Venus 1 step. Increase your Plant production 1 step. Add 2 Microbes to ANOTHER card).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "VenusWaystation",
+    "name": "Venus Waystation",
+    "number": "258",
+    "type": "proj",
+    "color": "blue",
+    "cost": 9,
+    "tags": [
+      "space",
+      "venus"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you play a Venus tag, you pay 2 MC less for it.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "VenusianAnimals",
+    "name": "Venusian Animals",
+    "number": "259",
+    "type": "proj",
+    "color": "blue",
+    "cost": 15,
+    "tags": [
+      "science",
+      "animal",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: when you play a Science tag, including this, add 1 Animal to this card).\nVP: 1/Animal Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "VenusianInsects",
+    "name": "Venusian Insects",
+    "number": "260",
+    "type": "proj",
+    "color": "blue",
+    "cost": 5,
+    "tags": [
+      "microbe",
+      "venus"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: add 1 Microbe to this card.) (Requires Venus 12%. 1 VP for every 2nd Microbe on this card.)\nVP: 1/Microbe Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "VenusianPlants",
+    "name": "Venusian Plants",
+    "number": "261",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [
+      "plant",
+      "venus"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires Venus 16%. Raise Venus 1 step. Add 1 Microbe or 1 Animal to ANOTHER VENUS CARD).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Airliners",
+    "name": "Airliners",
+    "number": "C01",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have 3 floaters. Increase your MC production 2 steps. Add 2 floaters to ANY card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AirRaid",
+    "name": "Air Raid",
+    "number": "C02",
+    "type": "proj",
+    "color": "red",
+    "cost": 0,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you lose 1 floater. Steal 5 MC from any player.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AtmoCollectors",
+    "name": "Atmo Collectors",
+    "number": "C03",
+    "type": "proj",
+    "color": "blue",
+    "cost": 15,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 floater here, or spend 1 floater here to gain 2 titanium, or 3 energy, or 4 heat.) (Add 2 floaters to ANY card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CommunityServices",
+    "name": "Community Services",
+    "number": "C04",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your MC production 1 step per CARD WITH NO TAGS, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Conscription",
+    "name": "Conscription",
+    "number": "C05",
+    "type": "proj",
+    "color": "red",
+    "cost": 5,
+    "tags": [
+      "earth",
+      "event"
+    ],
+    "vp": -1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 2 Earth tags. The next card you play this generation costs 16 MC less.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CoronaExtractor",
+    "name": "Corona Extractor",
+    "number": "C06",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "space",
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 4 science tags. Increase your energy production 4 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CryoSleep",
+    "name": "Cryo Sleep",
+    "number": "C07",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "science"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you trade, you pay 1 less resource for it.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EarthElevator",
+    "name": "Earth Elevator",
+    "number": "C08",
+    "type": "proj",
+    "color": "green",
+    "cost": 43,
+    "tags": [
+      "space",
+      "earth"
+    ],
+    "vp": 4,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your titanium production 3 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EcologyResearch",
+    "name": "Ecology Research",
+    "number": "C09",
+    "type": "proj",
+    "color": "green",
+    "cost": 21,
+    "tags": [
+      "science",
+      "plant",
+      "microbe",
+      "animal"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your plant production 1 step for each colony you own. Add 1 animal to ANOTHER card and 2 microbes to ANOTHER card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FloaterLeasing",
+    "name": "Floater Leasing",
+    "number": "C10",
+    "type": "proj",
+    "color": "green",
+    "cost": 3,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your MC production 1 step per 3 floaters you have.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FloaterPrototypes",
+    "name": "Floater Prototypes",
+    "number": "C11",
+    "type": "proj",
+    "color": "red",
+    "cost": 2,
+    "tags": [
+      "science",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Add two floaters to ANOTHER card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FloaterTechnology",
+    "name": "Floater Technology",
+    "number": "C12",
+    "type": "proj",
+    "color": "blue",
+    "cost": 7,
+    "tags": [
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 floater to ANOTHER card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "GalileanWaystation",
+    "name": "Galilean Waystation",
+    "number": "C13",
+    "type": "proj",
+    "color": "green",
+    "cost": 15,
+    "tags": [
+      "space",
+      "jovian"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your MC production 1 step for every Jovian tag in play.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "HeavyTaxation",
+    "name": "Heavy Taxation",
+    "number": "C14",
+    "type": "proj",
+    "color": "green",
+    "cost": 3,
+    "tags": [
+      "earth"
+    ],
+    "vp": -1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 2 Earth tags. Increase your MC production 2 steps, and gain 4MC.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IceMoonColony",
+    "name": "Ice Moon Colony",
+    "number": "C15",
+    "type": "proj",
+    "color": "green",
+    "cost": 23,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Place 1 colony and 1 ocean tile.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "ImpactorSwarm",
+    "name": "Impactor Swarm",
+    "number": "C16",
+    "type": "proj",
+    "color": "red",
+    "cost": 11,
+    "tags": [
+      "space",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 2 Jovian tags. Gain 12 heat. Remove up to 2 plants from any player.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "InterplanetaryColonyShip",
+    "name": "Interplanetary Colony Ship",
+    "number": "C17",
+    "type": "proj",
+    "color": "red",
+    "cost": 12,
+    "tags": [
+      "space",
+      "earth",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Place a colony.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "JovianLanterns",
+    "name": "Jovian Lanterns",
+    "number": "C18",
+    "type": "proj",
+    "color": "blue",
+    "cost": 20,
+    "tags": [
+      "jovian"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 1 titanium to add 2 floaters here.)\nVP: 1/Floater Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "JupiterFloatingStation",
+    "name": "Jupiter Floating Station",
+    "number": "C19",
+    "type": "proj",
+    "color": "blue",
+    "cost": 9,
+    "tags": [
+      "jovian"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 floater to a JOVIAN CARD, or gain 1 MC for every floater here (MAX 4).) (Requires 3 Science tags.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LunaGovernor",
+    "name": "Luna Governor",
+    "number": "C20",
+    "type": "proj",
+    "color": "green",
+    "cost": 4,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 3 Earth tags. Increase your MC production 2 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LunarExports",
+    "name": "Lunar Exports",
+    "number": "C21",
+    "type": "proj",
+    "color": "green",
+    "cost": 19,
+    "tags": [
+      "space",
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your plant production 2 steps, or your MC production 5 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LunarMining",
+    "name": "Lunar Mining",
+    "number": "C22",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your titanium production 1 step for every 2 Earth tags you have in play, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MarketManipulation",
+    "name": "Market Manipulation",
+    "number": "C23",
+    "type": "proj",
+    "color": "red",
+    "cost": 1,
+    "tags": [
+      "earth",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MartianZoo",
+    "name": "Martian Zoo",
+    "number": "C24",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "building",
+      "animal",
+      "earth"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you play an Earth tag, place an animal here.) (Action: Gain 1MC per animal here.) (Requires 2 city tiles in play.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MiningColony",
+    "name": "Mining Colony",
+    "number": "C25",
+    "type": "proj",
+    "color": "green",
+    "cost": 20,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your titanium production 1 step. Place a colony.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MinorityRefuge",
+    "name": "Minority Refuge",
+    "number": "C26",
+    "type": "proj",
+    "color": "green",
+    "cost": 5,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Decrease your MC production 2 steps. Place a colony.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MolecularPrinting",
+    "name": "Molecular Printing",
+    "number": "C27",
+    "type": "proj",
+    "color": "green",
+    "cost": 11,
+    "tags": [
+      "science"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Gain 1Mc for each city tile in play. Gain 1MC for each colony in play.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "NitrogenFromTitan",
+    "name": "Nitrogen From Titan",
+    "number": "C28",
+    "type": "proj",
+    "color": "green",
+    "cost": 25,
+    "tags": [
+      "space",
+      "jovian"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise your TR 2 steps. Add 2 floaters to a JOVIAN CARD.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "PioneerSettlement",
+    "name": "Pioneer Settlement",
+    "number": "C29",
+    "type": "proj",
+    "color": "green",
+    "cost": 13,
+    "tags": [
+      "space"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have no more than 1 colony. Decrease your MC production 2 steps. Place a colony.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ProductiveOutpost",
+    "name": "Productive Outpost",
+    "number": "C30",
+    "type": "proj",
+    "color": "green",
+    "cost": 0,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "GAIN ALL YOUR COLONY BONUSES",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "QuantumCommunications",
+    "name": "Quantum Communications",
+    "number": "C31",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 4 Science tags. Increase your MC production 1 step for each colony in play.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RedSpotObservatory",
+    "name": "Red Spot Observatory",
+    "number": "C32",
+    "type": "proj",
+    "color": "blue",
+    "cost": 17,
+    "tags": [
+      "science",
+      "jovian"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 floater to this card, or spend 1 floater here to draw a card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RefugeeCamps",
+    "name": "Refugee Camps",
+    "number": "C33",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "earth"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Decrease your MC production 1 step to add a camp resource to this card.) (1 VP for each camp resource on this card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ResearchColony",
+    "name": "Research Colony",
+    "number": "C34",
+    "type": "proj",
+    "color": "green",
+    "cost": 20,
+    "tags": [
+      "space",
+      "science"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Place a colony. MAY BE PLACED WHERE YOU ALREADY HAVE A COLONY. Draw 2 cards.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RimFreighters",
+    "name": "Rim Freighters",
+    "number": "C35",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you trade, you pay 1 less resource for it.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SkyDocks",
+    "name": "Sky Docks",
+    "number": "C36",
+    "type": "proj",
+    "color": "blue",
+    "cost": 18,
+    "tags": [
+      "space",
+      "earth"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you play a card, you pay 1 MC less for it.) (Requires 2 Earth tags. Gain 1 Trade Fleet.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SolarProbe",
+    "name": "Solar Probe",
+    "number": "C37",
+    "type": "proj",
+    "color": "red",
+    "cost": 9,
+    "tags": [
+      "space",
+      "science",
+      "event"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Draw 1 card for every 3 science tags you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SolarReflectors",
+    "name": "Solar Reflectors",
+    "number": "C38",
+    "type": "proj",
+    "color": "green",
+    "cost": 23,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your heat production 5 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SpacePort",
+    "name": "Space Port",
+    "number": "C39",
+    "type": "proj",
+    "color": "green",
+    "cost": 22,
+    "tags": [
+      "building",
+      "city"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 1 colony. Decrease your Energy production 1 step and increase your MC production 4 steps. Place a City tile. Gain 1 Trade Fleet.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "SpacePortColony",
+    "name": "Space Port Colony",
+    "number": "C40",
+    "type": "proj",
+    "color": "green",
+    "cost": 27,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires a colony. Place a colony. MAY BE PLACED ON A COLONY TILE WHERE YOU ALREADY HAVE A COLONY. Gain 1 Trade Fleet. 1VP per 2 colonies in play.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SpinOffDepartment",
+    "name": "Spin-off Department",
+    "number": "C41",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: WHEN PLAYING A CARD WITH A BASIC COST OF 20MC OR MORE, draw a card.) (Increase your MC production 2 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SubZeroSaltFish",
+    "name": "Sub-Zero Salt Fish",
+    "number": "C42",
+    "type": "proj",
+    "color": "blue",
+    "cost": 5,
+    "tags": [
+      "animal"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 Animal to this card.) (Requires -6 C. Decrease any Plant production 1 step. 1 VP per 2 Animals on this card.)\nVP: 1/Animal Resource",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TitanAirScrapping",
+    "name": "Titan Air-scrapping",
+    "number": "C43",
+    "type": "proj",
+    "color": "blue",
+    "cost": 21,
+    "tags": [
+      "jovian"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 1 titanium to add 2 floaters here, or spend 2 floaters here to increase your TR 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TitanFloatingLaunchPad",
+    "name": "Titan Floating Launch-Pad",
+    "number": "C44",
+    "type": "proj",
+    "color": "blue",
+    "cost": 18,
+    "tags": [
+      "jovian"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 1 floater to ANY JOVIAN CARD, or spend 1 floater here to trade for free.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TitanShuttles",
+    "name": "Titan Shuttles",
+    "number": "C45",
+    "type": "proj",
+    "color": "blue",
+    "cost": 23,
+    "tags": [
+      "space",
+      "jovian"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add 2 floaters to ANY JOVIAN CARD, or spend any number of floaters here to gain the same number of titanium.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TradeEnvoys",
+    "name": "Trade Envoys",
+    "number": "C46",
+    "type": "proj",
+    "color": "blue",
+    "cost": 6,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you trade, you may first increase that Colony Tile track 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TradingColony",
+    "name": "Trading Colony",
+    "number": "C47",
+    "type": "proj",
+    "color": "blue",
+    "cost": 18,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Place a colony.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "UrbanDecomposers",
+    "name": "Urban Decomposers",
+    "number": "C48",
+    "type": "proj",
+    "color": "green",
+    "cost": 6,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have 1 city tile and 1 colony in play. Increase your plant production 1 step, and add 2 microbes to ANOTHER card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "WarpDrive",
+    "name": "Warp Drive",
+    "number": "C49",
+    "type": "proj",
+    "color": "blue",
+    "cost": 14,
+    "tags": [
+      "space",
+      "science"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you play a Space card, you pay 4 MC less for it.) (Requires 5 Science tags.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "DuskLaserMining",
+    "name": "Dusk Laser Mining",
+    "number": "X01",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 2 Science tags. Decrease your energy production 1 step, and increase your titanium production 1 step. Gain 4 titanium.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "ProjectInspection",
+    "name": "Project Inspection",
+    "number": "X02",
+    "type": "proj",
+    "color": "red",
+    "cost": 0,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "USE A CARD ACTION THAT HAS ALREADY BEEN USED THIS GENERATION",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "EnergyMarket",
+    "name": "Energy Market",
+    "number": "X03",
+    "type": "proj",
+    "color": "blue",
+    "cost": 3,
+    "tags": [
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 2X MC to gain X energy, or decrease energy production 1 step to gain 8 MC.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "HiTechLab",
+    "name": "Hi-Tech Lab",
+    "number": "X04",
+    "type": "proj",
+    "color": "blue",
+    "cost": 17,
+    "tags": [
+      "building",
+      "science"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend any amount of energy to draw the same number of cards. TAKE 1 INTO HAND AND DISCARD THE REST.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "InterplanetaryTrade",
+    "name": "Interplanetary Trade",
+    "number": "X05",
+    "type": "proj",
+    "color": "green",
+    "cost": 27,
+    "tags": [
+      "space"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your MC production 1 step per different tag you have in play, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "LawSuit",
+    "name": "Law Suit",
+    "number": "X06",
+    "type": "proj",
+    "color": "red",
+    "cost": 2,
+    "tags": [
+      "earth",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Steal 3 MC from a player that REMOVED YOUR RESOURCES OR DECREASED YOUR PRODUCTION this generation. Place this card face down in THAT PLAYER'S EVENT PILE.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MercurianAlloys",
+    "name": "Mercurian Alloys",
+    "number": "X07",
+    "type": "proj",
+    "color": "blue",
+    "cost": 3,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: Your titanium resources are worth 1 MC extra.) (Requires 2 Science tags.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "OrbitalCleanup",
+    "name": "Orbital Cleanup",
+    "number": "X08",
+    "type": "proj",
+    "color": "blue",
+    "cost": 14,
+    "tags": [
+      "space",
+      "science",
+      "earth"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Gain 1 MC per Science tag you have.) (Decrease your MC production 2 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "PoliticalAlliance",
+    "name": "Political Alliance",
+    "number": "X09",
+    "type": "proj",
+    "color": "red",
+    "cost": 4,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have 2 Party Leaders. Gain 1 TR.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RegoPlastics",
+    "name": "Rego Plastics",
+    "number": "X10",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: Your steel resources are worth 1 MC extra.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SaturnSurfing",
+    "name": "Saturn Surfing",
+    "number": "X11",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "jovian",
+      "earth"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 1 floater from here to gain 1 MC for each floater here, INCLUDING THE PAID FLOATER (max 5).) (Add 1 floater here for every Earth tag you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "StanfordTorus",
+    "name": "Stanford Torus",
+    "number": "X12",
+    "type": "proj",
+    "color": "green",
+    "cost": 12,
+    "tags": [
+      "space",
+      "city"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Place a city tile IN SPACE, outside and separate from the planet.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "Advertising",
+    "name": "Advertising",
+    "number": "X13",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you play a card with basic cost of 20MC or more, increase your MC production 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AsteroidDeflectionSystem",
+    "name": "Asteroid Deflection System",
+    "number": "X14",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [
+      "building",
+      "space",
+      "earth"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: REVEAL AND DISCARD the top card of the deck. If it has a space tag, add an asteroid here.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AsteroidHollowing",
+    "name": "Asteroid Hollowing",
+    "number": "X15",
+    "type": "proj",
+    "color": "blue",
+    "cost": 16,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 1 titanium to add 1 asteroid resource here and increase MC production 1 step.) (1VP for each 2 asteroids on this card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CometAiming",
+    "name": "Comet Aiming",
+    "number": "X16",
+    "type": "proj",
+    "color": "blue",
+    "cost": 17,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 1 titanium to add 1 asteroid resource to ANY CARD or remove 1 asteroid here to place an ocean.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "CrashSiteCleanup",
+    "name": "Crash site Cleanup",
+    "number": "X17",
+    "type": "proj",
+    "color": "red",
+    "cost": 4,
+    "tags": [
+      "event"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(REQUIRES THAT A PLAYER REMOVED ANOTHER PLAYER'S PLANTS THIS GENERATION. Gain 1 titanium or 2 steel.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CuttingEdgeTechnology",
+    "name": "Cutting Edge Technology",
+    "number": "X18",
+    "type": "proj",
+    "color": "blue",
+    "cost": 12,
+    "tags": [
+      "science"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When playing a card with a requirement, pay 2MC less.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "DirectedImpactors",
+    "name": "Directed Impactors",
+    "number": "X19",
+    "type": "proj",
+    "color": "blue",
+    "cost": 8,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 6 MC to add 1 asteroid to ANY CARD (titanium may be used to pay for this), or remove 1 asteroid here to raise temperature 1 step).",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "DiversitySupport",
+    "name": "Diversity Support",
+    "number": "X20",
+    "type": "proj",
+    "color": "red",
+    "cost": 1,
+    "tags": [
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have 9 different types of resources. Gain 1 TR.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "FieldCappedCity",
+    "name": "Field-Capped City",
+    "number": "X21",
+    "type": "proj",
+    "color": "green",
+    "cost": 29,
+    "tags": [
+      "building",
+      "power",
+      "city"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase your MC production 2 steps, increase your energy production 1 step, gain 3 plants, and place a city tile.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "ImportedNutrients",
+    "name": "Imported Nutrients",
+    "number": "X22",
+    "type": "proj",
+    "color": "red",
+    "cost": 14,
+    "tags": [
+      "space",
+      "earth",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Gain 4 plants and add 4 microbes to ANOTHER CARD.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "JovianEmbassy",
+    "name": "Jovian Embassy",
+    "number": "X23",
+    "type": "proj",
+    "color": "green",
+    "cost": 14,
+    "tags": [
+      "building",
+      "jovian"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Raise your TR 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MagneticShield",
+    "name": "Magnetic Shield",
+    "number": "X24",
+    "type": "proj",
+    "color": "green",
+    "cost": 24,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 3 power tags. Raise your TR 4 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MeatIndustries",
+    "name": "Meat Industries",
+    "number": "X25",
+    "type": "proj",
+    "color": "blue",
+    "cost": 5,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you gain an animal to ANY CARD, gain 2MC.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Meltworks",
+    "name": "Meltworks",
+    "number": "X26",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 5 heat to gain 3 steel.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "MoholeLake",
+    "name": "Mohole Lake",
+    "number": "X27",
+    "type": "proj",
+    "color": "blue",
+    "cost": 31,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Add a microbe or animal to ANOTHER card.) (Effect: Gain 3 plant. Raise temperature 1 step, and place 1 ocean tile.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "Potatoes",
+    "name": "Potatoes",
+    "number": "X28",
+    "type": "proj",
+    "color": "green",
+    "cost": 2,
+    "tags": [
+      "plant"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Lose 2 plants. Increase your MC production 2 steps)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "SubCrustMeasurements",
+    "name": "Sub-Crust Measurements",
+    "number": "X29",
+    "type": "proj",
+    "color": "blue",
+    "cost": 20,
+    "tags": [
+      "building",
+      "science",
+      "earth"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Draw a card.) (Requires 2 science tags.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "TopsoilContract",
+    "name": "Topsoil Contract",
+    "number": "X30",
+    "type": "proj",
+    "color": "blue",
+    "cost": 8,
+    "tags": [
+      "microbe",
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you gain a microbe to ANY CARD, also gain 1MC.) (Gain 3 plants.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AsteroidRights",
+    "name": "Asteroid Rights",
+    "number": "X34",
+    "type": "proj",
+    "color": "blue",
+    "cost": 10,
+    "tags": [
+      "space",
+      "earth"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 1 MC to add 1 asteroid to ANY card, OR spend 1 asteroid here to raise your MC production 1 step or gain 2 titanium.) (Gain 2 asteroids to this card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BactoviralResearch",
+    "name": "Bactoviral Research",
+    "number": "X35",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [
+      "science",
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Draw 1 card. Choose 1 of your played cards and add 1 microbe to it for each science tag you have, including this.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "BioPrintingFacility",
+    "name": "Bio Printing Facility",
+    "number": "X36",
+    "type": "proj",
+    "color": "blue",
+    "cost": 7,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 2 energy to gain 2 plants OR to add 1 animal to ANOTHER card.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Harvest",
+    "name": "Harvest",
+    "number": "X37",
+    "type": "proj",
+    "color": "red",
+    "cost": 4,
+    "tags": [
+      "plant",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have 3 greenery tiles in play. Gain 12MC.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "OutdoorSports",
+    "name": "Outdoor Sports",
+    "number": "X38",
+    "type": "proj",
+    "color": "green",
+    "cost": 8,
+    "tags": [],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires any city adjacent to ocean.Increase your MC production 2 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "16Psych",
+    "name": "16 Psych",
+    "number": "X44",
+    "type": "proj",
+    "color": "green",
+    "cost": 31,
+    "tags": [
+      "space"
+    ],
+    "vp": 2,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase titanium production 2 steps. Gain 3 titanium.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RobotPollinators",
+    "name": "Robot Pollinators",
+    "number": "X45",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "microbe"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires 4% oxygen. Increase your plant production 1 step. Gain 1 plant for each plant tag you have.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Supercapacitors",
+    "name": "Supercapacitors",
+    "number": "X46",
+    "type": "proj",
+    "color": "blue",
+    "cost": 4,
+    "tags": [
+      "building",
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase MC production 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "IcyImpactors",
+    "name": "Icy Impactors",
+    "number": "X47",
+    "type": "proj",
+    "color": "blue",
+    "cost": 15,
+    "tags": [
+      "space"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 10 MC (titanium may be used) to add 2 asteroids here, or spend 1 asteroid here to place an ocean tile. FIRST PLAYER CHOOSES WHERE YOU MUST PLACE IT.)",
+    "place": [
+      "ocean"
+    ],
+    "req": {}
+  },
+  {
+    "key": "DirectedHeatUsage",
+    "name": "Directed Heat Usage",
+    "number": "X48",
+    "type": "proj",
+    "color": "blue",
+    "cost": 1,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend 3 heat to either gain 4 MC or 2 plants.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AqueductSystems",
+    "name": "Aqueduct Systems",
+    "number": "X50",
+    "type": "proj",
+    "color": "green",
+    "cost": 9,
+    "tags": [
+      "building"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Requires that you have a city next to an ocean. Reveal cards from the deck until you have revealed 3 building-tag cards. Take those into hand and discard the rest.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "AstraMechanica",
+    "name": "Astra Mechanica",
+    "number": "X51",
+    "type": "proj",
+    "color": "green",
+    "cost": 7,
+    "tags": [
+      "science",
+      "event"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(RETURN 2 OF YOUR PLAYED EVENTS TO YOUR HAND. IT MAY NOT BE CARDS THAT PLACE SPECIAL TILES.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "CarbonNanosystems",
+    "name": "Carbon Nanosystems",
+    "number": "X52",
+    "type": "proj",
+    "color": "blue",
+    "cost": 14,
+    "tags": [
+      "building",
+      "space",
+      "science",
+      "city"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you play a science tag, including this, add a graphene resource here. Effect: When paying for a space or city tag, graphenes may be used as 4 MC each.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "CyberiaSystems",
+    "name": "Cyberia Systems",
+    "number": "X53",
+    "type": "proj",
+    "color": "green",
+    "cost": 17,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase steel production 1 step. Copy the production boxes of 2 of your other cards with building tags.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "HermeticOrderOfMars",
+    "name": "Hermetic Order of Mars",
+    "number": "X56",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Oxygen must be 4% or less. Increase your MC production 2 steps. Gain 1 MC per empty area adjacent to your tiles.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "HomeostasisBureau",
+    "name": "Homeostasis Bureau",
+    "number": "X57",
+    "type": "proj",
+    "color": "blue",
+    "cost": 16,
+    "tags": [
+      "building"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you raise temperature, gain 3 MC.) (Increase your heat production 2 steps.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "KaguyaTech",
+    "name": "Kaguya Tech",
+    "number": "X58",
+    "type": "proj",
+    "color": "green",
+    "cost": 10,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Increase MC production 2 steps. Draw 1 card. Remove 1 of your greenery tiles (does not affect oxygen). Place a city tile there, regardless of other restrictions. Gain placement bonuses as usual.)",
+    "place": [
+      "city"
+    ],
+    "req": {}
+  },
+  {
+    "key": "MarsNomads",
+    "name": "Mars Nomads",
+    "number": "X60",
+    "type": "proj",
+    "color": "blue",
+    "cost": 13,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Move the Nomads to an adjacent non-reserved, empty area and gain THE PLACEMENT BONUS as if placing a special tile there. No tiles may be placed on the Nomad area.) (PLACE THE NOMADS (a gold cube) on a non-reserved, empty area on the game board.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "MartianLumberCorps",
+    "name": "Martian Lumber Corps",
+    "number": "X62",
+    "type": "proj",
+    "color": "blue",
+    "cost": 6,
+    "tags": [
+      "building",
+      "plant"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When paying for a building card, plants may be used as 3 MC each.) (Requires that you have 2 greenery tiles. Increase plant production 1 step.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "RedShips",
+    "name": "Red Ships",
+    "number": "X63",
+    "type": "proj",
+    "color": "blue",
+    "cost": 2,
+    "tags": [],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Gain 1 M€ for each CITY AND SPECIAL TILE ADJACENT TO OCEAN, regardless of owner.) (Requires 4% oxygen or more.)",
+    "place": [
+      "special tile"
+    ],
+    "req": {}
+  },
+  {
+    "key": "SolarLogistics",
+    "name": "Solar Logistics",
+    "number": "X64",
+    "type": "proj",
+    "color": "blue",
+    "cost": 20,
+    "tags": [
+      "space",
+      "earth",
+      "event"
+    ],
+    "vp": 1,
+    "resources": {},
+    "production": {},
+    "extra": "(Effect: When you play an Earth tag, you pay 2 M€ less. Effect: When any player plays a space event, you may draw a card.) (Gain 2 titanium.)",
+    "place": [],
+    "req": {}
+  },
+  {
+    "key": "Teslaract",
+    "name": "Teslaract",
+    "number": "X65",
+    "type": "proj",
+    "color": "blue",
+    "cost": 14,
+    "tags": [
+      "building",
+      "power"
+    ],
+    "vp": null,
+    "resources": {},
+    "production": {},
+    "extra": "(Action: Spend energy production to increase plant production by the same amount.) (Raise your TR 1 step.)",
+    "place": [],
+    "req": {}
   }
 ]

@@ -45,6 +45,8 @@ public final class App {
             return;
         }
 
+        CompanionServer.takeOver(port);
+
         LogTailer tailer = new LogTailer(logFile, parser);
         Thread thread = new Thread(tailer, "player-log-tailer");
         thread.setDaemon(true);

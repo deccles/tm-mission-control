@@ -2,8 +2,10 @@ package dev.tmcompanion;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public final class GameState {
     private final Object lock = new Object();
@@ -24,6 +26,7 @@ public final class GameState {
     public final Map<Integer, PlacedTile> tiles = new LinkedHashMap<>();
     public final List<Map<String, Object>> scoreHistory = new ArrayList<>();
     public final List<ScoreEvent> scoreEvents = new ArrayList<>();
+    public final Set<String> listedMilestones = new LinkedHashSet<>();
     public ActivePlay activePlay;
 
     public PlayerState player(int id) {
@@ -46,6 +49,7 @@ public final class GameState {
             tiles.clear();
             scoreHistory.clear();
             scoreEvents.clear();
+            listedMilestones.clear();
             activePlay = null;
             player(1);
             player(2);
@@ -74,6 +78,8 @@ public final class GameState {
             out.put("players", table);
             out.put("tiles", new ArrayList<>(tiles.values()));
             out.put("score", ScoreCalculator.estimate(this, table, you));
+            out.put("milestones", MilestoneAdvisor.snapshot(this, you, table));
+            out.put("fundedAwards", ScoreCalculator.fundedAwards(table));
             return out;
         }
     }

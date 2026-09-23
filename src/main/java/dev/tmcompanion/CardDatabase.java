@@ -3,14 +3,20 @@ package dev.tmcompanion;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public final class CardDatabase {
     private final Map<String, Card> byNormalized = new LinkedHashMap<>();
@@ -43,6 +49,9 @@ public final class CardDatabase {
         alias("Water Import From Europa", "Water Import From Europa");
         alias("Beam From A Thorium Asteroid", "Beam From A Thorium Asteroid");
         alias("CEO's Favorite Project", "CEOs Favorite Project");
+        alias("Self-Replicating Bacteria", "Self-replicating robots");
+        alias("Morning Star Inc.", "Morning Star Inc");
+        alias("Stormcraft", "Stormcraft Incorporated");
     }
 
     private void alias(String from, String to) {
@@ -53,15 +62,69 @@ public final class CardDatabase {
     }
 
     public static CardDatabase load() {
-        try (var in = CardDatabase.class.getResourceAsStream("/cards.json")) {
-            if (in == null) {
-                throw new IllegalStateException("cards.json missing from classpath");
+        try (FoundCards found = openCards()) {
+            if (found == null || found.in == null) {
+                throw new IllegalStateException("cards.json missing from classpath and disk");
             }
-            List<Card> cards = new Gson().fromJson(new InputStreamReader(in, StandardCharsets.UTF_8),
+            List<Card> cards = new Gson().fromJson(new InputStreamReader(found.in, StandardCharsets.UTF_8),
                     new TypeToken<List<Card>>() {}.getType());
+            if (cards == null || cards.isEmpty()) {
+                throw new IllegalStateException("cards.json was empty");
+            }
+            System.out.println("Card catalog: " + cards.size() + " cards from " + found.source);
             return new CardDatabase(cards);
         } catch (Exception e) {
             throw new RuntimeException("Failed to load card database", e);
+        }
+    }
+
+    private static FoundCards openCards() throws Exception {
+        InputStream packaged = CardDatabase.class.getResourceAsStream("/cards.json");
+        if (packaged != null) {
+            return new FoundCards(packaged, "classpath");
+        }
+        for (Path path : cardFileCandidates()) {
+            if (Files.isRegularFile(path)) {
+                return new FoundCards(Files.newInputStream(path), path.toAbsolutePath().toString());
+            }
+        }
+        return null;
+    }
+
+    private static List<Path> cardFileCandidates() {
+        LinkedHashSet<Path> out = new LinkedHashSet<>();
+        addSearchRoots(out, Path.of(System.getProperty("user.dir", ".")).toAbsolutePath().normalize());
+        try {
+            URI loc = CardDatabase.class.getProtectionDomain().getCodeSource().getLocation().toURI();
+            addSearchRoots(out, Path.of(loc).toAbsolutePath().normalize());
+        } catch (Exception ignored) {
+        }
+        return new ArrayList<>(out);
+    }
+
+    private static void addSearchRoots(Set<Path> out, Path start) {
+        Path dir = Files.isRegularFile(start) ? start.getParent() : start;
+        for (int i = 0; i < 8 && dir != null; i++, dir = dir.getParent()) {
+            out.add(dir.resolve("cards.json"));
+            out.add(dir.resolve(Path.of("src", "main", "resources", "cards.json")));
+            out.add(dir.resolve(Path.of("terraforming-mars", "src", "main", "resources", "cards.json")));
+        }
+    }
+
+    private static final class FoundCards implements AutoCloseable {
+        final InputStream in;
+        final String source;
+
+        FoundCards(InputStream in, String source) {
+            this.in = in;
+            this.source = source;
+        }
+
+        @Override
+        public void close() throws Exception {
+            if (in != null) {
+                in.close();
+            }
         }
     }
 
@@ -117,10 +180,19 @@ public final class CardDatabase {
         if (z >= 1 && z <= 12) {
             return true;
         }
-        if (!prelude && !venus && !colonies) {
-            return false;
+        if (z >= 33) {
+            return true;
         }
-        return true;
+        if (z >= 18 && z <= 22) {
+            return prelude;
+        }
+        if (z >= 23 && z <= 27) {
+            return venus;
+        }
+        if (z >= 28 && z <= 32) {
+            return colonies;
+        }
+        return prelude || venus || colonies;
     }
 
     public static int zNumber(String number) {

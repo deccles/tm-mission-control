@@ -19,7 +19,20 @@ public final class ActivePlay {
     public Map<String, Object> production = new LinkedHashMap<>();
     public Map<String, Object> resources = new LinkedHashMap<>();
     public List<String> remember = new ArrayList<>();
+    public List<DrawnCard> drawn = new ArrayList<>();
     public boolean yours;
+
+    public static final class DrawnCard {
+        public String name;
+        public String color;
+        public Integer cost;
+        public Integer vp;
+        public List<String> tags = new ArrayList<>();
+        public String extra = "";
+        public Map<String, Object> production = new LinkedHashMap<>();
+        public Map<String, Object> resources = new LinkedHashMap<>();
+        public Map<String, Object> req = new LinkedHashMap<>();
+    }
 
     void fromCard(Card card) {
         if (card == null) {

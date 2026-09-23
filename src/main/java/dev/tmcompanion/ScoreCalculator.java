@@ -46,6 +46,7 @@ public final class ScoreCalculator {
         }
         out.put("history", state.chartHistory(compact));
         out.put("events", new ArrayList<>(state.scoreEvents));
+        out.put("fundedAwards", fundedAwards(players));
         return out;
     }
 
@@ -176,6 +177,55 @@ public final class ScoreCalculator {
         byId.values().forEach(Breakdown::retotal);
     }
 
+    static List<Map<String, Object>> fundedAwards(List<PlayerState> players) {
+        List<Map<String, Object>> out = new ArrayList<>();
+        Set<String> seen = new LinkedHashSet<>();
+        for (PlayerState player : players) {
+            for (String raw : player.awards) {
+                String name = raw == null ? "" : raw.replace('_', ' ').trim();
+                if (name.isBlank() || !seen.add(name.toLowerCase(Locale.ROOT))) {
+                    continue;
+                }
+                List<int[]> ranked = new ArrayList<>();
+                for (int i = 0; i < players.size(); i++) {
+                    ranked.add(new int[] { i, awardMetric(name, players.get(i)) });
+                }
+                ranked.sort((a, b) -> {
+                    int cmp = Integer.compare(b[1], a[1]);
+                    return cmp != 0 ? cmp : Integer.compare(a[0], b[0]);
+                });
+                int best = ranked.isEmpty() ? 0 : ranked.get(0)[1];
+                List<Map<String, Object>> standings = new ArrayList<>();
+                List<Map<String, Object>> lead = new ArrayList<>();
+                for (int[] rowScore : ranked) {
+                    PlayerState p = players.get(rowScore[0]);
+                    Map<String, Object> who = new LinkedHashMap<>();
+                    who.put("id", p.id);
+                    who.put("name", p.human ? "You" : p.displayName());
+                    who.put("color", p.color);
+                    who.put("yours", p.human);
+                    who.put("value", rowScore[1]);
+                    standings.add(who);
+                    if (rowScore[1] == best) {
+                        lead.add(who);
+                    }
+                }
+                Map<String, Object> row = new LinkedHashMap<>();
+                row.put("name", name);
+                row.put("tied", lead.size() > 1);
+                row.put("value", best);
+                row.put("unit", awardUnit(name));
+                row.put("standings", standings);
+                row.put("leaders", lead);
+                if (lead.size() == 1) {
+                    row.put("color", lead.get(0).get("color"));
+                }
+                out.add(row);
+            }
+        }
+        return out;
+    }
+
     private static int awardMetric(String award, PlayerState p) {
         String key = award.toLowerCase(Locale.ROOT).replace(" ", "");
         return switch (key) {
@@ -192,7 +242,31 @@ public final class ScoreCalculator {
             case "celebrity" -> p.megaCredits;
             case "industrialist" -> p.steelProd + p.energyProd;
             case "benefactor" -> p.tr;
+            case "venuphile", "venusphile" -> p.tags.getOrDefault("venus", 0);
             default -> 0;
+        };
+    }
+
+    private static String awardUnit(String award) {
+        String key = award.toLowerCase(Locale.ROOT).replace(" ", "");
+        return switch (key) {
+            case "landlord" -> "tiles";
+            case "banker" -> "M€ production";
+            case "scientist" -> "science tags";
+            case "thermalist" -> "heat";
+            case "miner" -> "steel + titanium";
+            case "cultivator" -> "greeneries";
+            case "magnate" -> "green cards";
+            case "spacebaron" -> "space tags";
+            case "excentric" -> "resources on cards";
+            case "contractor" -> "building tags";
+            case "celebrity" -> "M€";
+            case "industrialist" -> "steel + energy";
+            case "desertsettler" -> "south tiles";
+            case "estatedealer" -> "ocean-adjacent tiles";
+            case "benefactor" -> "TR";
+            case "venuphile", "venusphile" -> "Venus tags";
+            default -> "";
         };
     }
 
@@ -234,17 +308,21 @@ public final class ScoreCalculator {
         if (e.contains("science") && e.contains(":")) {
             return tokens > 0 ? 3 : 0;
         }
-        Matcher frac = Pattern.compile("(\\d+)\\s*/\\s*(\\d+)\\s+(animal|microbe|science|fighter)").matcher(e);
+        Matcher frac = Pattern.compile("(\\d+)\\s*/\\s*(\\d+)\\s+(animal|microbe|science|fighter|floater)").matcher(e);
         if (frac.find()) {
             int num = Integer.parseInt(frac.group(1));
             int den = Integer.parseInt(frac.group(2));
             return den == 0 ? 0 : num * (tokens / den);
         }
-        Matcher per = Pattern.compile("(\\d+)\\s*/\\s*(animal|microbe|science|fighter|jovian)").matcher(e);
+        Matcher per = Pattern.compile("(\\d+)\\s*/\\s*(animal|microbe|science|fighter|floater|jovian|venus)").matcher(e);
         if (per.find()) {
             int num = Integer.parseInt(per.group(1));
             String kind = per.group(2);
-            int count = kind.equals("jovian") ? jovian : tokens;
+            int count = switch (kind) {
+                case "jovian" -> jovian;
+                case "venus" -> owner.tags.getOrDefault("venus", 0);
+                default -> tokens;
+            };
             return num * count;
         }
         Matcher cities = Pattern.compile("(\\d+)\\s*/\\s*3\\s*city").matcher(e);

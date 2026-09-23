@@ -11,15 +11,20 @@ import com.sun.net.httpserver.HttpsServer;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.DatagramSocket;
+import java.net.HttpURLConnection;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
+import java.net.ServerSocket;
 import java.net.URI;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -90,8 +95,103 @@ public final class CompanionServer {
 
     private void mount(HttpServer http) {
         http.createContext("/api/state", this::state);
+        http.createContext("/api/shutdown", this::shutdown);
         http.createContext("/qr.svg", this::qr);
         http.createContext("/", this::staticFile);
+    }
+
+    /** Stop any companion already bound to {@code port} so this process can take over. */
+    static void takeOver(int port) throws IOException {
+        if (!portInUse(port)) {
+            return;
+        }
+        System.out.println("Another companion is already running — stopping it.");
+        askToStop(port);
+        if (waitUntilFree(port, 2500)) {
+            return;
+        }
+        long pid = listenerPid(port);
+        long self = ProcessHandle.current().pid();
+        if (pid > 0 && pid != self) {
+            ProcessHandle.of(pid).ifPresent(ph -> {
+                ph.destroy();
+                try {
+                    ph.onExit().get(2, java.util.concurrent.TimeUnit.SECONDS);
+                } catch (Exception ignored) {
+                    ph.destroyForcibly();
+                }
+            });
+        }
+        if (!waitUntilFree(port, 4000)) {
+            throw new IOException("Could not take over port " + port);
+        }
+    }
+
+    private static void askToStop(int port) {
+        try {
+            URL url = URI.create("http://127.0.0.1:" + port + "/api/shutdown").toURL();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setConnectTimeout(400);
+            conn.setReadTimeout(800);
+            conn.getResponseCode();
+            conn.disconnect();
+        } catch (Exception ignored) {
+        }
+    }
+
+    private static boolean portInUse(int port) {
+        try (ServerSocket socket = new ServerSocket()) {
+            socket.setReuseAddress(false);
+            socket.bind(new InetSocketAddress("127.0.0.1", port));
+            return false;
+        } catch (IOException e) {
+            return true;
+        }
+    }
+
+    private static boolean waitUntilFree(int port, int timeoutMs) {
+        long deadline = System.currentTimeMillis() + timeoutMs;
+        while (System.currentTimeMillis() < deadline) {
+            if (!portInUse(port)) {
+                return true;
+            }
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return false;
+            }
+        }
+        return !portInUse(port);
+    }
+
+    private static long listenerPid(int port) {
+        String needle = ":" + port;
+        try {
+            Process proc = new ProcessBuilder("cmd", "/c", "netstat -ano -p tcp")
+                    .redirectErrorStream(true)
+                    .start();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (!line.contains("LISTENING") || !line.contains(needle)) {
+                        continue;
+                    }
+                    String[] parts = line.trim().split("\\s+");
+                    if (parts.length < 5) {
+                        continue;
+                    }
+                    String local = parts[1];
+                    if (!local.endsWith(needle) && !local.contains(needle + " ")) {
+                        continue;
+                    }
+                    return Long.parseLong(parts[parts.length - 1]);
+                }
+            }
+        } catch (Exception ignored) {
+        }
+        return -1;
     }
 
     private static String httpsUrl(String host, int phonePort) {
@@ -165,6 +265,33 @@ public final class CompanionServer {
         if (server != null) {
             server.stop(0);
         }
+    }
+
+    private void shutdown(HttpExchange exchange) throws IOException {
+        InetAddress remote = exchange.getRemoteAddress() == null ? null : exchange.getRemoteAddress().getAddress();
+        if (remote == null || !remote.isLoopbackAddress()) {
+            exchange.sendResponseHeaders(403, -1);
+            return;
+        }
+        if (!"POST".equals(exchange.getRequestMethod())) {
+            exchange.sendResponseHeaders(405, -1);
+            return;
+        }
+        byte[] body = "stopping".getBytes(StandardCharsets.UTF_8);
+        exchange.sendResponseHeaders(200, body.length);
+        try (OutputStream out = exchange.getResponseBody()) {
+            out.write(body);
+        }
+        Thread stopper = new Thread(() -> {
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
+            }
+            System.exit(0);
+        }, "companion-handoff");
+        stopper.setDaemon(true);
+        stopper.start();
     }
 
     private void state(HttpExchange exchange) throws IOException {

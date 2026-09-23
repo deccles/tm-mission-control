@@ -35,6 +35,8 @@ public final class LogParser {
     private static final Pattern CORP_ID = Pattern.compile("^\\tCorporation : (\\d+)$");
     private static final Pattern MILESTONE = Pattern.compile(
             "\\[PlayerAction] Playing(?: action)? \\(\\d+\\) Milestone Action: (.+)$");
+    private static final Pattern MILESTONE_LISTED = Pattern.compile(
+            "\\[PlayerAction] Adding action \\(\\d+\\) Milestone Action: (.+)$");
     private static final Pattern AWARD = Pattern.compile(
             "\\[PlayerAction] Playing(?: action)? \\(\\d+\\) Award Action: (.+)$");
     private static final Pattern STANDARD = Pattern.compile(
@@ -59,6 +61,10 @@ public final class LogParser {
     private static final Pattern ADDING_CORP_ACTION = Pattern.compile(
             "\\[PlayerAction] Adding action \\(\\d+\\) Corporation action : (.+)$");
     private static final Pattern TO_PLAYER_BANK = Pattern.compile("to player (\\d+) bank");
+    private static final Pattern DRAW_CARDS = Pattern.compile(
+            "\\[PlayerAction] Playing(?: action)? \\([\\d.]+\\) DrawCardPlayerAction");
+    private static final Pattern ADDING_HAND_CARD = Pattern.compile(
+            "\\[PlayerAction] Adding action \\([\\d.]+\\) CardPlayerAction Card: (.+)$");
 
     private final CardDatabase cards;
     private final GameState state;
@@ -74,6 +80,8 @@ public final class LogParser {
     private List<Card> pendingCorps = List.of();
     private String lastCardKey = "";
     private String lastBlueAction = "";
+    private boolean collectDraws;
+    private String pendingHandCard = "";
     private final java.util.Map<Integer, String> steamCorps = new java.util.HashMap<>();
 
     public LogParser(CardDatabase cards, GameState state) {
@@ -128,6 +136,8 @@ public final class LogParser {
                 pendingNamedCorp = "";
                 lastCardKey = "";
                 lastBlueAction = "";
+                collectDraws = false;
+                pendingHandCard = "";
                 steamCorps.clear();
                 return;
             }
@@ -171,12 +181,21 @@ public final class LogParser {
                 pendingNamedCorp = "";
             }
             m = TO_PLAYER_BANK.matcher(line);
-            if (m.find() && !pendingNamedCorp.isBlank()) {
-                Card named = cards.find(pendingNamedCorp);
-                if (named != null) {
-                    assignCorp(state.player(Integer.parseInt(m.group(1))), named);
+            if (m.find()) {
+                int bankPlayer = Integer.parseInt(m.group(1));
+                if (collectDraws && !pendingHandCard.isBlank()) {
+                    if (state.player(bankPlayer).human) {
+                        addDrawn(pendingHandCard);
+                    }
+                    pendingHandCard = "";
                 }
-                pendingNamedCorp = "";
+                if (!pendingNamedCorp.isBlank()) {
+                    Card named = cards.find(pendingNamedCorp);
+                    if (named != null) {
+                        assignCorp(state.player(bankPlayer), named);
+                    }
+                    pendingNamedCorp = "";
+                }
             }
 
             m = GAME_ID.matcher(line.trim());
@@ -260,11 +279,26 @@ public final class LogParser {
 
             m = PLAYING_CARD.matcher(line);
             if (m.find()) {
+                collectDraws = false;
+                pendingHandCard = "";
                 playCard(currentPlayer, m.group(2).trim());
+            }
+            if (DRAW_CARDS.matcher(line).find() && !line.contains("Adding action")) {
+                beginDrawCollect();
+            }
+            m = ADDING_HAND_CARD.matcher(line);
+            if (m.find() && collectDraws) {
+                pendingHandCard = m.group(1).trim();
+            }
+            if (line.contains("finished handling event of type:")) {
+                collectDraws = false;
+                pendingHandCard = "";
             }
 
             m = STANDARD.matcher(line);
             if (m.find()) {
+                collectDraws = false;
+                pendingHandCard = "";
                 lastBlueAction = "";
                 setActive(currentPlayer, "Standard Project: " + m.group(2).trim(), null, false);
             }
@@ -302,13 +336,24 @@ public final class LogParser {
             if (m.find()) {
                 onPlace(m.group(1), Integer.parseInt(m.group(3)));
             }
+            if (line.contains(":: PlaceTile") && line.contains("Callback is called")) {
+                collectDraws = false;
+                pendingHandCard = "";
+            }
 
+            m = MILESTONE_LISTED.matcher(line);
+            if (m.find()) {
+                state.listedMilestones.add(m.group(1).trim());
+            }
             m = MILESTONE.matcher(line);
             if (m.find() && !line.contains("Playing action")) {
                 lastBlueAction = "";
                 String name = m.group(1).trim();
-                state.player(currentPlayer).milestones.add(name);
-                state.addScoreEvent(currentPlayer, "milestone", "+5 " + name, 5);
+                PlayerState claimer = state.player(currentPlayer);
+                if (!claimer.milestones.contains(name)) {
+                    claimer.milestones.add(name);
+                    state.addScoreEvent(currentPlayer, "milestone", "+5 " + name, 5);
+                }
             }
             m = AWARD.matcher(line);
             if (m.find() && !line.contains("Playing action")) {
@@ -693,10 +738,15 @@ public final class LogParser {
             played.number = CardDatabase.parseCardNumber(card.number);
             played.tokenType = cards.tokenType(card);
             played.printedVp = card.vp == null ? 0 : card.vp;
+            played.hasRequirement = card.hasRequirement();
+            played.project = !"prel".equalsIgnoreCase(card.type)
+                    && !"corp".equalsIgnoreCase(card.type)
+                    && !card.isEvent();
         } else {
             played.color = "green";
             played.colorLabel = "";
             played.blue = false;
+            played.project = true;
         }
         player.addCard(played);
         int vp = ScoreCalculator.cardVp(played, player, citiesInPlay());
@@ -783,6 +833,56 @@ public final class LogParser {
         }
     }
 
+    private void beginDrawCollect() {
+        PlayerState player = state.player(currentPlayer);
+        if (!player.human) {
+            collectDraws = false;
+            pendingHandCard = "";
+            return;
+        }
+        collectDraws = true;
+        pendingHandCard = "";
+        if (state.activePlay == null || !state.activePlay.yours) {
+            setActive(currentPlayer, "Draw cards", null, false);
+            if (state.activePlay != null) {
+                state.activePlay.colorLabel = "Draw";
+                state.activePlay.effect = "Cards added to your hand.";
+            }
+        }
+    }
+
+    private void addDrawn(String rawName) {
+        if (state.activePlay == null || !state.activePlay.yours) {
+            return;
+        }
+        String name = cards.displayName(rawName);
+        for (ActivePlay.DrawnCard existing : state.activePlay.drawn) {
+            if (name.equals(existing.name)) {
+                return;
+            }
+        }
+        ActivePlay.DrawnCard drawn = new ActivePlay.DrawnCard();
+        drawn.name = name;
+        Card card = cards.find(rawName);
+        if (card != null) {
+            drawn.color = card.color;
+            drawn.cost = card.cost;
+            drawn.vp = card.vp;
+            drawn.tags = List.copyOf(card.tags);
+            drawn.extra = card.extra == null ? "" : card.extra;
+            if (card.production != null) {
+                drawn.production = new java.util.LinkedHashMap<>(card.production);
+            }
+            if (card.resources != null) {
+                drawn.resources = new java.util.LinkedHashMap<>(card.resources);
+            }
+            if (card.req != null) {
+                drawn.req = new java.util.LinkedHashMap<>(card.req);
+            }
+        }
+        state.activePlay.drawn.add(drawn);
+    }
+
     private void setActive(int playerId, String name, String placing, boolean preview) {
         PlayerState player = state.player(playerId);
         String lookup = name.startsWith("Using ") ? name.substring(6) : name.replace("Standard Project: ", "");
@@ -847,16 +947,25 @@ public final class LogParser {
                 && !offMarsCity(cardName)) {
             assignTharsisIfPending();
         }
+        if (player.human) {
+            if (state.activePlay == null || !state.activePlay.yours) {
+                String label = kind.contains("ocean") ? "Ocean"
+                        : kind.contains("city") || "capital".equals(kind) ? "City"
+                        : kind.contains("greenery") ? "Greenery"
+                        : "tile";
+                setActive(currentPlayer, "Placing " + label, kind, false);
+                if (state.activePlay != null) {
+                    state.activePlay.colorLabel = "Placement";
+                }
+            }
+            collectDraws = true;
+            pendingHandCard = "";
+        }
         clearPlacing();
     }
 
     private void clearPlacing() {
         if (state.activePlay == null) {
-            return;
-        }
-        String name = state.activePlay.cardName == null ? "" : state.activePlay.cardName;
-        if (name.startsWith("Placing ") || name.startsWith("Convert ")) {
-            state.activePlay = null;
             return;
         }
         state.activePlay.placing = null;
