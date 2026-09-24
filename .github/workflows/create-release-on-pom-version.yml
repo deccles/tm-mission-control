@@ -127,16 +127,22 @@ jobs:
 
           $setup = Join-Path $msi.DirectoryName "TMMissionControl-Setup.msi"
           Copy-Item $msi.FullName $setup -Force
-          $files = @($msi.FullName, $setup)
-          $uploaded = $false
-          for ($try = 1; $try -le 5; $try++) {
-            gh release upload $tag @files --clobber
-            if ($LASTEXITCODE -eq 0) {
-              $uploaded = $true
-              break
+
+          function Publish-Asset($release, $path) {
+            for ($try = 1; $try -le 5; $try++) {
+              gh release upload $release $path --clobber
+              if ($LASTEXITCODE -eq 0) { return }
+              Start-Sleep -Seconds (5 * $try)
             }
-            Start-Sleep -Seconds (5 * $try)
-          }
-          if (-not $uploaded) {
             exit 1
+          }
+
+          Publish-Asset $tag $msi.FullName
+
+          gh release view latest 2>$null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create latest $setup --prerelease --target "${{ github.sha }}" --title "Latest" --notes "Current Windows installer. Versioned releases keep their own MSI."
+            if ($LASTEXITCODE -ne 0) { exit 1 }
+          } else {
+            Publish-Asset latest $setup
           }
