@@ -1,4 +1,5 @@
 target/
+dist/
 bin/
 .idea/
 *.iml

@@ -61,6 +61,10 @@
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <mainClass>dev.tmmissioncontrol.App</mainClass>
+                  <manifestEntries>
+                    <Implementation-Title>TM Mission Control</Implementation-Title>
+                    <Implementation-Version>${project.version}</Implementation-Version>
+                  </manifestEntries>
                 </transformer>
               </transformers>
             </configuration>
@@ -69,4 +73,92 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>installer</id>
+      <properties>
+        <jdk.home>${env.JAVA_HOME}</jdk.home>
+        <!-- No spaces, so the file is TMMissionControl-1.0.0.msi -->
+        <app.name>TMMissionControl</app.name>
+        <app.version>${project.version}</app.version>
+        <jpackage.input.dir>${project.build.directory}\jpackage-input</jpackage.input.dir>
+        <jpackage.dest.dir>${project.basedir}\dist\installer</jpackage.dest.dir>
+        <main.jar>${project.build.finalName}.jar</main.jar>
+        <vendor>deccles</vendor>
+        <!-- Stable so a newer MSI upgrades the installed copy. -->
+        <win.upgrade.uuid>c4e8a1b2-7d36-4f90-9a15-3e6b8c0d2f47</win.upgrade.uuid>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.3.1</version>
+            <executions>
+              <execution>
+                <id>stage-jpackage-jar</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${jpackage.input.dir}</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${project.build.directory}</directory>
+                      <includes>
+                        <include>${main.jar}</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                  <overwrite>true</overwrite>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.5.0</version>
+            <executions>
+              <execution>
+                <id>jpackage-msi</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <executable>${jdk.home}/bin/jpackage.exe</executable>
+                  <workingDirectory>${project.basedir}</workingDirectory>
+                  <arguments>
+                    <argument>--type</argument>
+                    <argument>msi</argument>
+                    <argument>--name</argument>
+                    <argument>${app.name}</argument>
+                    <argument>--app-version</argument>
+                    <argument>${app.version}</argument>
+                    <argument>--vendor</argument>
+                    <argument>${vendor}</argument>
+                    <argument>--input</argument>
+                    <argument>${jpackage.input.dir}</argument>
+                    <argument>--main-jar</argument>
+                    <argument>${main.jar}</argument>
+                    <argument>--dest</argument>
+                    <argument>${jpackage.dest.dir}</argument>
+                    <argument>--win-menu</argument>
+                    <argument>--win-shortcut</argument>
+                    <argument>--win-dir-chooser</argument>
+                    <argument>--win-upgrade-uuid</argument>
+                    <argument>${win.upgrade.uuid}</argument>
+                    <argument>--icon</argument>
+                    <argument>${project.basedir}\src\main\resources\tm-mission-control.ico</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

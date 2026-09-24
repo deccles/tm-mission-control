@@ -541,6 +541,14 @@ function render(data) {
     cardsOpen = false;
   }
   $("meta").textContent = `Gen ${data.generation ?? "?"} · ${data.phase || ""} · ${data.board || ""} · ${data.gameId ? "Game " + data.gameId : "no game yet"}`;
+  const update = $("update");
+  if (data.updateAvailable) {
+    update.hidden = false;
+    update.textContent = "Update " + data.updateAvailable + " available";
+  } else {
+    update.hidden = true;
+    update.textContent = "";
+  }
   setLiveStatus(data.live ? "live" : "idle");
   if (data.url) {
     $("qr-link").href = data.url;

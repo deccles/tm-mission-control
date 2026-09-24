@@ -71,6 +71,8 @@ public final class App {
         System.out.println("Phone: same Wi-Fi as usual. Open " + state.url
                 + " — if Chrome warns about the certificate, tap Advanced and proceed once.");
 
+        GithubMsiUpdater.start();
+
         if (Desktop.isDesktopSupported()) {
             try {
                 Desktop.getDesktop().browse(uri);

@@ -1,0 +1,128 @@
+name: Release on POM version
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "master" ]
+    paths:
+      - "pom.xml"
+      - ".github/workflows/create-release-on-pom-version.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  installer:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java (includes jpackage)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Read project version from pom.xml
+        id: ver
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version)"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Find latest release tag
+        id: prev
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags --force
+          PREV_TAG="$(git tag -l 'v*' --sort=-v:refname | head -n 1 || true)"
+          echo "prev_tag=$PREV_TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Decide whether this is a release
+        id: decide
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${{ steps.ver.outputs.version }}"
+          PREV="${{ steps.prev.outputs.prev_tag }}"
+          TAG="v$VERSION"
+
+          if [[ "$VERSION" == *"-SNAPSHOT" ]]; then
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [[ -n "$PREV" && "$TAG" == "$PREV" ]]; then
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "release=true" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Build MSI (installer profile)
+        if: steps.decide.outputs.release == 'true'
+        shell: pwsh
+        run: mvn -B -DskipTests -Pinstaller package
+
+      - name: Create and push tag
+        if: steps.decide.outputs.release == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.decide.outputs.tag }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" -m "$TAG"
+          git push origin "$TAG"
+
+      - name: Create GitHub Release (auto notes)
+        if: steps.decide.outputs.release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.decide.outputs.tag }}"
+          PREV="${{ steps.prev.outputs.prev_tag }}"
+
+          if [[ -n "$PREV" ]]; then
+            NOTES_JSON="$(gh api "repos/$GITHUB_REPOSITORY/releases/generate-notes" \
+              -f tag_name="$TAG" \
+              -f target_commitish="$GITHUB_SHA" \
+              -f previous_tag_name="$PREV")"
+          else
+            NOTES_JSON="$(gh api "repos/$GITHUB_REPOSITORY/releases/generate-notes" \
+              -f tag_name="$TAG" \
+              -f target_commitish="$GITHUB_SHA")"
+          fi
+
+          NAME="$(echo "$NOTES_JSON" | jq -r .name)"
+          BODY="$(echo "$NOTES_JSON" | jq -r .body)"
+
+          gh release create "$TAG" --title "$NAME" --notes "$BODY"
+
+      - name: Upload MSI to GitHub Release
+        if: steps.decide.outputs.release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: pwsh
+        run: |
+          $version = "${{ steps.ver.outputs.version }}"
+          $tag = "${{ steps.decide.outputs.tag }}"
+
+          $msi = Get-ChildItem -Path dist\installer -Filter "TMMissionControl-$version.msi" | Select-Object -First 1
+          if (-not $msi) {
+            Write-Error "MSI not found. Searched for: TMMissionControl-$version.msi"
+            Get-ChildItem -Path dist -Recurse -Filter "*.msi" | ForEach-Object { $_.FullName }
+            exit 1
+          }
+
+          gh release upload $tag "$($msi.FullName)#TMMissionControl-$version.msi" --clobber

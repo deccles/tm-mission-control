@@ -80,6 +80,7 @@ public final class GameState {
             out.put("score", ScoreCalculator.estimate(this, table, you));
             out.put("milestones", MilestoneAdvisor.snapshot(this, you, table));
             out.put("fundedAwards", ScoreCalculator.fundedAwards(table));
+            out.put("updateAvailable", GithubMsiUpdater.availableVersion());
             return out;
         }
     }
