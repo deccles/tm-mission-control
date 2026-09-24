@@ -37,18 +37,24 @@ function boardSubtitle(p) {
   return "";
 }
 
+function resMark(rawKey) {
+  const key = resKey(rawKey);
+  const mark = key === "ti" ? TI_STAR : "";
+  return `<span class="res-sym res-${key}"><span class="res-box">${mark}</span></span>`;
+}
+
 function renderCubes(p) {
   const rows = [
-    ["M€", p.megaCredits, p.megaCreditProd],
-    ["Steel", p.steel, p.steelProd],
-    ["Titanium", p.titanium, p.titaniumProd],
-    ["Plant", p.plants, p.plantProd],
-    ["Energy", p.energy, p.energyProd],
-    ["Heat", p.heat, p.heatProd],
+    ["M€", "mc", p.megaCredits, p.megaCreditProd],
+    ["Steel", "steel", p.steel, p.steelProd],
+    ["Titanium", "ti", p.titanium, p.titaniumProd],
+    ["Plant", "plant", p.plants, p.plantProd],
+    ["Energy", "energy", p.energy, p.energyProd],
+    ["Heat", "heat", p.heat, p.heatProd],
   ];
   return `<div class="board-cubes"><table class="cubes">
-    <tr><th>Resource</th><th class="num">Qty</th><th class="num">Prod</th></tr>
-    ${rows.map(([n, q, pr]) => `<tr><td>${n}</td><td class="num">${q ?? 0}</td><td class="num prod">${pr ?? 0}</td></tr>`).join("")}
+    <tr><th>Resource</th><th class="num">Prod</th><th class="num">Qty</th></tr>
+    ${rows.map(([n, key, q, pr]) => `<tr><td><span class="res-name">${resMark(key)}<span>${n}</span></span></td><td class="num prod">${pr ?? 0}</td><td class="num">${q ?? 0}</td></tr>`).join("")}
   </table></div>`;
 }
 

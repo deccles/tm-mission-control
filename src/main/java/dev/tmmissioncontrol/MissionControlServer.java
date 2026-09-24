@@ -113,14 +113,7 @@ public final class MissionControlServer {
         long pid = listenerPid(port);
         long self = ProcessHandle.current().pid();
         if (pid > 0 && pid != self) {
-            ProcessHandle.of(pid).ifPresent(ph -> {
-                ph.destroy();
-                try {
-                    ph.onExit().get(2, java.util.concurrent.TimeUnit.SECONDS);
-                } catch (Exception ignored) {
-                    ph.destroyForcibly();
-                }
-            });
+            forceStopApp(pid);
         }
         if (!waitUntilFree(port, 4000)) {
             throw new IOException("Could not take over port " + port);
@@ -164,6 +157,60 @@ public final class MissionControlServer {
             }
         }
         return !portInUse(port);
+    }
+
+    /** The installed app is a windowed launcher, so a console close does not stop it. */
+    private static void forceStopApp(long pid) {
+        long root = pid;
+        ProcessHandle handle = ProcessHandle.of(pid).orElse(null);
+        if (handle != null) {
+            ProcessHandle parent = handle.parent().orElse(null);
+            if (parent != null && parent.pid() != ProcessHandle.current().pid() && isMissionControl(parent)) {
+                root = parent.pid();
+            }
+        }
+        try {
+            Process kill = new ProcessBuilder("taskkill", "/F", "/T", "/PID", Long.toString(root))
+                    .redirectErrorStream(true)
+                    .start();
+            String output = new String(kill.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+            kill.waitFor(5, java.util.concurrent.TimeUnit.SECONDS);
+            if (output.toLowerCase(Locale.ROOT).contains("access is denied")) {
+                elevateKill(root);
+            }
+        } catch (Exception ignored) {
+        }
+    }
+
+    private static void elevateKill(long pid) {
+        try {
+            new ProcessBuilder(
+                    "powershell",
+                    "-NoProfile",
+                    "-Command",
+                    "Start-Process -FilePath taskkill -ArgumentList '/F','/T','/PID','" + pid + "' -Verb RunAs -Wait")
+                    .redirectErrorStream(true)
+                    .start()
+                    .waitFor(30, java.util.concurrent.TimeUnit.SECONDS);
+        } catch (Exception ignored) {
+        }
+    }
+
+    private static boolean isMissionControl(ProcessHandle handle) {
+        String command = handle.info().command().orElse("").toLowerCase(Locale.ROOT);
+        if (command.contains("tmmissioncontrol")) {
+            return true;
+        }
+        try {
+            Process proc = new ProcessBuilder("tasklist", "/FI", "PID eq " + handle.pid(), "/FO", "CSV", "/NH")
+                    .redirectErrorStream(true)
+                    .start();
+            String out = new String(proc.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+            proc.waitFor(3, java.util.concurrent.TimeUnit.SECONDS);
+            return out.toLowerCase(Locale.ROOT).contains("tmmissioncontrol");
+        } catch (Exception ignored) {
+            return false;
+        }
     }
 
     private static long listenerPid(int port) {
@@ -247,6 +294,7 @@ public final class MissionControlServer {
     }
 
     public void stop() {
+        stopListening();
         for (JmDNS dns : mdns) {
             try {
                 dns.unregisterAllServices();
@@ -255,16 +303,22 @@ public final class MissionControlServer {
             }
         }
         mdns.clear();
+    }
+
+    /** Release the listen sockets before slower teardown, so a restart can bind the port. */
+    private void stopListening() {
+        if (server != null) {
+            server.stop(0);
+            server = null;
+        }
+        if (lanHttp != null) {
+            lanHttp.stop(0);
+            lanHttp = null;
+        }
         for (HttpsServer https : httpsServers) {
             https.stop(0);
         }
         httpsServers.clear();
-        if (lanHttp != null) {
-            lanHttp.stop(0);
-        }
-        if (server != null) {
-            server.stop(0);
-        }
     }
 
     private void shutdown(HttpExchange exchange) throws IOException {
@@ -282,6 +336,7 @@ public final class MissionControlServer {
         try (OutputStream out = exchange.getResponseBody()) {
             out.write(body);
         }
+        stopListening();
         Thread stopper = new Thread(() -> {
             try {
                 Thread.sleep(150);
@@ -290,7 +345,7 @@ public final class MissionControlServer {
             }
             System.exit(0);
         }, "mission-control-handoff");
-        stopper.setDaemon(true);
+        stopper.setDaemon(false);
         stopper.start();
     }
 
