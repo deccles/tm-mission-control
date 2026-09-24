@@ -72,6 +72,7 @@ public final class App {
                 + " — if Chrome warns about the certificate, tap Advanced and proceed once.");
 
         GithubMsiUpdater.start();
+        MissionControlTray.install(uri);
 
         if (Desktop.isDesktopSupported()) {
             try {
@@ -81,6 +82,7 @@ public final class App {
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            MissionControlTray.remove();
             tailer.stop();
             server.stop();
         }));
