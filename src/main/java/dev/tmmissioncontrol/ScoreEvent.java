@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 public final class ScoreEvent {
     public int generation;

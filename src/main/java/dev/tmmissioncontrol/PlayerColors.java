@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

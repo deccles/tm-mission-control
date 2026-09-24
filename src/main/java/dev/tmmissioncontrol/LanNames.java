@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 final class LanNames {
-    static final String SHORT = "tmcompanion";
+    static final String SHORT = "tmmissioncontrol";
 
     private LanNames() {
     }

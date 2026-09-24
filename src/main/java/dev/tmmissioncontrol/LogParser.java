@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

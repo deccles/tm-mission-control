@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

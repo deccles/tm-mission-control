@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -10,13 +10,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 final class LocalCert {
-    private static final char[] PASS = "tm-companion".toCharArray();
+    private static final char[] PASS = "tm-mission-control".toCharArray();
 
     private LocalCert() {
     }
 
     static Path dir() throws java.io.IOException {
-        Path dir = Path.of(System.getProperty("user.home"), "AppData", "Local", "TM Companion");
+        Path dir = Path.of(System.getProperty("user.home"), "AppData", "Local", "TM Mission Control");
         Files.createDirectories(dir);
         return dir;
     }
@@ -46,7 +46,7 @@ final class LocalCert {
         LinkedHashSet<String> out = new LinkedHashSet<>();
         out.add("localhost");
         out.add("127.0.0.1");
-        out.add("tmcompanion.local");
+        out.add("tmmissioncontrol.local");
         for (String host : hosts) {
             if (host != null && !host.isBlank()) {
                 out.add(host.trim());
@@ -73,16 +73,16 @@ final class LocalCert {
         Process proc = new ProcessBuilder(
                 keytool.toString(),
                 "-genkeypair",
-                "-alias", "tm-companion",
+                "-alias", "tm-mission-control",
                 "-keyalg", "RSA",
                 "-keysize", "2048",
                 "-sigalg", "SHA256withRSA",
                 "-validity", "825",
                 "-storetype", "PKCS12",
                 "-keystore", store.toString(),
-                "-storepass", "tm-companion",
-                "-keypass", "tm-companion",
-                "-dname", "CN=tmcompanion.local",
+                "-storepass", "tm-mission-control",
+                "-keypass", "tm-mission-control",
+                "-dname", "CN=tmmissioncontrol.local",
                 "-ext", ext.toString(),
                 "-noprompt")
                 .redirectErrorStream(true)

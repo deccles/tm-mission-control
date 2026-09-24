@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +24,7 @@ final class FirewallSetup {
     }
 
     static boolean javaRulePresent() {
-        return rulePresent("TM Companion Java");
+        return rulePresent("TM Mission Control Java");
     }
 
     static boolean ensure() {
@@ -75,11 +75,19 @@ final class FirewallSetup {
                 netsh advfirewall firewall delete rule name="TM Companion Java" >nul 2>nul
                 netsh advfirewall firewall delete rule name="TM Companion Java UDP" >nul 2>nul
                 netsh advfirewall firewall delete rule name="TM Companion mDNS" >nul 2>nul
-                netsh advfirewall firewall add rule name="TM Companion" dir=in action=allow protocol=TCP localport=443,8080,8765 profile=any enable=yes
-                netsh advfirewall firewall add rule name="TM Companion HTTPS" dir=in action=allow protocol=TCP localport=443 profile=any enable=yes
-                netsh advfirewall firewall add rule name="TM Companion mDNS" dir=in action=allow protocol=UDP localport=5353 profile=any enable=yes
-                netsh advfirewall firewall add rule name="TM Companion Java" dir=in action=allow program="%s" protocol=TCP profile=any enable=yes
-                netsh advfirewall firewall add rule name="TM Companion Java UDP" dir=in action=allow program="%s" protocol=UDP profile=any enable=yes
+                netsh advfirewall firewall delete rule name="TM Mission Control" >nul 2>nul
+                netsh advfirewall firewall delete rule name="TM Mission Control HTTPS" >nul 2>nul
+                netsh advfirewall firewall delete rule name="TM Mission Control HTTPS probe" >nul 2>nul
+                netsh advfirewall firewall delete rule name="TM Mission Control 8080" >nul 2>nul
+                netsh advfirewall firewall delete rule name="TM Mission Control LAN" >nul 2>nul
+                netsh advfirewall firewall delete rule name="TM Mission Control Java" >nul 2>nul
+                netsh advfirewall firewall delete rule name="TM Mission Control Java UDP" >nul 2>nul
+                netsh advfirewall firewall delete rule name="TM Mission Control mDNS" >nul 2>nul
+                netsh advfirewall firewall add rule name="TM Mission Control" dir=in action=allow protocol=TCP localport=443,8080,8765 profile=any enable=yes
+                netsh advfirewall firewall add rule name="TM Mission Control HTTPS" dir=in action=allow protocol=TCP localport=443 profile=any enable=yes
+                netsh advfirewall firewall add rule name="TM Mission Control mDNS" dir=in action=allow protocol=UDP localport=5353 profile=any enable=yes
+                netsh advfirewall firewall add rule name="TM Mission Control Java" dir=in action=allow program="%s" protocol=TCP profile=any enable=yes
+                netsh advfirewall firewall add rule name="TM Mission Control Java UDP" dir=in action=allow program="%s" protocol=UDP profile=any enable=yes
                 """.formatted(exe, exe);
     }
 }

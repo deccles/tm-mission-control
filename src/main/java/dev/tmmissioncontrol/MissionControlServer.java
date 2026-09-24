@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,7 +38,7 @@ import java.util.concurrent.Executors;
 
 import javax.net.ssl.SSLParameters;
 
-public final class CompanionServer {
+public final class MissionControlServer {
     private final GameState state;
     private final Gson gson = new GsonBuilder().serializeNulls().create();
     private final int port;
@@ -49,11 +49,11 @@ public final class CompanionServer {
     private final List<JmDNS> mdns = new ArrayList<>();
     private byte[] qrSvg = new byte[0];
 
-    public CompanionServer(GameState state, int port) {
+    public MissionControlServer(GameState state, int port) {
         this(state, port, null);
     }
 
-    public CompanionServer(GameState state, int port, String forcedHost) {
+    public MissionControlServer(GameState state, int port, String forcedHost) {
         this.state = state;
         this.port = port;
         this.forcedHost = forcedHost;
@@ -78,9 +78,9 @@ public final class CompanionServer {
         addUrl(urls, httpUrl("127.0.0.1", port));
         state.url = urls.get(0);
         state.urls = List.copyOf(urls);
-        allowInboundNamed("TM Companion HTTPS", 443);
-        allowInboundNamed("TM Companion 8080", 8080);
-        allowInboundUdp("TM Companion mDNS", 5353);
+        allowInboundNamed("TM Mission Control HTTPS", 443);
+        allowInboundNamed("TM Mission Control 8080", 8080);
+        allowInboundUdp("TM Mission Control mDNS", 5353);
         allowJavaProgram();
         boolean desktopRule = allowInbound(port);
         state.firewallOpen = firewallOpen || FirewallSetup.javaRulePresent() || desktopRule;
@@ -100,12 +100,12 @@ public final class CompanionServer {
         http.createContext("/", this::staticFile);
     }
 
-    /** Stop any companion already bound to {@code port} so this process can take over. */
+    /** Stop any Mission Control already bound to {@code port} so this process can take over. */
     static void takeOver(int port) throws IOException {
         if (!portInUse(port)) {
             return;
         }
-        System.out.println("Another companion is already running — stopping it.");
+        System.out.println("Another Mission Control is already running — stopping it.");
         askToStop(port);
         if (waitUntilFree(port, 2500)) {
             return;
@@ -237,8 +237,8 @@ public final class CompanionServer {
             }
             try {
                 JmDNS dns = JmDNS.create(InetAddress.getByName(ip), LanNames.SHORT);
-                dns.registerService(ServiceInfo.create("_https._tcp.local.", "TM Companion", phonePort, "path=/"));
-                dns.registerService(ServiceInfo.create("_http._tcp.local.", "TM Companion", phonePort, "path=/"));
+                dns.registerService(ServiceInfo.create("_https._tcp.local.", "TM Mission Control", phonePort, "path=/"));
+                dns.registerService(ServiceInfo.create("_http._tcp.local.", "TM Mission Control", phonePort, "path=/"));
                 mdns.add(dns);
             } catch (Exception ex) {
                 System.err.println("mDNS not advertised on " + ip + ": " + ex.getMessage());
@@ -289,7 +289,7 @@ public final class CompanionServer {
                 Thread.currentThread().interrupt();
             }
             System.exit(0);
-        }, "companion-handoff");
+        }, "mission-control-handoff");
         stopper.setDaemon(true);
         stopper.start();
     }
@@ -323,7 +323,7 @@ public final class CompanionServer {
             path = "/index.html";
         }
         String resource = "/web" + path;
-        try (InputStream in = CompanionServer.class.getResourceAsStream(resource)) {
+        try (InputStream in = MissionControlServer.class.getResourceAsStream(resource)) {
             if (in == null) {
                 exchange.sendResponseHeaders(404, -1);
                 return;
@@ -429,13 +429,13 @@ public final class CompanionServer {
 
     private static boolean allowJavaProgram() {
         Path java = FirewallSetup.javaExe();
-        boolean tcp = allowProgram("TM Companion Java", java, "TCP");
-        allowProgram("TM Companion Java UDP", java, "UDP");
+        boolean tcp = allowProgram("TM Mission Control Java", java, "TCP");
+        allowProgram("TM Mission Control Java UDP", java, "UDP");
         return tcp;
     }
 
     static boolean allowInbound(int port) {
-        return allowInboundNamed("TM Companion", port);
+        return allowInboundNamed("TM Mission Control", port);
     }
 
     static boolean allowInboundNamed(String name, int port) {

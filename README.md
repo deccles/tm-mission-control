@@ -1,4 +1,4 @@
-# TM Companion
+# TM Mission Control
 
 Second-screen helper for the official Terraforming Mars digital client. It tails Unity `Player.log` and shows the **opponent board** (cubes, production, tags, blue cards) plus a sticky reminder when a card leads into tile placement.
 
@@ -10,7 +10,7 @@ Java 21 and Maven 3.9+.
 
 ```bash
 mvn package
-java -jar target/tm-companion-1.0.0.jar
+java -jar target/tm-mission-control-1.0.0.jar
 ```
 
 Or double-click `start.bat`. A browser tab opens at [http://127.0.0.1:8765/](http://127.0.0.1:8765/). Leave it on a second monitor while you play.

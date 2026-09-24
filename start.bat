@@ -6,8 +6,8 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
-if not exist "target\tm-companion-1.0.0.jar" (
-  echo Building TM Companion...
+if not exist "target\tm-mission-control-1.0.0.jar" (
+  echo Building TM Mission Control...
   call mvn -q package
   if errorlevel 1 (
     echo Build failed.
@@ -15,4 +15,4 @@ if not exist "target\tm-companion-1.0.0.jar" (
     exit /b 1
   )
 )
-java -jar "target\tm-companion-1.0.0.jar" %*
+java -jar "target\tm-mission-control-1.0.0.jar" %*

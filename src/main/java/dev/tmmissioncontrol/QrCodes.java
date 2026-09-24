@@ -1,4 +1,4 @@
-package dev.tmcompanion;
+package dev.tmmissioncontrol;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;

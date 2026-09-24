@@ -3,11 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>dev.tmcompanion</groupId>
-  <artifactId>tm-companion</artifactId>
+  <groupId>dev.tmmissioncontrol</groupId>
+  <artifactId>tm-mission-control</artifactId>
   <version>1.0.0</version>
-  <name>TM Companion</name>
-  <description>Second-screen companion for the Terraforming Mars digital client</description>
+  <name>TM Mission Control</name>
+  <description>Second-screen mission control for the Terraforming Mars digital client</description>
 
   <properties>
     <maven.compiler.release>21</maven.compiler.release>
@@ -41,7 +41,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>dev.tmcompanion.App</mainClass>
+              <mainClass>dev.tmmissioncontrol.App</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -60,7 +60,7 @@
               <createDependencyReducedPom>false</createDependencyReducedPom>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>dev.tmcompanion.App</mainClass>
+                  <mainClass>dev.tmmissioncontrol.App</mainClass>
                 </transformer>
               </transformers>
             </configuration>

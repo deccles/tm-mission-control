@@ -5,9 +5,9 @@ alwaysApply: true
 
 # Fair play — no hidden opponent info
 
-This repo is the **TM Companion**: a second-screen glance at the opponent's **public** table (resources, production, played cards, tags, tiles) plus a reminder of the card **you** are resolving.
+This repo is the **TM Mission Control**: a second-screen glance at the opponent's **public** table (resources, production, played cards, tags, tiles) plus a reminder of the card **you** are resolving.
 
-Treat the physical board game as the information boundary. If you would not know it by looking at their tableau and the shared board, the companion must not show it, store it, or use it for advice.
+Treat the physical board game as the information boundary. If you would not know it by looking at their tableau and the shared board, Mission Control must not show it, store it, or use it for advice.
 
 ## Never parse, display, or act on
 
