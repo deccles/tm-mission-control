@@ -125,7 +125,18 @@ jobs:
             exit 1
           }
 
-          gh release upload $tag `
-            "$($msi.FullName)#TMMissionControl-$version.msi" `
-            "$($msi.FullName)#TMMissionControl-Setup.msi" `
-            --clobber
+          $setup = Join-Path $msi.DirectoryName "TMMissionControl-Setup.msi"
+          Copy-Item $msi.FullName $setup -Force
+          $files = @($msi.FullName, $setup)
+          $uploaded = $false
+          for ($try = 1; $try -le 5; $try++) {
+            gh release upload $tag @files --clobber
+            if ($LASTEXITCODE -eq 0) {
+              $uploaded = $true
+              break
+            }
+            Start-Sleep -Seconds (5 * $try)
+          }
+          if (-not $uploaded) {
+            exit 1
+          }
