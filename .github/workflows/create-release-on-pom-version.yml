@@ -125,4 +125,7 @@ jobs:
             exit 1
           }
 
-          gh release upload $tag "$($msi.FullName)#TMMissionControl-$version.msi" --clobber
+          gh release upload $tag `
+            "$($msi.FullName)#TMMissionControl-$version.msi" `
+            "$($msi.FullName)#TMMissionControl-Setup.msi" `
+            --clobber
