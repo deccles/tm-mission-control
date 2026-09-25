@@ -58,10 +58,21 @@ public final class PlayerState {
         if (corporation != null && !corporation.isBlank() && !"Unknown".equals(corporation)) {
             return corporation;
         }
-        if (human) {
-            return "You";
+        if (name != null && !name.isBlank() && !"You".equals(name) && !name.matches("Player \\d+")) {
+            return name;
         }
-        return name == null || name.isBlank() ? "Player " + id : name;
+        if (name == null || name.isBlank() || "You".equals(name)) {
+            return "Player " + id;
+        }
+        return name;
+    }
+
+    /** Steam account name. Falls back to the board title when the log has no name. */
+    public String accountName() {
+        if (name != null && !name.isBlank() && !"You".equals(name) && !name.matches("Player \\d+")) {
+            return name;
+        }
+        return displayName();
     }
 
     public static String colorFor(int playerId) {
@@ -69,10 +80,7 @@ public final class PlayerState {
     }
 
     public String label() {
-        if (human) {
-            return name + " (you)";
-        }
-        return name;
+        return accountName();
     }
 
     public void addTag(String tag) {

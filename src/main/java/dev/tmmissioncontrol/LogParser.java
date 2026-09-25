@@ -427,11 +427,31 @@ public final class LogParser {
             state.player(headerPlayer).human = human;
             if (human) {
                 state.humanId = headerPlayer;
-                if (state.player(headerPlayer).name.startsWith("Player ")) {
-                    state.player(headerPlayer).name = "You";
-                }
+            }
+            return;
+        }
+        if (trimmed.startsWith("IsMe:")) {
+            boolean me = trimmed.endsWith("True");
+            PlayerState seated = state.player(headerPlayer);
+            seated.human = me;
+            if (me) {
+                state.humanId = headerPlayer;
+            } else if (state.humanId == headerPlayer) {
+                state.humanId = otherHuman(headerPlayer);
+            }
+            if (!me && "You".equals(seated.name)) {
+                seated.name = "Player " + headerPlayer;
             }
         }
+    }
+
+    private int otherHuman(int exceptId) {
+        for (PlayerState player : state.players.values()) {
+            if (player.id != exceptId && player.human) {
+                return player.id;
+            }
+        }
+        return 1;
     }
 
     private void applyResource(String kind, String qtyOrProd, int from, int to) {

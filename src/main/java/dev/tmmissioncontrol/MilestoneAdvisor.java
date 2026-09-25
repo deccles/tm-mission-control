@@ -33,7 +33,7 @@ public final class MilestoneAdvisor {
                 Map<String, Object> row = new LinkedHashMap<>();
                 row.put("name", name);
                 row.put("playerId", player.id);
-                row.put("playerName", player.human ? "You" : player.displayName());
+                row.put("playerName", player.accountName());
                 row.put("color", player.color);
                 row.put("yours", player.human);
                 claimed.add(row);

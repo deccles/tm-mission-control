@@ -201,7 +201,7 @@ public final class ScoreCalculator {
                     PlayerState p = players.get(rowScore[0]);
                     Map<String, Object> who = new LinkedHashMap<>();
                     who.put("id", p.id);
-                    who.put("name", p.human ? "You" : p.displayName());
+                    who.put("name", p.accountName());
                     who.put("color", p.color);
                     who.put("yours", p.human);
                     who.put("value", rowScore[1]);

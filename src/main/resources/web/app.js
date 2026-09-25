@@ -18,22 +18,26 @@ function teamColor(p) {
   return p && p.color ? p.color : "blue";
 }
 
+function accountName(p) {
+  if (p && p.name && p.name !== "You" && !/^Player \d+$/.test(p.name)) return p.name;
+  return "";
+}
+
 function displayName(p, fallback) {
-  if (p && p.human) return "You";
   if (p && p.corporation && p.corporation !== "Unknown") return p.corporation;
-  return (p && p.name) || fallback || "Player";
+  const name = accountName(p);
+  if (name) return name;
+  return (p && p.name && p.name !== "You" && p.name) || fallback || "Player";
 }
 
 function boardTitle(p) {
-  if (p && p.corporation && p.corporation !== "Unknown") return p.corporation;
-  if (p && p.human) return "You";
-  return (p && p.name) || "Player";
+  return displayName(p, "Player");
 }
 
 function boardSubtitle(p) {
   if (!p) return "";
-  if (p.human && p.corporation && p.corporation !== "Unknown") return "You";
-  if (!p.human && p.name && p.name !== boardTitle(p)) return p.name;
+  const name = accountName(p);
+  if (name && name !== boardTitle(p)) return name;
   return "";
 }
 
@@ -517,7 +521,8 @@ function renderBanner(data) {
     if (play.yours) banner.classList.add("yours");
     $("banner-toggle").disabled = false;
     $("banner-chevron").hidden = false;
-    $("banner-kicker").textContent = `${play.yours ? "You" : play.playerLabel}${play.colorLabel ? " · " + play.colorLabel : ""}`;
+    const who = (play.yours && accountName(data.you)) || play.playerLabel;
+    $("banner-kicker").textContent = `${who}${play.colorLabel ? " · " + play.colorLabel : ""}`;
     $("banner-line").innerHTML = `<span class="banner-name">${escapeHtml(play.cardName)}</span>${
       play.cost != null ? costSym(play.cost) : ""
     }${(play.tags || []).map(tagIcon).join("")}${renderDrawn(play)}`;
