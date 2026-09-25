@@ -143,23 +143,77 @@ h1 {
   clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%);
 }
 .tag-sym {
+  position: relative;
   width: 1.7rem;
   height: 1.7rem;
   color: #f4e6d4;
   clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%);
 }
 .tag-sym svg { width: 1.05rem; height: 1.05rem; }
-.tag-building { background: #8B5A2B; }
-.tag-space { background: #2a2a32; }
-.tag-science { background: #d9e3ee; color: #243044; }
-.tag-power { background: #e6c200; color: #1a1208; }
-.tag-earth { background: #3d7ec9; }
-.tag-jovian { background: #d4893a; }
-.tag-plant { background: #2f9e44; }
-.tag-microbe { background: #7dae3a; }
-.tag-animal { background: #c47a3a; }
-.tag-city { background: #8a9098; }
-.tag-event { background: #c44532; }
+.tag-building { background: #c07340; }
+.tag-space { background: #f2d020; }
+.tag-science { background: #967b65; }
+.tag-power { background: #a855f7; }
+.tag-microbe { background: #98c828; }
+.tag-animal { background: #00e040; }
+.tag-city { background: #b2d8d6; }
+.tag-event { background: #f2d020; }
+.tag-earth { background: #00d0a0; }
+.tag-jovian { background: #c09000; }
+.tag-building,
+.tag-space,
+.tag-science,
+.tag-power,
+.tag-microbe,
+.tag-animal,
+.tag-city,
+.tag-event,
+.tag-earth,
+.tag-jovian {
+  clip-path: circle(50%);
+}
+.tag-building::before,
+.tag-space::before,
+.tag-science::before,
+.tag-power::before,
+.tag-microbe::before,
+.tag-animal::before,
+.tag-city::before,
+.tag-event::before,
+.tag-earth::before,
+.tag-jovian::before {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  background: #080604;
+  border-radius: 50%;
+}
+.tag-building svg { position: relative; z-index: 1; width: 1.15rem; height: 1.15rem; }
+.tag-space svg,
+.tag-science svg { position: relative; z-index: 1; width: 1.35rem; height: 1.35rem; }
+.tag-power svg { position: relative; z-index: 1; width: 1.05rem; height: 1.05rem; }
+.tag-microbe svg,
+.tag-animal svg { position: relative; z-index: 1; width: 1.25rem; height: 1.25rem; }
+.tag-city svg { position: relative; z-index: 1; width: 1.42rem; height: 1.42rem; }
+.tag-event svg { position: relative; z-index: 1; width: 1.05rem; height: 1.05rem; }
+.tag-earth svg,
+.tag-jovian svg { position: relative; z-index: 1; width: 1.25rem; height: 1.25rem; }
+.tag-sym.tag-earth {
+  clip-path: circle(50%);
+  border-radius: 50%;
+}
+.tag-plant {
+  background: #8ced05;
+  clip-path: circle(50%);
+}
+.tag-plant::before {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  background: #080604;
+  border-radius: 50%;
+}
+.tag-plant svg { position: relative; z-index: 1; width: 1.22rem; height: 1.22rem; }
 .tag-venus { background: #c9a227; color: #1a1208; }
 .tag-wild { background: #7a5aa8; }
 .tag-mars { background: #c45c32; }
@@ -177,21 +231,29 @@ h1 {
   height: 1.2rem;
   border-radius: 2px;
   box-shadow: 2px 2px 0 rgba(0,0,0,.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+.res-box svg { width: 0.95rem; height: 0.95rem; display: block; }
 .res-sym.prod .res-box { box-shadow: 2px 2px 0 rgba(0,0,0,.35), 0 0 0 2px #e8c84a; }
+.res-mc .res-box,
+.res-steel .res-box { color: #1a1208; }
 .res-mc .res-box { background: #e8c84a; }
 .res-steel .res-box { background: #b87333; }
 .res-ti .res-box {
   background: #141414;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   color: #e8c84a;
+  border: 1.5px solid #e8c84a;
+  box-sizing: border-box;
 }
-.res-ti .res-box svg { width: 0.95rem; height: 0.95rem; display: block; }
-.res-plant .res-box { background: #2f9e44; }
-.res-energy .res-box { background: #e6c200; }
-.res-heat .res-box { background: #d4652c; }
+.res-plant .res-box {
+  background: #10ba31;
+  border: 1.5px solid #8ced05;
+  box-sizing: border-box;
+}
+.res-energy .res-box { background: #6a3d9a; }
+.res-heat .res-box { background: #d44532; }
 .res-tr .res-box { background: #c44532; }
 .res-o2 .res-box { background: #6ea8d4; }
 .res-temp .res-box { background: #d44532; }

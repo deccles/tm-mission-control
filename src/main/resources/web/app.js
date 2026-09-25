@@ -43,8 +43,7 @@ function boardSubtitle(p) {
 
 function resMark(rawKey) {
   const key = resKey(rawKey);
-  const mark = key === "ti" ? TI_STAR : "";
-  return `<span class="res-sym res-${key}"><span class="res-box">${mark}</span></span>`;
+  return `<span class="res-sym res-${key}"><span class="res-box">${resIcon(key)}</span></span>`;
 }
 
 function renderCubes(p) {
@@ -347,18 +346,19 @@ function escapeHtml(s) {
   }[c]));
 }
 
+const PLANT_LEAF = '<g transform="translate(12 12) rotate(45) scale(.86) translate(-12 -14.1)" fill="#185102"><path d="M12 1.6 20 13.4H4z"/><circle cx="8.1" cy="15.5" r="4.5"/><circle cx="15.9" cy="15.5" r="4.5"/><path d="M11.2 18.1 9.6 26.6h4.8L12.8 18.1z"/></g>';
 const TAG_GLYPH = {
-  building: '<path fill="currentColor" d="M4 20V9l8-5 8 5v11h-6v-6H10v6z"/>',
-  space: '<path fill="currentColor" d="M12 3 14.2 9H21l-5.4 3.8L17.8 20 12 15.8 6.2 20l2.2-7.2L3 9h6.8z"/>',
-  science: '<circle cx="12" cy="12" r="2.2" fill="currentColor"/><ellipse cx="12" cy="12" rx="9" ry="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><ellipse cx="12" cy="12" rx="9" ry="3.4" fill="none" stroke="currentColor" stroke-width="1.7" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.4" fill="none" stroke="currentColor" stroke-width="1.7" transform="rotate(-60 12 12)"/>',
-  power: '<path fill="currentColor" d="M13 2 4 14h7l-1 8 10-14h-7z"/>',
-  earth: '<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"/>',
-  jovian: '<circle cx="12" cy="12" r="7.5" fill="currentColor" opacity=".9"/><path fill="none" stroke="#1a1208" stroke-width="1.4" d="M4 12h16"/>',
-  plant: '<g transform="translate(12 12) rotate(45) scale(.84) translate(-12 -14.1)" fill="currentColor"><path d="M12 1.6 20 13.4H4z"/><circle cx="8.1" cy="15.5" r="4.5"/><circle cx="15.9" cy="15.5" r="4.5"/><path d="M11.2 18.1 9.6 26.6h4.8L12.8 18.1z"/></g>',
-  microbe: '<circle cx="12" cy="12" r="3.2" fill="currentColor"/><circle cx="6" cy="8" r="1.7" fill="currentColor"/><circle cx="18" cy="9" r="1.5" fill="currentColor"/><circle cx="8" cy="17" r="1.6" fill="currentColor"/><circle cx="17" cy="16" r="1.4" fill="currentColor"/>',
-  animal: '<path fill="currentColor" d="M7 11c-2 0-3-2-2.2-3.5S8 6 8.5 8c.7-2 3-3 4.2-1.2C14 5 16.5 6 17.2 8c1.4-1 3.4.2 2.6 2.2-.3 1-1.4 1.5-2.3 1.3C17.8 14 16 17 12.5 17S7.4 14 7 11z"/>',
-  city: '<path fill="currentColor" d="M4 20V10h4V6h4v4h2V8h6v12z"/>',
-  event: '<path fill="currentColor" d="M13 2 3 13h7l-1 9 12-14h-7z"/>',
+  building: '<path fill="#c07340" d="M4 20V9l8-5 8 5v11h-6v-6H10v6z"/>',
+  space: '<g fill="#f2d020"><path d="M22.2 12 14.4 10.85 14.4 13.15z"/><path d="M22.2 12 14.4 10.85 14.4 13.15z" transform="rotate(45 12 12)"/><path d="M22.2 12 14.4 10.85 14.4 13.15z" transform="rotate(90 12 12)"/><path d="M22.2 12 14.4 10.85 14.4 13.15z" transform="rotate(135 12 12)"/><path d="M22.2 12 14.4 10.85 14.4 13.15z" transform="rotate(180 12 12)"/><path d="M22.2 12 14.4 10.85 14.4 13.15z" transform="rotate(225 12 12)"/><path d="M22.2 12 14.4 10.85 14.4 13.15z" transform="rotate(270 12 12)"/><path d="M22.2 12 14.4 10.85 14.4 13.15z" transform="rotate(315 12 12)"/><circle cx="12" cy="12" r="2.15"/></g>',
+  science: '<g fill="none" stroke="#967b65" stroke-width="1.45"><ellipse cx="12" cy="12" rx="8.4" ry="3.15"/><ellipse cx="12" cy="12" rx="8.4" ry="3.15" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="8.4" ry="3.15" transform="rotate(-60 12 12)"/></g><circle cx="12" cy="12" r="2.15" fill="#967b65"/>',
+  power: '<path fill="#a855f7" d="M13 2 4 14h7l-1 8 10-14h-7z"/>',
+  earth: '<g style="clip-path:circle(34.4% at 50% 50%)"><rect width="24" height="24" fill="none"/><g transform="translate(12 12) scale(1.28) translate(-12 -12)" fill="#00d0a0"><path d="M2.3 9.1 4 9.1 7.4 10.7 9.1 12.4 8.2 14.1 9.1 16.6 10.7 19.1 9.9 20 6.5 19.1 4 16.6 2.3 14.1 2.3 10.7Z"/><path d="M11.6 4 13.3 4 14.9 4.9 16.6 6.5 17.5 8.2 18.3 9.9 18.3 11.6 18.3 13.3 17.5 14.9 16.6 16.6 14.9 18.3 15.8 16.6 15.8 14.9 14.1 13.3 13.3 11.6 11.6 10.7 9.9 10.7 10.7 9.1 12.4 9.1 13.3 7.4 13.3 6.5 14.1 4.9 12.4 4Z"/></g></g><circle cx="12" cy="12" r="8.8" fill="none" stroke="#00d0a0" stroke-width="1.15"/>',
+  jovian: '<g transform="rotate(-8 12 12)"><circle cx="12" cy="12" r="10.4" fill="#c09000"/><rect x="-2" y="6.8" width="28" height="1.7" fill="#080604"/><rect x="-2" y="15.2" width="28" height="3.4" fill="#080604"/></g>',
+  plant: '<g transform="translate(12 12) rotate(45) scale(.86) translate(-12 -14.1)" fill="#8ced05"><path d="M12 1.6 20 13.4H4z"/><circle cx="8.1" cy="15.5" r="4.5"/><circle cx="15.9" cy="15.5" r="4.5"/><path d="M11.2 18.1 9.6 26.6h4.8L12.8 18.1z"/></g>',
+  microbe: '<circle cx="9.6" cy="12" r="4" fill="#98c828"/><path d="M13.6 6.2 18.2 10.2" fill="none" stroke="#98c828" stroke-width="2.5" stroke-linecap="round"/><path d="M17.5 13.5 11.4 18.8" fill="none" stroke="#98c828" stroke-width="2.6" stroke-linecap="round"/>',
+  animal: '<g fill="#00e040"><circle cx="6.6" cy="6.8" r="1.85"/><circle cx="10.2" cy="4.7" r="1.85"/><circle cx="14.2" cy="4.7" r="1.85"/><circle cx="17.6" cy="7" r="1.75"/><rect x="6.3" y="11.6" width="11.6" height="6.4" rx="3.2"/></g>',
+  city: '<g fill="#b2d8d6"><path d="M1.2 10.8A10.8 10.6 0 0 0 22.8 10.8Z"/><rect x="4.8" y="8" width="2.6" height="3.2"/><rect x="10.2" y="2" width="3.6" height="9.2"/><rect x="16.2" y="5.2" width="2.8" height="6"/></g>',
+  event: '<path fill="#f2d020" d="M8 3h8v8.5h4L12 22 4 11.5h4z"/>',
   venus: '<circle cx="12" cy="10" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 15v6M9 19h6"/>',
   wild: '<path fill="currentColor" d="M12 3 14 9h6l-5 3.6L17 19l-5-3.4L7 19l2-6.4L4 9h6z"/>',
   mars: '<circle cx="10" cy="13" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M14 9 20 3M15 3h5v5"/>',
@@ -402,12 +402,24 @@ function resLabel(key) {
 }
 
 const TI_STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2 14.7 8.6h6.8l-5.5 4.1 2.1 6.7L12 15.8 5.9 19.4l2.1-6.7L2.5 8.6h6.8z"/></svg>';
+const RES_ICONS = {
+  mc: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M7.2 16V8h1.5l3.3 5.2L15.3 8H16.8v8h-1.6v-5.1L12 14.2l-3.2-4.3V16z"/></svg>',
+  steel: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 4h14v5h-4v12H7V9H3z"/></svg>',
+  ti: TI_STAR,
+  plant: '<svg viewBox="0 0 24 24" aria-hidden="true">' + PLANT_LEAF + '</svg>',
+  energy: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13 2 4 14h7l-1 8 10-14h-7z"/></svg>',
+  heat: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="#ffe08a" stroke-width="1.7" stroke-linecap="round" d="M5 2.5c2.6 2.2 2.6 3.8 0 6s-2.6 3.8 0 6 2.6 3.8 0 6M12 2.5c2.6 2.2 2.6 3.8 0 6s-2.6 3.8 0 6 2.6 3.8 0 6M19 2.5c2.6 2.2 2.6 3.8 0 6s-2.6 3.8 0 6 2.6 3.8 0 6"/></svg>',
+};
+
+function resIcon(key) {
+  return RES_ICONS[key] || "";
+}
 
 function resSym(rawKey, value, prod) {
   const key = resKey(rawKey);
   const n = Number(value);
   const shown = Number.isFinite(n) ? (n > 0 ? "+" + n : String(n)) : String(value);
-  const mark = key === "ti" ? TI_STAR : "";
+  const mark = resIcon(key);
   return `<span class="res-sym res-${key}${prod ? " prod" : ""}" title="${prod ? "Production " : ""}${shown} ${resLabel(key)}"><span class="res-box">${mark}</span>${shown}</span>`;
 }
 
@@ -629,7 +641,7 @@ function renderScore(data, players) {
     ["Greeneries", (b) => b.greeneries, false],
     ["Cities", (b) => b.cities, false],
     ["Cards + tokens", (b) => b.cards, true],
-    ["<span class=\"res-sym res-mc\" title=\"M€\"><span class=\"res-box\"></span></span> tiebreak", (b) => b.mc, false],
+    [`${resMark("mc")} tiebreak`, (b) => b.mc, false],
   ];
   $("score-lines").innerHTML = rows.map(([n, pick, drill]) =>
     `<tr${drill ? ` class="clickable${cardsOpen ? " open" : ""}" data-drill="cards" title="Click for card VP"` : ""}><td>${n}</td>${
