@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.tmmissioncontrol</groupId>
   <artifactId>tm-mission-control</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <name>TM Mission Control</name>
   <description>Second-screen mission control for the Terraforming Mars digital client</description>
 
